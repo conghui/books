@@ -1,0 +1,12 @@
+ Which, if any, of the following function prototypes are invalid? Why?
+    (a) set( int *, int );
+    (b) void func();
+    (c) string error( int );
+    (d) arr[10] sum( int *, int );
+
+solution: 
+(a) It is invalid, the function prototype doesn't have return type.
+(b) It is valid.
+(c) It is valid.
+(d) It is invalid. Array can not used as return type.
+

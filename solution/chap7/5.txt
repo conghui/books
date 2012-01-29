@@ -1,0 +1,15 @@
+The redeclaration of each of these functions is an error. Why?
+(a) char *screenInit( int height, int width,
+                      char background = ' ' );
+    char *screenInit( int height = 24, int width,
+                      char background );
+(b) void print( int (*arr)[6], int size );
+    void print( int (*arr)[5], int size );
+(c) void manip( int *pi, int first, int end = 0 );
+    void manip( int *pi, int first = 0, int end = 0 );
+
+solution:
+(a) once the first parameter is provided with default argument, the following 
+    parameters should also be provided.
+(b) redeclaration. Array is treated as a pointer when it is as a parameter.
+(c) the third default argument value should be eliminated.

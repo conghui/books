@@ -1,0 +1,16 @@
+Which, if any, of the following declarations are errors? Why?
+(a) void print( int arr[][], int size );
+(b) int ff( int a, int b = 0, int c = 0 );
+(c) void operate( int *matrix[] );
+(d) char *screenInit( int height = 24, int width,
+                      char background );
+(e) void putValues( int (&ia)[] );
+
+solution:
+(a) Error, the second dimension of arr should provided.
+(b) Correct.
+(c) Correct.
+(d) Error, once the first parameter is provided with default argument, the 
+    following parameters should also be provided.
+(e) Error, the dimension of the array should be provided.
+
