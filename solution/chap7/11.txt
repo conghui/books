@@ -1,0 +1,10 @@
+How would you return more than one value from a function? Describe the 
+advantages and disadvantages of your approach.
+
+solution:
+1. use the reference or pointer in the parameter. The advantage is that it is 
+   easy to implement, but if more value should be returned, the number of 
+   parameter will increase and thus the function prototype become urgly.
+2. return a struct or class instead of a primitive type. The function 
+   prototype  is quite neat and beautiful, but you should design the structure 
+   or class yourself.

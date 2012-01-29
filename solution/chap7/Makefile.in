@@ -32,7 +32,9 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = 7$(EXEEXT)
+bin_PROGRAMS = 7$(EXEEXT) 12$(EXEEXT) 15$(EXEEXT) 16$(EXEEXT) \
+	17$(EXEEXT) 18$(EXEEXT) 19$(EXEEXT) 20$(EXEEXT) 21$(EXEEXT) \
+	23$(EXEEXT) 24$(EXEEXT)
 subdir = solution/chap7
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -45,6 +47,36 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
+am_12_OBJECTS = 12.$(OBJEXT)
+12_OBJECTS = $(am_12_OBJECTS)
+12_LDADD = $(LDADD)
+am_15_OBJECTS = 15.$(OBJEXT)
+15_OBJECTS = $(am_15_OBJECTS)
+15_LDADD = $(LDADD)
+am_16_OBJECTS = 16.$(OBJEXT)
+16_OBJECTS = $(am_16_OBJECTS)
+16_LDADD = $(LDADD)
+am_17_OBJECTS = 17.$(OBJEXT)
+17_OBJECTS = $(am_17_OBJECTS)
+17_LDADD = $(LDADD)
+am_18_OBJECTS = 18.$(OBJEXT)
+18_OBJECTS = $(am_18_OBJECTS)
+18_LDADD = $(LDADD)
+am_19_OBJECTS = 19.$(OBJEXT)
+19_OBJECTS = $(am_19_OBJECTS)
+19_LDADD = $(LDADD)
+am_20_OBJECTS = 20.$(OBJEXT)
+20_OBJECTS = $(am_20_OBJECTS)
+20_LDADD = $(LDADD)
+am_21_OBJECTS = 21.$(OBJEXT)
+21_OBJECTS = $(am_21_OBJECTS)
+21_LDADD = $(LDADD)
+am_23_OBJECTS = 23.$(OBJEXT)
+23_OBJECTS = $(am_23_OBJECTS)
+23_LDADD = $(LDADD)
+am_24_OBJECTS = 24.$(OBJEXT)
+24_OBJECTS = $(am_24_OBJECTS)
+24_LDADD = $(LDADD)
 am_7_OBJECTS = 7.$(OBJEXT)
 7_OBJECTS = $(am_7_OBJECTS)
 7_LDADD = $(LDADD)
@@ -57,8 +89,12 @@ CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
-SOURCES = $(7_SOURCES)
-DIST_SOURCES = $(7_SOURCES)
+SOURCES = $(12_SOURCES) $(15_SOURCES) $(16_SOURCES) $(17_SOURCES) \
+	$(18_SOURCES) $(19_SOURCES) $(20_SOURCES) $(21_SOURCES) \
+	$(23_SOURCES) $(24_SOURCES) $(7_SOURCES)
+DIST_SOURCES = $(12_SOURCES) $(15_SOURCES) $(16_SOURCES) $(17_SOURCES) \
+	$(18_SOURCES) $(19_SOURCES) $(20_SOURCES) $(21_SOURCES) \
+	$(23_SOURCES) $(24_SOURCES) $(7_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -150,6 +186,16 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 7_SOURCES = 7.cxx
+12_SOURCES = 12.cxx
+15_SOURCES = 15.cxx
+16_SOURCES = 16.cxx
+17_SOURCES = 17.cxx
+18_SOURCES = 18.cxx
+19_SOURCES = 19.cxx
+20_SOURCES = 20.cxx
+21_SOURCES = 21.cxx
+23_SOURCES = 23.cxx
+24_SOURCES = 24.cxx
 AM_CXXFLAGS = -Wall -Wextra -Werror
 all: all-am
 
@@ -222,6 +268,36 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+12$(EXEEXT): $(12_OBJECTS) $(12_DEPENDENCIES) 
+	@rm -f 12$(EXEEXT)
+	$(CXXLINK) $(12_OBJECTS) $(12_LDADD) $(LIBS)
+15$(EXEEXT): $(15_OBJECTS) $(15_DEPENDENCIES) 
+	@rm -f 15$(EXEEXT)
+	$(CXXLINK) $(15_OBJECTS) $(15_LDADD) $(LIBS)
+16$(EXEEXT): $(16_OBJECTS) $(16_DEPENDENCIES) 
+	@rm -f 16$(EXEEXT)
+	$(CXXLINK) $(16_OBJECTS) $(16_LDADD) $(LIBS)
+17$(EXEEXT): $(17_OBJECTS) $(17_DEPENDENCIES) 
+	@rm -f 17$(EXEEXT)
+	$(CXXLINK) $(17_OBJECTS) $(17_LDADD) $(LIBS)
+18$(EXEEXT): $(18_OBJECTS) $(18_DEPENDENCIES) 
+	@rm -f 18$(EXEEXT)
+	$(CXXLINK) $(18_OBJECTS) $(18_LDADD) $(LIBS)
+19$(EXEEXT): $(19_OBJECTS) $(19_DEPENDENCIES) 
+	@rm -f 19$(EXEEXT)
+	$(CXXLINK) $(19_OBJECTS) $(19_LDADD) $(LIBS)
+20$(EXEEXT): $(20_OBJECTS) $(20_DEPENDENCIES) 
+	@rm -f 20$(EXEEXT)
+	$(CXXLINK) $(20_OBJECTS) $(20_LDADD) $(LIBS)
+21$(EXEEXT): $(21_OBJECTS) $(21_DEPENDENCIES) 
+	@rm -f 21$(EXEEXT)
+	$(CXXLINK) $(21_OBJECTS) $(21_LDADD) $(LIBS)
+23$(EXEEXT): $(23_OBJECTS) $(23_DEPENDENCIES) 
+	@rm -f 23$(EXEEXT)
+	$(CXXLINK) $(23_OBJECTS) $(23_LDADD) $(LIBS)
+24$(EXEEXT): $(24_OBJECTS) $(24_DEPENDENCIES) 
+	@rm -f 24$(EXEEXT)
+	$(CXXLINK) $(24_OBJECTS) $(24_LDADD) $(LIBS)
 7$(EXEEXT): $(7_OBJECTS) $(7_DEPENDENCIES) 
 	@rm -f 7$(EXEEXT)
 	$(CXXLINK) $(7_OBJECTS) $(7_LDADD) $(LIBS)
@@ -232,6 +308,16 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/12.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/15.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/16.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/17.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/18.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/19.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/20.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/21.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/23.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/24.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/7.Po@am__quote@
 
 .cxx.o:

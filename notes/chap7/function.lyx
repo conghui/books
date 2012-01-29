@@ -2,7 +2,7 @@
 \lyxformat 413
 \begin_document
 \begin_header
-\textclass ctex-article
+\textclass article
 \begin_preamble
 %Fixme: is this really necessary?
 \DeclareRobustCommand\nobreakspace{\leavevmode\nobreak\ }
@@ -253,6 +253,311 @@ void f(int, int = 0, int = 0); //invalid, the third default value should
 
 \begin_layout Standard
 The default argument could be any expression, including function calls.
+\end_layout
+
+\begin_layout Subsection*
+Linkage Directive
+\end_layout
+
+\begin_layout Standard
+The linkage directive 
+\emph on
+extern 
+\begin_inset Quotes eld
+\end_inset
+
+C
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph default
+should be put outside of a function, not within a function.
+\end_layout
+
+\begin_layout Standard
+The linkage directive 
+\family sans
+\emph on
+extern "C"
+\family default
+\emph default
+ can have one of the two forms.
+ It can be a single directive form, or a compond directive form.
+\end_layout
+
+\begin_layout LyX-Code
+extern "C" int add(int, int); //single directive form
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+extern "C" { //compond directive form
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+int add(int, int);
+\end_layout
+
+\begin_layout LyX-Code
+int sub(int, int);
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+extern "C" { //compond directive form
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+#include "foo.h"
+\end_layout
+
+\begin_layout LyX-Code
+#include "bar.h"
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+Having three files, 
+\family sans
+foo.h
+\family default
+, 
+\family sans
+foo.c
+\family default
+, 
+\family sans
+main.cxx
+\family default
+.
+ If in file 
+\family sans
+main.cxx
+\family default
+, a function that is defined in foo.c and declared in foo.h is invoked, an
+ compile error will appear saying somewhat like 
+\emph on
+"undefine reference "
+\emph default
+ to the called function.
+ Why? The file 
+\family sans
+foo.c
+\family default
+ is compiled using the C compiler, but the 
+\family sans
+main.cxx
+\family default
+ is compiled by the C++ compiler, while in the linkage stage, the definition
+ of the called function could be found by the C++ compiler, so the error
+ is thrown out.
+ To fix this error, the 
+\family sans
+\emph on
+extern "C"
+\family default
+\emph default
+ directive should be put in front of the declaration, or of the include
+ directive which include this declaration of the function.
+\end_layout
+
+\begin_layout Standard
+One of the compatible way is to add the 
+\family sans
+\emph on
+extern "C"
+\family default
+\emph default
+ directive in the header file.
+ However, if you directly add 
+\family sans
+\emph on
+extern "C"
+\family default
+\emph default
+ to every function in the header file, some errors may occurs while compiling
+ the C source code, for example: in foo.h
+\end_layout
+
+\begin_layout LyX-Code
+extern "C" int add(int, int);
+\end_layout
+
+\begin_layout Standard
+and in foo.c, you include the header and give its definition:
+\end_layout
+
+\begin_layout LyX-Code
+#include "foo.h"
+\end_layout
+
+\begin_layout LyX-Code
+int add(int a, int b) 
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+I am sure the C source file may not pass the compiler.
+ The reason is simple, there is no definition of 
+\family sans
+\emph on
+extern "C"
+\family default
+\emph default
+ in C.
+ It is just part of C++.
+ You can solve this problem just modify the header a bit.
+\end_layout
+
+\begin_layout LyX-Code
+#ifdef __cplusplus 
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+extern "C" int add(int, int);
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+#endif
+\end_layout
+
+\begin_layout Standard
+every C++ program will have the macro 
+\family sans
+__cplusplus
+\family default
+ defined.
+\end_layout
+
+\begin_layout Standard
+You can have a further modification:
+\end_layout
+
+\begin_layout LyX-Code
+#ifndef FOO_H
+\end_layout
+
+\begin_layout LyX-Code
+#define FOO_H
+\end_layout
+
+\begin_layout LyX-Code
+#ifdef __cplusplus
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+extern "C" {
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+#endif
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+/* some declaration as what you did in C as usual */
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+/* and the in end of the file */
+\end_layout
+
+\begin_layout LyX-Code
+#ifdef __cplusplus
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+}
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+#endif
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+#endif
+\end_layout
+
+\begin_layout Standard
+I am using vim editor, and of course, define the above snippet myself as
+ a function, and make it have a key binding for further use.
+ 
+\end_layout
+
+\begin_layout Subsection*
+pointer to extern "C" function
+\end_layout
+
+\begin_layout Standard
+A pointer can be declared to pointer to a 
+\emph on
+extern "C"
+\emph default
+ function, for example:
+\end_layout
+
+\begin_layout LyX-Code
+extern "C" void (*pf)(int);
+\end_layout
+
+\begin_layout Standard
+notice that, while intialize the pointer, the lvalue and rvalue should be
+ exactly the same type.
+ For example:
+\end_layout
+
+\begin_layout LyX-Code
+void f(int);
+\end_layout
+
+\begin_layout LyX-Code
+extern "C" (*pf)(int);
+\end_layout
+
+\begin_layout LyX-Code
+pf = f; // illegal! 
 \end_layout
 
 \end_body

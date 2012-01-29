@@ -1,0 +1,20 @@
+What are the types of the following declarations?
+(a) int (*mpf)(vector<int>&);
+(b) void (*apf[20])(double);
+(c) void (*(*papf)[2])(int);
+How would you use typedef names to make the declarations easier to read?
+
+solution:
+(a) mpf is a function pointer that points to a function, whose return type is 
+int and it accept a argument, which is vector<int> &
+
+(b) apf is an array of pointer to function, whose return type is void, and it 
+parameter type is double. To make it easier to read, we can 
+    typedef void (*PF)(double);
+    PF apd[20];
+
+(c) papf is a pointer that pointers to an array whose dimension is 2. the 
+elements in the array is also a function pointer, with void as its return type 
+and int as it parameter type. To make it easier to read, we can
+    typedef void (*PF)(int);
+    PF (*papf)[2];
