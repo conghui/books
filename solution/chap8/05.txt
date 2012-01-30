@@ -1,0 +1,14 @@
+Explain why the following new expressions are errors.
+(a) const float *pf = new const float[100];
+(b) double *pd = new double[10][getDim()];
+(c) int (*pia2)[ 1024 ] = new int[ ][ 1024 ];
+(d) const int *pci = new const int;
+
+solution:
+(a) we cannot initialize the array in new operator, including the const.
+(b) the second dimension of the array must be a constant expression or 
+constant value.
+(c) the first dimension of array in the new operator must be given. It can be 
+a const value or a normal expression, but we cannot leave it empty.
+(d) the int should be initialized with a value once it has the const 
+qualifier.

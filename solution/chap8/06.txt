@@ -1,0 +1,9 @@
+Given the following new expression, how would you delete pa?
+typedef int arr[10];
+int *pa = new arr;
+
+solution:
+delete [] pa;
+
+arr is an array of 10 elements. pa is a pointer that points to an array of 10 
+elements.

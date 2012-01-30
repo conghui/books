@@ -1,0 +1,18 @@
+In the following code sample, identify the different scopes. Which of the following declarations of ix, if any,
+are errors? Explain why.
+int ix = 1024;  // OK, global scope
+int ix();       // ix has been defined.
+void func( int ix, int iy ) {   // OK, local scope and hide the global ix.
+    int ix = 255;               // redefinitition. 
+    if ( int ix = 0 ) {         // OK, local scope and hide the global ix and 
+                                // the previous ix
+        int ix = 79;            // redefinitition.
+        {
+            int ix = 89;        // OK, local scope
+        }
+    }
+    else {
+        int ix = 99;            // OK, local scope.
+    }
+}
+

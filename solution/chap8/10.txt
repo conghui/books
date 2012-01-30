@@ -1,0 +1,16 @@
+Suppose we have the following:
+    auto_ptr< string > ps( new string( "Daniel" ) );
+What is the difference, if any, between the following two invocations of 
+assign()? Which do you think is preferable? Why?
+    ps.get()->assign( "Danny" );
+    ps->assign( "Danny" );
+
+solution:
+1. the fist expression. we first get the pointer, a pointer to a string, and 
+   then assign "Danny" to the string.
+
+2. the second expression. we directly invoke auto_ptr<string>::assign() to 
+   assign "Danny" to the object that auto_ptr points to. 
+
+The second way is preferred. It is more intuitive and provides a way to 
+handle the underling pointer.

@@ -1,0 +1,8 @@
+Why would you define your own namespace in your programs?
+
+If we are the provider of the library, we want to keep the routine and 
+functions in our namespace in case of name polution with the clients's 
+program.
+
+If we are the clients of the library, we also use namespace, but use the using 
+namespace directive or using declaration in order to use the library.

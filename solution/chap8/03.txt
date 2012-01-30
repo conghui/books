@@ -1,0 +1,15 @@
+Identify which ones of the following are declarations and which ones are definitions. Explain why they are
+declarations or definitions.
+(a) extern int ix = 1024;
+(b) int iy;
+(c) extern void reset( void *p ) { /* ... */ }
+(d) extern const int *pi;
+(e) void print( const matrix & );
+
+
+solution:
+(a) definition as it is initialized with value 1024.
+(b) definition.
+(c) definition as it has it function body.
+(d) declaration.
+(e) declaration.
