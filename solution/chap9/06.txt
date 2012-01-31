@@ -1,0 +1,9 @@
+What's exact match?
+
+Solution:
+It also includes:
+1. lvalue to rvalue conversion.
+2. array to pointer conversion.
+3. function to pointer conversion.
+4. qualifier conversion.
+

@@ -1,0 +1,18 @@
+What's the rank of the following argument conversion?
+(a) void print(int *, int);
+    int arr[6];
+    print(arr, 6);
+(b) void manip(int, int);
+    manip('a', 'b');
+(c) int calc(int, int);
+    doule dobj;
+    calc(55.4, dobj);
+(d) void set(const int *);
+    int *pi;
+    set(pi);
+
+solution:
+(a) It is exact match.
+(b) It is type promotion.
+(c) It is standard conversion.
+(d) It is exact match, with qualifier conversion.

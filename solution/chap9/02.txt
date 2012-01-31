@@ -1,0 +1,16 @@
+How should a set of overloaded functions for the following error() function be 
+declared to handle the following calls?
+
+int index;
+int upperBound;
+char selectVal;
+// ...
+error( "Array out of bounds: ", index, upperBound );
+error( "Division by zero" );
+error( "Invalid selection", selectVal );
+
+solution:
+we should define the following overloaded functions.
+void error(const string &, int, int);
+void error(const string &);
+void error(const string &, char);

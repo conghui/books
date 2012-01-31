@@ -1,0 +1,5 @@
+Why would you declare overloaded functions?
+
+solution:
+Maybe we need a set of function that perform the the same set of tasks but 
+accpet different type of arguments. we need overloaded functions.
