@@ -1,0 +1,6 @@
+Name two situations in which the use of explicit template arguments is necessary.
+
+solution:
+1. when the template argument dedution fails because of ambigious.
+2. when the compiler connot deduce the type of the template argument, for 
+   example, the type in the template function's return type.

@@ -1,0 +1,66 @@
+Let's return to the example presented earlier:
+
+template <class Type>
+Type max( Type, Type ) { .... }
+double max( double, double );
+int max(int, int);
+
+int main() {
+    int ival;
+    double dval;
+    float fd;
+    max( 0, ival );
+    max( 0.25, dval );
+    max( 0, fd );
+}
+
+The following function template specialization is added to the set of declarations in global scope:
+template <> char max<char>( char, char ) { .... }
+Revisit the function calls in main() and list the candidate functions and list the viable functions for each calls.
+Suppose that the following function call is added within main(). To which function does the call resolve? Why?
+
+int main() {
+    // ...
+    max (0, 'J' );
+}
+
+solution:
+1. for max(0, ival);
+    candidate functions:
+        int max(int, int);      // ordinary function
+        double max(double, double);
+        int max<int>(int, int); // template function
+    viable functions:
+        int max(int, int);      // ordinary function
+        double max(double, double);
+        int max(int, int);      // template function
+    best viable function:
+        int max(int, int);      // ordinary function
+
+2. for max(0.25, dval);
+    candiate functions:
+        double max(double, double); // ordinary function
+        double max(double, double); // template function
+        int max(int, int);          
+    viable functions:
+        double max(double, double); // ordinary function
+        double max(double, double); // template function
+        int max(int, int);          
+    best viable function:
+        double max(double, double); // ordinary function
+
+3. for max( 0, fd );
+    candidate functions:
+        double max(double, double); // ordinary function
+        int max(int, int);
+    viable function:
+        double max(double, double); // ordinary function
+        int max(int, int);
+    best viable functions:
+        no best viable function. It is ambigious.
+4. for max(0, 'J');
+    candidate functions:
+        int max(int, int);
+        double max(double, double);
+    viable functions:
+        int max(int, int);

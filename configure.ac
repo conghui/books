@@ -5,7 +5,8 @@ AC_PROG_CC
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([
     Makefile
-    solution/chap6/Makefile
-    solution/chap7/Makefile
+    solution/chap06/Makefile
+    solution/chap07/Makefile
+    solution/chap10/Makefile
 ])
 AC_OUTPUT

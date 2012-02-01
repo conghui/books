@@ -32,10 +32,10 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = 7$(EXEEXT) 12$(EXEEXT) 15$(EXEEXT) 16$(EXEEXT) \
+bin_PROGRAMS = 13$(EXEEXT) 14$(EXEEXT) 15$(EXEEXT) 16$(EXEEXT) \
 	17$(EXEEXT) 18$(EXEEXT) 19$(EXEEXT) 20$(EXEEXT) 21$(EXEEXT) \
-	23$(EXEEXT) 24$(EXEEXT)
-subdir = solution/chap7
+	24$(EXEEXT)
+subdir = solution/chap06
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -47,9 +47,12 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_12_OBJECTS = 12.$(OBJEXT)
-12_OBJECTS = $(am_12_OBJECTS)
-12_LDADD = $(LDADD)
+am_13_OBJECTS = 13.$(OBJEXT)
+13_OBJECTS = $(am_13_OBJECTS)
+13_LDADD = $(LDADD)
+am_14_OBJECTS = 14.$(OBJEXT)
+14_OBJECTS = $(am_14_OBJECTS)
+14_LDADD = $(LDADD)
 am_15_OBJECTS = 15.$(OBJEXT)
 15_OBJECTS = $(am_15_OBJECTS)
 15_LDADD = $(LDADD)
@@ -71,15 +74,9 @@ am_20_OBJECTS = 20.$(OBJEXT)
 am_21_OBJECTS = 21.$(OBJEXT)
 21_OBJECTS = $(am_21_OBJECTS)
 21_LDADD = $(LDADD)
-am_23_OBJECTS = 23.$(OBJEXT)
-23_OBJECTS = $(am_23_OBJECTS)
-23_LDADD = $(LDADD)
 am_24_OBJECTS = 24.$(OBJEXT)
 24_OBJECTS = $(am_24_OBJECTS)
 24_LDADD = $(LDADD)
-am_7_OBJECTS = 7.$(OBJEXT)
-7_OBJECTS = $(am_7_OBJECTS)
-7_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -89,12 +86,12 @@ CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
-SOURCES = $(12_SOURCES) $(15_SOURCES) $(16_SOURCES) $(17_SOURCES) \
-	$(18_SOURCES) $(19_SOURCES) $(20_SOURCES) $(21_SOURCES) \
-	$(23_SOURCES) $(24_SOURCES) $(7_SOURCES)
-DIST_SOURCES = $(12_SOURCES) $(15_SOURCES) $(16_SOURCES) $(17_SOURCES) \
-	$(18_SOURCES) $(19_SOURCES) $(20_SOURCES) $(21_SOURCES) \
-	$(23_SOURCES) $(24_SOURCES) $(7_SOURCES)
+SOURCES = $(13_SOURCES) $(14_SOURCES) $(15_SOURCES) $(16_SOURCES) \
+	$(17_SOURCES) $(18_SOURCES) $(19_SOURCES) $(20_SOURCES) \
+	$(21_SOURCES) $(24_SOURCES)
+DIST_SOURCES = $(13_SOURCES) $(14_SOURCES) $(15_SOURCES) $(16_SOURCES) \
+	$(17_SOURCES) $(18_SOURCES) $(19_SOURCES) $(20_SOURCES) \
+	$(21_SOURCES) $(24_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -185,8 +182,8 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-7_SOURCES = 7.cxx
-12_SOURCES = 12.cxx
+13_SOURCES = 13.cxx
+14_SOURCES = 14.cxx
 15_SOURCES = 15.cxx
 16_SOURCES = 16.cxx
 17_SOURCES = 17.cxx
@@ -194,9 +191,8 @@ top_srcdir = @top_srcdir@
 19_SOURCES = 19.cxx
 20_SOURCES = 20.cxx
 21_SOURCES = 21.cxx
-23_SOURCES = 23.cxx
 24_SOURCES = 24.cxx
-AM_CXXFLAGS = -Wall -Wextra -Werror
+AM_CXXFLAGS = -Wall -Wextra
 all: all-am
 
 .SUFFIXES:
@@ -210,9 +206,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign solution/chap7/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign solution/chap06/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign solution/chap7/Makefile
+	  $(AUTOMAKE) --foreign solution/chap06/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -268,9 +264,12 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
-12$(EXEEXT): $(12_OBJECTS) $(12_DEPENDENCIES) 
-	@rm -f 12$(EXEEXT)
-	$(CXXLINK) $(12_OBJECTS) $(12_LDADD) $(LIBS)
+13$(EXEEXT): $(13_OBJECTS) $(13_DEPENDENCIES) 
+	@rm -f 13$(EXEEXT)
+	$(CXXLINK) $(13_OBJECTS) $(13_LDADD) $(LIBS)
+14$(EXEEXT): $(14_OBJECTS) $(14_DEPENDENCIES) 
+	@rm -f 14$(EXEEXT)
+	$(CXXLINK) $(14_OBJECTS) $(14_LDADD) $(LIBS)
 15$(EXEEXT): $(15_OBJECTS) $(15_DEPENDENCIES) 
 	@rm -f 15$(EXEEXT)
 	$(CXXLINK) $(15_OBJECTS) $(15_LDADD) $(LIBS)
@@ -292,15 +291,9 @@ clean-binPROGRAMS:
 21$(EXEEXT): $(21_OBJECTS) $(21_DEPENDENCIES) 
 	@rm -f 21$(EXEEXT)
 	$(CXXLINK) $(21_OBJECTS) $(21_LDADD) $(LIBS)
-23$(EXEEXT): $(23_OBJECTS) $(23_DEPENDENCIES) 
-	@rm -f 23$(EXEEXT)
-	$(CXXLINK) $(23_OBJECTS) $(23_LDADD) $(LIBS)
 24$(EXEEXT): $(24_OBJECTS) $(24_DEPENDENCIES) 
 	@rm -f 24$(EXEEXT)
 	$(CXXLINK) $(24_OBJECTS) $(24_LDADD) $(LIBS)
-7$(EXEEXT): $(7_OBJECTS) $(7_DEPENDENCIES) 
-	@rm -f 7$(EXEEXT)
-	$(CXXLINK) $(7_OBJECTS) $(7_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -308,7 +301,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/12.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/13.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/14.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/15.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/16.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/17.Po@am__quote@
@@ -316,9 +310,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/19.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/20.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/21.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/23.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/24.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/7.Po@am__quote@
 
 .cxx.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
