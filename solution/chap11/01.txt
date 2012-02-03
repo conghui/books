@@ -1,0 +1,19 @@
+Which, if any, of the following throw expressions are errors? Why? For the valid throw expressions, indicate the type of the exception thrown.
+(a) class exceptionType { };
+      throw exceptionType();
+(b) int excpObj;
+      throw excpObj;
+(c) enum mathErr { overflow, underflow, zeroDivide };
+      throw zeroDivide();
+(d) int *pi = &excpObj;
+      throw pi;
+
+solution:
+(a) Correct. The type is class exceptionType.
+
+(b) Correct. The type is int.
+
+(c) Invalid. zeroDivide is a enumerate constant. The right form is 
+        throw zeroDivide;
+
+(d) Correct. The type is int *.

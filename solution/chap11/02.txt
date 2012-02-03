@@ -1,0 +1,15 @@
+/* The IntArray class defined in Section 2.3 has a member operator function 
+ * operator[]() that uses assert() to indicate that the index is outside the 
+ * bounds of the array. Change the definition of operator[]() to instead throw 
+ * an exception in this situation. Define an exception class to be used as the 
+ * type of the exception thrown.
+ */
+
+class OutOfBounds { };
+
+int &IntArray::operator[](int index) {
+    if (index < 0 || index >= size())
+        throw OutOfBound();
+
+    return ia[index];
+}

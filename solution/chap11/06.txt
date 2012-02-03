@@ -1,0 +1,5 @@
+Explain what happens during stack unwinding.
+
+The process by which the compond statements and function definitions exit 
+because of a thrown exception in the search of for a catch clause to handle 
+the exception is called stack unwinding.

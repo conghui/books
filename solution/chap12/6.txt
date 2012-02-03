@@ -1,0 +1,22 @@
+Explain why each of the following is incorrect. Identify which errors are caught during compilation.
+(a) const vector<string> file_names( sa, sa+6 );
+    vector<string>::iterator it = file_names.begin()+2;
+(b) const vector<int> ivec;
+    fill( ivec.begin(), ivec.end(), ival );
+(c) sort( ivec.begin(), ivec.rend() );
+(d) list<int> ilist( ia, ia+6 );
+    binary_search( ilist.begin(), ilist.end() );
+(e) sort( ivec1.begin(), ivec2.end() );
+
+solution:
+(a) file_names is a constant vector, but it is a non-const iterator. It
+should be changed to
+    vector<string>::const_iterator it = file_names.begin() + 2;
+
+(b) ivec has just been defined and no memory is allocated to it. What's more, it is const.
+
+(c) the ivec is a const, thus the sort cannot operate on it.
+
+(d) binary_search should a accept a random_access_iterator, the ilist only has bidirectional_iterator
+
+(e) the iterator provided to the sort function should pointer to the same container.

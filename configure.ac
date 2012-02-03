@@ -8,5 +8,6 @@ AC_CONFIG_FILES([
     solution/chap06/Makefile
     solution/chap07/Makefile
     solution/chap10/Makefile
+    solution/chap12/Makefile
 ])
 AC_OUTPUT

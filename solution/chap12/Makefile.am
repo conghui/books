@@ -1,0 +1,5 @@
+bin_PROGRAMS = 04 05 07
+
+04_SOURCES = 04.cxx
+05_SOURCES = 05.cxx
+07_SOURCES = 07.cxx

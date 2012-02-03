@@ -1,0 +1,14 @@
+Given the following exception declarations, provide a throw expression that creates an exception object that can be caught by the following catch clauses.
+(a) class exceptionType { };
+    catch( exceptionType *pet ) { }
+(b) catch(...) { }
+(c) enum mathErr { overflow, underflow, zeroDivide };
+    catch( mathErr &ref ) { }
+(d) typedef int EXCPTYPE;
+     catch( EXCPTYPE ) { }
+
+solution:
+(a) throw new exceptionType();
+(b) The catch clauses will catch any exception.
+(c) throw overflow;
+(d) throw 2;
