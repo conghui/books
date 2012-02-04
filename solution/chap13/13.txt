@@ -1,0 +1,6 @@
+Define a typedef for each distinct type of Screen member function.
+
+typedef Screen& (Screen:: *pfcm)();
+typedef Screen& (Screen:: *pfm)(int, int);
+typedef Screen& (Screen:: *pfm2)(CursorMovements);
+......

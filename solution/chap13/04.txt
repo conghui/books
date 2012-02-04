@@ -1,0 +1,22 @@
+Additional cursor movements might include moving forward or backward one
+character at a time. On reaching the bottom right corner or top left corner
+of the screen, the cursor wraps around. Implement the forward() and
+backward() functions.
+
+inline void Screen::forward() {
+    if (_cursor == _screen.size() - 1) {
+        home();
+    }
+    else {
+        _cursor++;
+    }
+}
+
+inline void Screen::backword() {
+    if (_cursor == 0) {
+        _cursor = _screen.size() - 1;
+    }
+    else {
+        _cursor--;
+    }
+}

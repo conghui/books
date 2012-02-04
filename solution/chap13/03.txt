@@ -1,0 +1,9 @@
+Explain the behavior of copy() in the following invocation:
+Screen myScreen;
+myScreen.copy( myScreen );
+
+the first expression of member function copy() is
+    if (this == &obj)
+        return;
+
+So nothing will be happened in the copy() function.

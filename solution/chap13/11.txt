@@ -1,0 +1,4 @@
+What is the type of the Screen class members _screen and _cursor?
+
+1. member of class Screen, and its data type is string.
+2. member of class Screen, and its data type is short.
