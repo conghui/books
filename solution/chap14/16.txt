@@ -1,0 +1,10 @@
+Identify each instance of memberwise initialization in this program fragment:
+Point global;
+Point foo_bar( Point arg )
+{
+    Point local = arg; // here
+    Point *heap = new Point( global ); // here
+    *heap = local;  //here
+    Point pa[ 4 ] = { local, *heap }; // here
+    return *heap; // here
+}

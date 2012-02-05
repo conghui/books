@@ -1,0 +1,5 @@
+The parameter of the copy constructor does not strictly need to be const, but it does strictly need to be a reference. Why is the following wrong?
+Account::Account( const Account rhs );
+
+If the parameter is not a reference, the the object is passed by value. And
+the copy constructor will called. thus leads to the infinite recursive.

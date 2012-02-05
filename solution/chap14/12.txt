@@ -1,0 +1,59 @@
+What, if anything, is wrong with the following constructor definitions? How would you fix those identified as wrong?
+(a) Word::Word( char *ps, int count = 1 )
+    : _ps( new char[strlen(ps)+1] ),
+    _count( count )
+{
+    if ( ps )
+        strcpy( _ps, ps );
+    else {
+        _ps = 0;
+        _count = 0;
+    }
+}
+(b) class CL1 {
+    public:
+        CL1() { c.real(0.0); c.imag(0.0); s = "not set"; }
+        // ...
+    private:
+        complex<double> c;
+        string s;
+};
+(c) class CL2 {
+    public:
+        CL2( map<string,location> *pmap, string key )
+            : _text( key ), _loc( (*pmap)[key] ) {}
+        // ...
+    private:
+        location _loc;
+        string    _text;
+};
+
+
+solution:
+
+(a) Word::Word( char *ps, int count = 1 )
+    : _count( count )
+{
+    if ( ps )
+        _ps = new char[strlen(ps) + 1];
+        strcpy( _ps, ps );
+    else {
+        _ps = 0;
+        _count = 0;
+    }
+}
+
+(b) class CL1 {
+    public:
+        CL1() :
+    s(string("not set"))
+    {
+
+    }
+        // ...
+    private:
+        complex<double> c;
+        string s;
+};
+
+(c) If pamp is an invalid pointer, error may occurs.

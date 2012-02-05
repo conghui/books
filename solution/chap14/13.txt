@@ -1,0 +1,13 @@
+Which class definition is likely to need a copy constructor?
+a. A Point3w representation containing four float members
+b. A matrix class in which the actual matrix is allocated dynamically
+within the constructor and is deleted within its destructor
+c. A payroll class in which each object is provided with a unique ID
+d. A word class containing a string object and vector object of line and
+column location pairs.
+
+solution:
+a. no
+b. yes
+c. yes;
+d. no.

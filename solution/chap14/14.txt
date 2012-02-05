@@ -1,0 +1,119 @@
+Given the following classes, implement a copy constructor for each, as well as a default constructor, and a destructor.
+(a) class BinStrTreeNode {
+public:
+    // ...
+private:
+    string _value;
+     int       _count;
+    BinStrTreeNode *_leftchild;
+    BinStrTreeNode *_rightchild;
+};
+
+BinStrTreeNode::BinStrTreeNode() :
+    _count(0),
+    _leftchild(0),
+    _rightchild(0)
+{
+
+}
+
+BinStrTreeNode::BinStrTreeNode(const BinStrTreeNode & rhs) :
+    _count(rhs.count),
+    _value(rhs._value)
+
+{
+    _leftchild = rhs._leftchild ? new BinStrTreeNode(*rhs._leftchild) : 0;
+    _rightchild = rhs._rightchild ? new BinStrTreeNode(*rhs._rightchild) : 0;
+}
+
+BinStrTreeNode::~BinStrTreeNode() {
+    delete _rightchild;
+    delete _leftchild;
+}
+
+(b) class BinStrTree {
+public:
+    // ...
+private:
+     BinStrTreeNode *_root;
+};
+
+BinStrTree() :
+    _root(NULL)
+{
+
+}
+
+BinStrTree::BinStrTree(const BinStrTree &rhs) {
+    _root = rhs._root ? new BinStrTree(*rhs._root) : NULL;
+}
+
+BinStrTree::~BinStrTree() {
+    delete _root;
+}
+
+(c) class iMatrix {
+      public:
+            // ...
+      private:
+             int _rows;
+             int _cols;
+            int *_matrix;
+      };
+
+iMatrix::iMatrix() :
+    _rows(0),
+    _cols(0),
+    _matrix(0)
+{
+
+}
+
+iMatrix::iMatrix(const iMatrix &rhs) :
+    _rows(rhs._rows),
+    _cols(rhs._cols)
+{
+    if (rhs._matrix == NULL) {
+        _matrix = NULL;
+        return;
+    }
+
+    _matrix = new int[_cols * rows];
+    copy(rhs._matrix, rhs._matrix + rhs._cols * rhs._rows, _matrix);
+}
+
+iMatrix::~iMatrix() {
+    delete [] _matrix;
+}
+
+(d) class theBigMix {
+      public:
+            // .
+      private:
+             BinStrTree             _bst;
+             iMatrix               _im;
+             string                _name;
+            vector<float> *_pvec;
+      };
+theBigMix::theBigMix() :
+    _pvec(NULL)
+{
+
+}
+
+theBigMix::theBigMix(const theBigMix &rhs) :
+    _bst(rhs._bst),
+    _im(rhs._im),
+    _name(rhs._name)
+{
+    if (rhs._pvec == NULL) {
+        _pvec = NULL;
+        return;
+    }
+
+    _pvec = new vector<float>(*pvec);
+}
+
+theBigMix::~theBigMix() {
+    delete _pvec;
+}

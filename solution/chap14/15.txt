@@ -1,0 +1,5 @@
+For the class chosen in Exercise 14.3 of Section 14.2, determine if a copy
+constructor is necessary. If not, explain why. Otherwise, provide its
+implementation.
+
+we don't need it as there is no resources from the heap.

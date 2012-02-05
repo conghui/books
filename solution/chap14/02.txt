@@ -1,0 +1,16 @@
+Provide one or a set of constructors for the following set of data members. Explain your choices.
+
+class NoName{
+public:
+          // constructor(s) go here ...
+   // ...
+protected:
+          char *pstring;
+          int     ival;
+          double dval;
+};
+
+
+solution:
+NoName(char *p = 0, int i = 0, double d = 0.0); // default constructor
+NoName(const NoName &);                         // copy constructor

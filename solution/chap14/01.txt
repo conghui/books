@@ -1,0 +1,22 @@
+Which, if any, of the following statements are untrue? Why?
+a.    A class must provide at least one constructor.
+b.    A default constructor is a constructor with no parameters for its parameter list.
+c.    If there are no meaningful default values for a class, the class should not provide a default constructor.
+d.    If a class does not provide a default constructor explicitly, the compiler generates one automatically, initializing each data member to the default value of its associated type.
+
+
+solution:
+a. A class can have no constructor at all.
+
+b. A default constructor is a constructor that the user can provide no
+arguments to it when invoking it.
+
+c. The class should provide a constructor for further use. It is needed in
+some places, for example, the containers require their elements should have
+default constructor or no constructor at all. And new expression also
+require the object had better hava a default constructor.
+
+d. If the class does not provide any constructor, the compiler will
+generate such an constructor. But if the class has provided any
+constructor, the compiler wound automatically generate any constructors for
+it.
