@@ -1,0 +1,8 @@
+Explain why the overloaded input and output operators defined for class
+String in Section 3.15 are declared as global functions and not as member
+functions.
+
+solution:
+the left hand side of the operator are the object of ostream. they are not
+the objects of String. We cannot put then into class because we cannot
+modify them.

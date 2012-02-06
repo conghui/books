@@ -1,0 +1,27 @@
+Implement the overloaded input and output operators for the class Screen
+defined in Chapter 13.
+
+ostream & operator<<(ostream &os, const Screen &s) {
+    os << "(" << s.width() << ", " << s.height() << ")" << endl;
+    for (int x = 0; x < s.width(); x++) {
+        for (y = 0; y < s.height(); y++) {
+            os << s.get(x, y);
+        }
+        os << endl;
+    }
+
+    return os;
+}
+
+istream & operator>>(istream &is, Screen &s) {
+    char ch;
+    for (int x = 0; x < s.width(); x++) {
+        for (int y = 0; y < s.height(); y++) {
+            is >> ch;
+            s.move(x, y);
+            s.set(ch);
+        }
+    }
+
+    return is;
+}

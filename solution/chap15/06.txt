@@ -1,0 +1,27 @@
+Reimplement the input and output operators defined for class Screen in Example 15.5 as friend functions and modify their definition to access the class private members directly. Which implementation is preferable? Explain why.
+
+ostream & operator<<(ostream &os, const Screen &s) {
+    os << "(" << s._width << ", " << s._height << ")" << endl;
+    for (int x = 1; x < s._width; x++) {
+        int row = (x - 1) * s._width;
+        for (y = 1; y < s._height; y++) {
+            os << s._screen[row + y - 1];
+        }
+        os << endl;
+    }
+
+    return os;
+}
+
+istream & operator>>(istream &is, Screen &s) {
+    char ch;
+    for (int x = 1; x < s._width; x++) {
+        int row = (x - 1) * s._width;
+        for (int y = 1; y < s._height; y++) {
+            is >> ch;
+            s._screen[row + y - 1] = ch;
+        }
+    }
+
+    return is;
+}
