@@ -1,0 +1,590 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+%Fixme: is this really necessary?
+\DeclareRobustCommand\nobreakspace{\leavevmode\nobreak\ }
+\date{}
+\end_preamble
+\options UTF8
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package none
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\listings_params "language={C++}"
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Function Templates
+\end_layout
+
+\begin_layout Section*
+Function Template Definition
+\end_layout
+
+\begin_layout Standard
+A template nontype parameter consists of an ordinary parameter declaration.
+ A template nontype parameter indicates that the parameter name represents
+ a potential value.
+ This value represents a constant in the template definition.
+ For example, size is a template nontype parameter that is a constant value
+ representing the size of the array to which arr refers:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+template <class Type, int size> 
+\end_layout
+
+\begin_layout Plain Layout
+
+Type min( Type (&arr) [size] );
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When the function template min() is instantiated, the value for size will
+ be replaced by a constant value known at compile-time.
+\end_layout
+
+\begin_layout Standard
+If an object, function, or type having the same name as the template parameter
+ is declared in global scope, the global scope name is hidden.
+ 
+\end_layout
+
+\begin_layout Standard
+An object or type declared within the function template definition cannot
+ have the same name as that of a template parameter:
+\end_layout
+
+\begin_layout Standard
+The name of a template type parameter can be used to specify the return
+ type of the function template:
+\end_layout
+
+\begin_layout Standard
+The name of a template parameter can be used only once within the same template
+ parameter list.
+ 
+\end_layout
+
+\begin_layout Standard
+However, the name of a template parameter can be reused across function
+ template declarations or definitions:
+\end_layout
+
+\begin_layout Standard
+There is no constraint on how many times a template parameter can appear
+ in the function parameter list.
+ 
+\end_layout
+
+\begin_layout Standard
+If a function template has more than one template type parameter, each template
+ type parameter must be preceded by the keyword class or the keyword typename.
+\end_layout
+
+\begin_layout Standard
+The mechanism to tell the compiler that an expression is a type expression
+ is to prefix the expression with the keyword typename.
+\end_layout
+
+\begin_layout Standard
+A function template can be declared inline or extern in the same way as
+ a nontemplate function.
+ The specifier is placed following the template parameter list and not in
+ front of the template keyword.
+\end_layout
+
+\begin_layout Section*
+Function Template Instantiation
+\end_layout
+
+\begin_layout Standard
+The process of determining the types and values of the template arguments
+ from the type of the function arguments is called template argument deduction.
+\end_layout
+
+\begin_layout Section*
+Template Argument Deduction
+\end_layout
+
+\begin_layout Standard
+When a function template is called, the types and the values of the template
+ arguments are determined by an examination of the types of the function
+ arguments.
+ This process is called template argument deduction
+\end_layout
+
+\begin_layout Standard
+The return type of the function template instantiation is not considered
+ when the types of the template arguments are determined during template
+ argument deduction.
+ 
+\end_layout
+
+\begin_layout Standard
+For template argument deduction to succeed, the type of a function argument
+ need not exactly match the type of the corresponding function parameter.
+ The following three kinds of type conversions are allowed: lvalue transformatio
+n, qualification conversion, and conversion to a base class instantiated
+ from a class template.
+ 
+\end_layout
+
+\begin_layout Standard
+Recall that an lvalue transformation is either an lvalue-to-rvalue conversion,
+ an array-to-pointer conversion, or a function-to-pointer conversion.
+ 
+\end_layout
+
+\begin_layout Section*
+Explicit Template Arguments
+\end_layout
+
+\begin_layout Standard
+only a limited set of type conversions is allowed on function arguments
+ used to deduce template arguments.
+ The integral standard conversion int-to-unsigned int is not one of the
+ conversions allowed.
+ But when the template arguments are explicitly specified, there is no need
+ to deduce the template arguments.
+ The types of the function parameters are thus fixed.
+ When the template arguments are explicitly specified, any implicit type
+ conversion can be applied to convert a function argument to the type of
+ the corresponding function parameter.
+\end_layout
+
+\begin_layout Standard
+We must mention that explicit template arguments should be used only when
+ they are absolutely necessary to resolve ambiguities or to use function
+ template instantiations in contexts where the template arguments cannot
+ be deduced.
+ 
+\end_layout
+
+\begin_layout Section*
+Template Compilation Models 
+\end_layout
+
+\begin_layout Subsection*
+Inclusion Compilation Model
+\end_layout
+
+\begin_layout Standard
+Under the inclusion compilation model, we include the definition of the
+ function template in every file in which a template is instantiated, usually
+ by placing the definition within a header file as we do with inline functions.
+ 
+\end_layout
+
+\begin_layout Standard
+However, when and where the instantiation actually takes place is up to
+ the implementation.
+\end_layout
+
+\begin_layout Standard
+Moreover, compiling the same function template definitions across multiple
+ files can unnecessarily add to the compile-time of our programs.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Separation Compilation Model
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// model2.h 
+\end_layout
+
+\begin_layout Plain Layout
+
+// separation model: 
+\end_layout
+
+\begin_layout Plain Layout
+
+// only the template declaration is provided
+\end_layout
+
+\begin_layout Plain Layout
+
+template <typename Type> 
+\end_layout
+
+\begin_layout Plain Layout
+
+Type min( Type t1, Type t2 );
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// model2.C 
+\end_layout
+
+\begin_layout Plain Layout
+
+// the template definition 
+\end_layout
+
+\begin_layout Plain Layout
+
+export template <typename Type> 
+\end_layout
+
+\begin_layout Plain Layout
+
+Type min( Type t1, Type t2 ) { /* ...*/ }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A program that uses an instantiation of the function template min() need
+ only include the header file before using the instantiation:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// user.C 
+\end_layout
+
+\begin_layout Plain Layout
+
+#include "model2.h"
+\end_layout
+
+\begin_layout Plain Layout
+
+int i, j; 
+\end_layout
+
+\begin_layout Plain Layout
+
+double d = min( i, j ); // ok: use that requires an instantiation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Even though the template definition for min() is not visible in the file
+ user.C, the template instantiation min(int,int) can nonetheless be called
+ within this file.
+ 
+\end_layout
+
+\begin_layout Standard
+We declare an exported function template by having the keyword export precede
+ the template keyword in the definition of the template.
+ When a function template is exported, we can use an instantiation of the
+ template in any of the program text files; all we need do is to declare
+ the template before we use it.
+\end_layout
+
+\begin_layout Standard
+The export keyword does not need to appear on the template declaration located
+ in the header file.
+ The keyword could be present in this declaration, but it is not necessary.
+\end_layout
+
+\begin_layout Standard
+A function template must be defined as an exported template only once in
+ a program.
+ 
+\end_layout
+
+\begin_layout Section*
+Template Explicit Specialization
+\end_layout
+
+\begin_layout Standard
+An explicit specialization definition is a definition in which the template
+ keyword is followed by the less-than (<) and greater-than (>) tokens, followed
+ by the definition of the function template specialization.
+ This definition indicates the template name, the template arguments for
+ which the template is specialized, the function parameter list, and the
+ function body.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#include <cstring>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+// const char* explicit specialization: 
+\end_layout
+
+\begin_layout Plain Layout
+
+// overrides instantiation from the generic template definition
+\end_layout
+
+\begin_layout Plain Layout
+
+typedef const char *PCC; 
+\end_layout
+
+\begin_layout Plain Layout
+
+template<> PCC max< PCC >( PCC s1, PCC s2 ) { 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+return ( strcmp( s1, s2 ) > 0 ? s1 : s2 ); 
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Overloading Function Templates
+\end_layout
+
+\begin_layout Standard
+Overloaded function templates may lead to ambiguities when a template instantiat
+ion is invoked.
+\end_layout
+
+\begin_layout Standard
+even though overloading is possible, we must be careful when designing overloade
+d functions and make sure that the overloading is necessary.
+ These design constraints also apply when we are defining overloaded function
+ templates.
+\end_layout
+
+\begin_layout Section*
+Overload Resolution with Instantiations
+\end_layout
+
+\begin_layout Standard
+Which one is called depends on which one of these functions best matches
+ the types of the function arguments.
+ 
+\end_layout
+
+\begin_layout Standard
+Whether a function can be instantiated depends on whether template argument
+ deduction succeeds.
+\end_layout
+
+\begin_layout Standard
+Once the template instantiations have been added to the set of candidate
+ functions, function overload resolution proceeds as usual.
+\end_layout
+
+\begin_layout Standard
+A function template instantiation is entered in the set of candidate functions
+ only if template argument deduction succeeds.
+ It is not an error if template argument deduction fails; in such cases,
+ no function instantiation is added to the set of candidate functions.
+\end_layout
+
+\begin_layout Standard
+What if template argument deduction succeeds but the template is explicitly
+ specialized for the template arguments deduced? Then it is the explicit
+ specialization that is entered in the set of candidate functions in the
+ place of the function that would be instantiated from the generic template
+ definition.
+\end_layout
+
+\begin_layout Standard
+The nontemplate function, when present, is given precedence because it is
+ explicitly implemented.
+ Function overload resolution selects the ordinary function min(int,int)
+ for the call.
+\end_layout
+
+\begin_layout Standard
+emember that when we're calling a function instantiated from a template,
+ only a limited set of type conversions can be applied on a function argument
+ that is used for template argument deduction.
+ If we declare an ordinary function, all type conversions are considered
+ to convert the arguments because the types of the ordinary function parameters
+ are fixed.
+\end_layout
+
+\begin_layout Standard
+Now that we have shown how function overload resolution proceeds when function
+ template instantiations, function template specializations, and ordinary
+ functions of the same name are involved, let's summarize the steps of function
+ overload resolution for a call in which ordinary functions and function
+ templates are considered:
+\end_layout
+
+\begin_layout Enumerate
+Build the set of candidate functions.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Function templates with the same name as the function called are considered.
+ If template argument deduction succeeds with the function call arguments,
+ a function template is instantiated, or if a template specialization exists
+ for the template argument deduced, the template specialization is a candidate
+ function.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Build the set of viable functions
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+From the set of candidate functions, keep only the functions that can be
+ called with the function call arguments.
+ 3.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Rank the type conversions
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If only one function is selected, call this function.
+ 2.
+\end_layout
+
+\begin_layout Enumerate
+If the call is ambiguous, remove the function template instantiations from
+ the set of viable functions.
+ 4.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Perform overload resolution considering only the ordinary functions in the
+ set of viable functions
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If only one function is selected, call this function.
+ 2.
+\end_layout
+
+\begin_layout Enumerate
+Otherwise, the call is ambiguous.
+ 
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
