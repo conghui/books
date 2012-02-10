@@ -1,0 +1,34 @@
+
+Identify which, if any, of the following template class declarations (or declaration pairs) are illegal.
+(a)        template <class Type>
+class Container1;
+
+template <class Type, int size>
+class Container1;
+(b)       template <class T, U, class V>
+class Container2;
+(c)        template <class C1, typename C2>
+class Container3 {};
+(d)       template <typename myT, class myT>
+class Container4 {};
+(e)       template <class Type, int *ptr>
+class Container5;
+template <class T, int *pi>
+class Container5;
+(f)      template <class Type, int val = 0>
+class Container6;
+template <class T = complex<double>, int v>
+class Container6;
+
+solution:
+(a) The declaration of the two template is not the same.
+
+(b) the typename of class keyword should be placed in front of U.
+
+(c) OK.
+
+(d) myT is redeclared.
+
+(e) OK.
+
+(f) OK.
