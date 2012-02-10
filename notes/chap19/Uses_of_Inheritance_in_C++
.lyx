@@ -1,0 +1,215 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+%Fixme: is this really necessary?
+\DeclareRobustCommand\nobreakspace{\leavevmode\nobreak\ }
+\date{}
+\end_preamble
+\options UTF8
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package none
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\listings_params "language={C++}"
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Uses of Inheritance in C++
+\end_layout
+
+\begin_layout Subsection*
+The dynamic_cast Operator
+\end_layout
+
+\begin_layout Standard
+A dynamic_cast operator can be used to convert a pointer that refers to
+ an object of class type to a pointer to a class in the same class hierarchy.
+ A dynamic_cast operator can also be used to convert an lvalue for an object
+ of class type to a reference to a class in the same class hierarchy.
+ Unlike the other casts supported in C++, a dynamic_cast is a cast that
+ is performed at run-time.
+ If the pointer or lvalue operand cannot be cast to the target type of the
+ conversion, the dynamic_cast fails.
+ If a dynamic_cast to a pointer type fails, the result of the dynamic_cast
+ is the value 0.
+ If a dynamic_cast to a reference type fails, an exception is thrown.
+ 
+\end_layout
+
+\begin_layout Standard
+The dynamic_cast operator therefore performs two operations at once.
+ It verifies that the requested cast is indeed valid, and then only if it
+ is valid does it perform the cast.
+ The verification takes place at run-time.
+ The dynamic_cast is safer than the other C++ cast operations because the
+ other casts do not verify whether the cast can actually be performed.
+\end_layout
+
+\begin_layout Standard
+The dynamic_cast is used for safe casting from a pointer to a base class
+ to a pointer to a derived class, often referred to as safe downcasting.
+ 
+\end_layout
+
+\begin_layout Standard
+One possible error is using the result of the dynamic_cast before appropriately
+ testing that its result has the value 0.
+ If it does, then this result cannot be used as if it refers to a class
+ object.
+ A dynamic_cast can also be used to convert an lvalue of a base class type
+ to a reference to a derived class type.
+ The syntax for such a dynamic_cast operation is the following,
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+dynamic_cast< Type& >( lval ) 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+An error situation is reported differently by the dynamic_cast operator
+ when it is used to convert to a reference type.
+ A reference dynamic_cast that fails, throws an exception.
+\end_layout
+
+\begin_layout Standard
+If a reference dynamic_cast fails, an exception of type bad_cast is thrown.
+ 
+\end_layout
+
+\begin_layout Subsection*
+The typeid Operator
+\end_layout
+
+\begin_layout Standard
+To find out the actual type of an object, the typeid operator can be used.
+\end_layout
+
+\begin_layout Standard
+The operand of the typeid operator has type Base, the type of the expression
+ *pb.
+ Because Base is not a class type with virtual functions, the result of
+ the typeid operator indicates that the expression type is Base, even though
+ the type of the underlying object to which pb refers has type Derived.
+\end_layout
+
+\begin_layout Standard
+which results in calling the function salary() of the manager derived class.
+ typeid(pe) behaves differently from the virtual function call mechanism.
+ This is because the operand pe is a pointer, not a class type.
+ For the derived class type to be retrieved, the operand of typeid must
+ be of class type (with virtual functions).
+ 
+\end_layout
+
+\begin_layout Standard
+It is when the expression *pe is used with typeid that the result indicates
+ the type of the underlying object referred to by pe:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+typeid( *pe ) == typeid( manager ) // true 
+\end_layout
+
+\begin_layout Plain Layout
+
+typeid( *pe ) == typeid( employee ) // false
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In these comparisons, because *pe is an expression of class type, and because
+ the class has virtual functions, the result of typeid indicates the type
+ of the underlying object to which the operand refers; that is, manager.
+\end_layout
+
+\begin_layout Subsection*
+The type_info Class
+\end_layout
+
+\begin_layout Standard
+Because the copy constructor and the copy assignment operator of the class
+ type_info are private members, users cannot define objects of type type_info
+ in their program.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document
