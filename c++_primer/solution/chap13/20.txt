@@ -1,0 +1,36 @@
+To which declarations does the name Type refer when used in the body of class Exercise and in the definition of its member function setVal()? (Remember, different uses may refer to difference declarations.) To which declarations does the name initVal refer when used in the definition of the member function setVal()?
+typedef int Type; 
+Type initVal();     // refers to the global int
+class Exercise {
+public:
+ // ...
+ typedef double Type;
+ Type setVal( Type ); // refers to the double in class
+ Type initVal();        // refers to the double in the class
+private:
+ int val;
+};
+Type Exercise::setVal( Type parm ) { //the return type refers to global int
+                                    // the parameter type refers to the 
+                                    // double in the class
+val = parm + initVal();
+}
+The definition of the member function setVal() is in error. Can you see why? Apply the necessary changes
+so that the class Exercise uses the global typedef Type and the global function initVal().
+
+class Exercise {
+public:
+    // ...
+    typedef double Type;
+    ::Type setVal(::Type);
+    Type initVal();
+    // ...
+
+private:
+    int val;
+};
+
+Type Exercise::setVal(::Type param) {
+    val = param + ::initVal();
+}
+

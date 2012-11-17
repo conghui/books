@@ -1,0 +1,10 @@
+Write the prototypes for each of the following functions:
+    a.   A function named compare with two parameters that are references to a class named matrix
+         and with a return value of type bool
+                            
+    b.   A function named extract with no parameters and returning a set of integers (where set is the
+         container type defined in Section 6.13)
+
+solution:
+(a) bool compare(const matrix &ma, const matrix &mb);
+(b) set<int> extract(vois);

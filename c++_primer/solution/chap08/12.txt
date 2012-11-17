@@ -1,0 +1,15 @@
+Suppose we have the following declaration of the operator*() that is a member 
+of the nested namespace cplusplus_primer::MatrixLib:
+namespace cplusplus_primer {
+     namespace MatrixLib {
+          class matrix { /* ... */ };
+            matrix operator* ( const matrix &, const matrix & );
+           // ...
+       }
+}
+How would you define this operator in global scope? Provide only the prototype 
+for the operator's definition.
+
+using cplusplus_primer::MatrixLib::matrix;
+matric cplusplus_primer::MatrixLib::operator* (const matrix &lhs, 
+                                               const matrix &rhs);

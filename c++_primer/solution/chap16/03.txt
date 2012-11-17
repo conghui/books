@@ -1,0 +1,27 @@
+
+Identify which, if any, of the following uses of a template instantiation
+causes the template to be instantiated.
+template < class Type >
+class Stack { };
+
+void f1( Stack< char > ); // (a)
+
+class Exercise {
+    // ...
+    Stack< double > &rsd; // (b)
+    Stack< int >            si; // (c)
+};
+
+int main() {
+    Stack< char > *sc;                // (d)
+    f1( *sc );                      // (e)
+    int iObj = sizeof( Stack< string > ); // (f)
+}
+
+solution:
+(a) no.
+(b) no.
+(c) yes.
+(d) no.
+(e) yes.
+(f) yes.

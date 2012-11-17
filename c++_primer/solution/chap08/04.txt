@@ -1,0 +1,14 @@
+Which one of the following declarations and definitions would you put in a header file? In a program text
+file? Explain why.
+(a) int var;
+(b) inline bool is_equal( const SmallInt &, const SmallInt & ) { }
+(c) void putValues( int *arr, int size );
+(d) const double pi = 3.1416;
+(e) extern int total = 255;
+
+solution:
+(a) in the program text. It is a non-const definition.
+(b) in the header file. It is a nice inline functin.
+(c) in the header file. It is a function prototype (declaration).
+(d) in the header file. It is a const definition.
+(e) in the program text. It is a non-const definition.

@@ -1,0 +1,10 @@
+Defi ne an overloaded instance of repeat() that takes a parameter of type
+cursorMovements .
+
+Screen& Screen::repeat(CursorMovements cur, int times) {
+    for (; times > 0; times--) {
+        (this->*menu[cur])();
+    }
+
+    return *this;
+}

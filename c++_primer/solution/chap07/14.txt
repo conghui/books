@@ -1,0 +1,37 @@
+exit(), printf(), malloc(), strcpy(), and strlen() are C language library routines. Modify the
+following C program so that it compiles and links under C++.
+
+const char *str = "hello";
+void *malloc( int );
+char *strcpy( char *, const char * );
+int printf( const char *, ... );
+int exit( int );
+int strlen( const char * );
+
+int main()
+{ /* C language program */
+  char* s = malloc( strlen(str)+1 );
+  strcpy( s, str );
+  printf( "%s, world\n", s );
+  exit( 0 );
+}
+
+solution:
+just enclose the function prototype within extern "C". The modified code is:
+
+const char *str = "hello";
+extern "C" {
+    void *malloc( int );
+    char *strcpy( char *, const char * );
+    int printf( const char *, ... );
+    int exit( int );
+    int strlen( const char * );
+}
+
+int main()
+{ /* C language program */
+  char* s = malloc( strlen(str)+1 );
+  strcpy( s, str );
+  printf( "%s, world\n", s );
+  exit( 0 );
+}

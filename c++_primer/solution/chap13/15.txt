@@ -1,0 +1,33 @@
+Modify the existing Screen constructor (or introduce a new constructor) to
+take a parameter of type pointer to Screen member function whose parameter
+list and return type are the same as those for the member functions home()
+and end(). Provide a default argument for this parameter. Use this
+parameter to initialize the data member introduced in Exercise 13.14.
+Provide a Screen member function to allow the user to set this member.
+
+class Screen
+{
+public:
+    // ...
+    typedef Screen & (Screen:: *pfhe_t)();
+
+    // constructor
+    Screen(int hi = 8, int wid = 40, char bkground = '#',
+            pfhe_t f = &Screen::home);
+    inline Screen & setFunc(pfhe_t f) { _pfhe = f; return *this; }
+
+private:
+    phhe_t _pfhe;
+
+    // ...
+};
+
+Screen::Screen(int hi, int wid, char bk, pfhe_t f) :
+    _height(hi),
+    _width(wid),
+    _cursor(0),
+    _screen(hi * wid, bk),
+    _pfhe(f)
+{
+
+}

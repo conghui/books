@@ -1,0 +1,10 @@
+Using the classes in Exercise 13.8, implement the two static member access functions for class Y. callsXval() simply keeps count of how many times xval() is called.
+
+solution:
+inline int Y::callsXval() {
+    return _callsXval;
+}
+
+inline X Y::xval() {
+    return _xval;
+}

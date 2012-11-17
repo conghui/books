@@ -1,0 +1,302 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+%Fixme: is this really necessary?
+\DeclareRobustCommand\nobreakspace{\leavevmode\nobreak\ }
+\date{}
+\end_preamble
+\options UTF8
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package none
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\listings_params "language={C++}"
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Multiple and Virtual Inheritance
+\end_layout
+
+\begin_layout Section*
+Multiple Inheritance
+\end_layout
+
+\begin_layout Standard
+The base class constructors are invoked in the declaration order within
+ the class derivation list.
+\end_layout
+
+\begin_layout Standard
+the order of constructor invocation is not affected by either the presence
+ of the base class within the member initialization list or the order in
+ which they are listed.
+\end_layout
+
+\begin_layout Standard
+there is the possibility of inheriting a member with the same name from
+ two or more base classes.
+ In this case, direct access is ambiguous and results in a compile-time
+ error.
+\end_layout
+
+\begin_layout Subsection*
+Inheritance versus Composition
+\end_layout
+
+\begin_layout Standard
+The following represents a very broad guideline as to whether to use composition
+ or private inheritance in a class design in which a has-a relationship
+ exists:
+\end_layout
+
+\begin_layout Itemize
+If we wish to override any of the virtual functions of a class, we must
+ inherit from it privately.
+ 
+\end_layout
+
+\begin_layout Itemize
+If we wish to allow the class to refer to one of a hierarchy of possible
+ types, we must use composition by reference, 
+\end_layout
+
+\begin_layout Itemize
+If, as with our PeekbackStack class, we wish simply to reuse the implementation,
+ composition by value is to be preferred over inheritance.
+ If a lazy allocation of the object is desired, composition by reference
+ (using a pointer) is the generally preferred design choice.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Exempting Individual Members
+\end_layout
+
+\begin_layout Standard
+The class designer can exempt individual members of a base class from the
+ effects of the nonpublic derivation.
+ The following, for example, exempts the size() member function of IntArray:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+class PeekbackStack : private IntArray {
+\end_layout
+
+\begin_layout Plain Layout
+
+public:
+\end_layout
+
+\begin_layout Plain Layout
+
+    // maintain public access level
+\end_layout
+
+\begin_layout Plain Layout
+
+    using IntArray::size;
+\end_layout
+
+\begin_layout Plain Layout
+
+    // ...
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Another reason to exempt individual members is to allow subsequent derivations
+ access to the protected members of the private base class.
+ 
+\end_layout
+
+\begin_layout Standard
+The derived class can only restore the inherited member to its original
+ access level.
+ The access level cannot be made either more or less restrictive than the
+ level originally specified within the base class.
+\end_layout
+
+\begin_layout Standard
+A common pattern of multiple inheritance is to inherit the public interface
+ of one class and the private implementation of a second class.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Object Composition
+\end_layout
+
+\begin_layout Standard
+There are actually two forms of object composition:
+\end_layout
+
+\begin_layout Enumerate
+Composition by value, in which an actual object of the class is declared
+ to be a member, as illustrated two subsections ago by our revised PeekbackStack
+ implementation 
+\end_layout
+
+\begin_layout Enumerate
+Composition by reference, in which the object is addressed indirectly through
+ either a reference or a pointer member to the class object 
+\end_layout
+
+\begin_layout Standard
+Composition by value provides automatic management of the object's lifetime
+ and copy semantics, and provides more efficient, direct access of the object
+ itself.
+ 
+\end_layout
+
+\begin_layout Standard
+Let's consider (1) if all ZooAnimals exhibit this characteristic and, if
+ not, (2) if it changes over time; that is, if the characteristic may either
+ be added to or removed over time.
+\end_layout
+
+\begin_layout Itemize
+If the answer to item 1 is that all ZooAnimal objects exhibit this characteristi
+c, then composition by value is generally preferred.
+ 
+\end_layout
+
+\begin_layout Itemize
+f the answer to item 1 is that only some ZooAnimal objects exhibit this
+ characteristic, then composition by reference is generally preferred
+\end_layout
+
+\begin_layout Itemize
+If the answer to item 2 is yes, then we must provide run-time access functions
+ to insert and remove an Endangered object.
+\end_layout
+
+\begin_layout Standard
+Our second question is how can we decide between declaring the ZooAnimal
+ member to be a Display-Manager reference or pointer?
+\end_layout
+
+\begin_layout Enumerate
+If the actual DisplayManager subtype is provided at the creation of the
+ ZooAnimal object, and does not change over the course of the program, only
+ then may a DisplayManager reference member be declared.
+ 
+\end_layout
+
+\begin_layout Enumerate
+If a lazy allocation strategy is adopted in which the actual DisplayManager
+ subtype is not allocated until an actual attempt to display an object is
+ made, then we must represent the DisplayManager member as a pointer and
+ initialize it to 0.
+ 
+\end_layout
+
+\begin_layout Enumerate
+If we wish to toggle the display mode during run-time, we must also represent
+ the DisplayManager member as a pointer and initialize it to 0.
+ By toggle we mean to allow the user either to determine or switch among
+ the DisplayManager subtypes as the program executes.
+ 
+\end_layout
+
+\begin_layout Section*
+Virtual Inheritance
+\end_layout
+
+\begin_layout Standard
+Under virtual inheritance, only a single, shared base class subobject is
+ inherited regardless of how many times the base class occurs within the
+ derivation hierarchy.
+ The shared base class subobject is called a virtual base class.
+ Using virtual inheritance, the duplication of base class subobjects and
+ the ambiguities to which the duplication gives rise are removed.
+\end_layout
+
+\begin_layout Standard
+In general, unless virtual inheritance provides a solution to an immediate
+ design problem, we recommend against its use.
+ Of course, with that said, let's now look at how we might use it.
+\end_layout
+
+\begin_layout Subsection*
+Virtual Base Class Declaration
+\end_layout
+
+\begin_layout Standard
+The virtual derivation is not an explicit aspect of the base class itself,
+ but rather of its relationship to the derived class.
+\end_layout
+
+\begin_layout Standard
+The declaration and implementation of the immediate derived class instance
+ is the same as under a nonvirtual derivation except for the use of the
+ virtual keyword.
+\end_layout
+
+\end_body
+\end_document

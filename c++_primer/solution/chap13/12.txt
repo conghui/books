@@ -1,0 +1,8 @@
+Define and initialize a pointer to member with the value of
+Screen::_screen. Define and assign a pointer to member the value of
+Screen::_cursor.
+
+
+solution:
+1. string Screen:: *pss = &Screen::_screen;
+2. short Screen:: *psc = &Screen::_cursor;

@@ -1,0 +1,24 @@
+The class ScreenPtr can now represent a pointer that points to an array of 
+Screen classes. Modify the overloaded operator*() and overloaded       
+operator->() (defined in Section 15.6) to ensure that if the ScreenPtr 
+object refers to an array element, the pointer does not re fer to one 
+before the beginning of the array or to one past the end of the array. 
+Hint: These overloaded operators should use the new data members size and 
+offset.
+
+Screen & ScreenPtr::operator*() {
+    if (size == 0) {
+        return *ptr;
+    }
+    assert(offset >= 0 && offset < size);
+    return *ptr;
+}
+
+Screen* ScreenPtr::operator->() {
+    if (size == 0) {
+        return ptr;
+    }
+
+    assert(offset >= 0 && offset < size);
+    return ptr;
+}

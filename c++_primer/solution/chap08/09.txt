@@ -1,0 +1,11 @@
+Explain the difference between these two statements:
+int *pi0 = p2.get();
+int *pi1 = p2.release();
+Under what conditions would each respective invocation be more appropriate?
+
+the get() method only return the object that it points to, but doesn't handle 
+over its process. It is often used to test if a auto_ptr is initialized or 
+not. But it should not be used in the auto_ptr declaration and initialization.
+
+the release() method return the pointer of the auto_ptr and also handle over 
+the process. It is often used in the auto_ptr initialization.

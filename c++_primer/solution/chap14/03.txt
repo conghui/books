@@ -1,0 +1,26 @@
+Choose one of the following abstractions (or choose your own). Determine
+what data (that can be set by users) is appropriate for the class. Provide
+an appropriate set of constructors. Explain your decisions.
+a.    Book
+b.    Date
+c.    Employee
+d.    Vehicle
+e.    Object
+f.    Tree
+
+class Date
+{
+    friend ostream & operator<<(ostream &, const Day &);
+public:
+    explicit Date(int y = 0, int m = 0, int d = 0);
+    inline Date & setYear(int y);
+    inline int year() const;
+    inline Date & setMonth(int m);
+    inline int month() const;
+    inline Date & setDay(int);
+    inline int day() const;
+private:
+    int _year;
+    int _month;
+    int _day;
+};

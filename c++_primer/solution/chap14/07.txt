@@ -1,0 +1,7 @@
+For the class chosen in Exercise 14.3 of Section 14.2, determine if a
+destructor is necessary. If not, explain why. Otherwise, provide its
+implementation.
+
+The destructor is used to return the resources that is allocated from the
+heap. If there is no resources allocated from the heap, we don't need to
+return it and so no destructor is needed.

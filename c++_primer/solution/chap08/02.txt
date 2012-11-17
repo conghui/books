@@ -1,0 +1,12 @@
+In the following code sample, to which declarations do the uses of ix and iy 
+refer?
+int ix = 1024;              // global scope ix
+void func( int ix, int iy ) {
+    ix = 100;               // local scope ix, 100
+    for( int iy = 0 ; iy < 400; iy += 100 ) { // local scope iy, 0
+        iy += 100;          // local scope iy, 100
+        ix = 300;           // local socpe ix
+    }
+    iy = 400;               // local scope iy
+}
+

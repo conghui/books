@@ -1,0 +1,7 @@
+What exceptions can a function throw if it has an exception specification of the form throw()? If it has no exception specification?
+
+If the exception specification of a function is throw(), then no exception is
+allowed to thrown, except those that are catched inside the function.
+
+If a function has no exception specification, it can throw any kinds of 
+exception.

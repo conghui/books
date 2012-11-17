@@ -1,0 +1,22 @@
+Given the following template definition for sum()
+template <class T1, class T2, class T3>
+     T1 sum( T2, T3 );
+which ones of the following calls, if any, are errors? Why?
+double dobj1, dobj2;
+float fobj1, fobj2;
+char cobj1, cobj2;
+(a) sum( dobj1, dobj2 );
+(b) sum<double,double,double>( fobj1, fobj2 );
+(c) sum<int>( cobj1, cobj2 );
+(d) sum<double, ,double>( fobj2, dobj2 );
+
+solution:
+(a) Error. The compiler cannot deduce the return type of the function. we can 
+have explicit specialization such as: sum<double>(dobj1, dobj2);
+
+(b) Okay.
+
+(c) Okay.
+
+(d) Error. The second argument in the explicit specialization has to be given. 
+on the other hand, we can leave the last argument empty.

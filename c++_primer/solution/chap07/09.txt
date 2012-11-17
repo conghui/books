@@ -1,0 +1,7 @@
+What are the two forms of return statement? Explain when you would use each form.
+
+solution:
+1. return ; This form is used when the function's return type is void.
+2. return expression; This form is used when the function does require an 
+   return type. The type of the expression should match the return type. Other 
+   wise, implicit conversion will be performed if possible.

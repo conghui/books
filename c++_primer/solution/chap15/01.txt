@@ -1,0 +1,7 @@
+ Why does the following not invoke the overloaded operator== (const String
+ &, const String&)?
+"cobble" == "stone"
+
+solution: both "cobble" and "stone" are const char *. not string. so the
+build-in operator = is applied to them to compare the value of the
+pointers.

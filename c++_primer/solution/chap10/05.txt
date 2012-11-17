@@ -1,0 +1,23 @@
+Given the following template definitions
+template <class Type>
+    Type min3( const Type* array, int size ) { /* ... */ }
+template <class Type>
+     Type min5( Type p1,Type p2 ) { /* ... */ }
+which ones of the following calls, if any, are errors? Why?
+double dobj1, dobj2;
+float fobj1, fobj2;
+char cobj1, cobj2;
+int ai[5] = { 511, 16, 8, 63, 34 };
+(a) min5( cobj2, 'c' );
+(b) min5( dobj1, fobj1 );
+(c) min3( ai, cobj1 );
+
+solution:
+(a) It is okay. The template function will be initialized to 
+    char min5(char, char);
+
+(b) Error occurs. for dobj1, the Type is initialized to type double. But for 
+    jobj1, the Type is initialized to float. It is not allowed.
+
+(c) The function is correct from the syntax. But runtime error may occur 
+    because the cobj1 is not initialized.

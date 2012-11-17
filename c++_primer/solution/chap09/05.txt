@@ -1,0 +1,11 @@
+What happens during the last (third) step of the function overload resolution 
+process?
+
+solution:
+The third step is to find out the best matched function and using this 
+function to respond the user's invokation.
+The best viable function is the function for which the following applies:
+1. The conversion applies to the arguments are not worse than the conversions 
+   necessary to call any other viable functions.
+2. The conversions on the same arguments are better than the conversions on 
+   the same arguments when calling other viable functions.

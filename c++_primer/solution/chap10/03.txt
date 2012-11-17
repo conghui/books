@@ -1,0 +1,29 @@
+Rewrite the function putValues(), introduced in Section 7.3.3, as a function 
+template. Parameterize the function template so that it has two template 
+parameters (one for the type of the array element and one for the size of the 
+array) and one function parameter that is a reference to an array. Provide the 
+function template definition as well.
+
+solution:
+template<typename T, size_t size>
+void putValues(T (&arr)[size]) {
+    const int lineLength = 12;
+
+    std::cout << "( " << size << " )< ";
+
+    for (size_t i = 0; i < size; i++) {
+        if (i % lineLength == 0 && i != 0) {
+            std::cout << "\n\t";
+        }
+
+        std::cout << arr[i];
+
+        if (i % lineLength != lineLength - 1 &&
+                i != size - 1) {
+            std::cout << ", ";
+        }
+    }
+
+    std::cout << " >\n";
+}
+

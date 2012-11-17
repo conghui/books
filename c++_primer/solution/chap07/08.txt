@@ -1,0 +1,7 @@
+When to use pointer:
+    when the parameter would point to another object or point to no object at 
+    all, use pointer.
+
+When to use reference:
+    1. when the parameter need not to pointer to another object.
+    2. when in the operator overloading function.

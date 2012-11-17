@@ -1,0 +1,22 @@
+Given the following class Y, with two static data members and two static member functions,
+class X {
+public:
+  X( int i ) { _val = i; }
+  int val() { return _val; }
+private:
+  int _val;
+};
+class Y {
+public:
+    Y( int i );
+    static X xval();
+    static int callsXval();
+private:
+    static X _xval;
+    static int _callsXval;
+};
+initialize _xval to 20 and _callsXval to 0.
+
+solution:
+X Y::_xval = X(20);
+int Y::_callsXval = 0;

@@ -1,0 +1,29 @@
+Which of the following auto_ptr declarations are illegal or likely to result in subsequent program error?
+Explain what the problem is with each one.
+int ix = 1024;
+int *pi = & ix;
+int *pi2 = new int( 2048 );
+
+(a) auto_ptr<int> p0(ix);
+(b) auto_ptr<int> p1(pi);
+(c) auto_ptr<int> p2(pi2);
+(d) auto_ptr<int> p3(&ix);
+(e) auto_ptr<int> p4(new int(2048));
+(f) auto_ptr<int> p5(p2.get());
+(g) auto_ptr<int> p6(p2.release());
+(h) auto_ptr<int> p7(p2);
+
+
+solution:
+(a) auto_ptr can only be initialized with a pointer that points to an object 
+    from the heap.
+(b) auto_pre can obly be initialized by a pinter that points to an object from 
+    the heap.
+(c) it is okay.
+(d) the value of &ix is not from new operator.
+(e) it is okay.
+(f) the declaration is legal, but it may have subsequent error. the get() 
+    method return the object that p2 points, but p2 doesn't give up its 
+    process, now both p5 and p2 own the process.
+(g) it is okay.
+(h0 it is okay.

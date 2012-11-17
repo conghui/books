@@ -1,0 +1,16 @@
+In each of the following situations, which is the more appropriate, if any:
+a static array, such as Account pA[10]; a dynamic array; or a vector?
+Explain why.
+ a. A collection of 256 elements are needed to store class Color objects
+ within a function named Lut(). The values are constant.
+ b. An unknown collection of Account elements is needed. Data for each
+ account is stored in a file to be read.
+ c. A collection of elem_size strings are to be generated and passed back
+ to a text manager by the function gen_words(elem_size).
+
+solution:
+a. static array. The size is specified.
+
+b. vector is preferred. The size is unkonwn.
+
+c. dynamic array is perferred. vector in ok too.

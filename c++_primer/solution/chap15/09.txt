@@ -1,0 +1,22 @@
+class iStack {
+public:
+   iStack( int capacity )
+           : _stack( capacity ), _top( 0 ) {}
+    // ...
+private:
+    int _top;
+   vector< int > _stack;
+};
+(a) iStack *ps = new iStack(20);
+(b) iStack *ps2 = new const iStack(15);
+(c) iStack *ps 3 = new iStack[ 100 ];
+
+solution:
+(a) OK
+
+(b) new const iStack(15) return a const iStack *, it cannot be assigned to
+iStack *;
+
+(c) class iStack doesn't have a default constructor. But in the operator
+new[]() expression, the object should have a default constructor or no
+constructor at all.

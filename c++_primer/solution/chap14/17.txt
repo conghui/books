@@ -1,0 +1,163 @@
+Provide a copy assignment operator for each of the classes defined in
+Exercise 14.14 of Section 14.6.
+(a) class BinStrTreeNode {
+public:
+    // ...
+private:
+    string _value;
+     int       _count;
+    BinStrTreeNode *_leftchild;
+    BinStrTreeNode *_rightchild;
+};
+
+BinStrTreeNode & BinStrTreeNode::operator=(const BinStrTreeNode &rhs) {
+    if (this == &rhs)
+        return *this;
+    _value = rhs._value;
+    _cound = rhs._count;
+    delete _leftchild;
+    delete _righchild;
+    _leftchild = rhs._leftchild ? new BinStrTreeNode(*rhs._leftchild) : NULL;
+    _rightchild = rhs._rightchild ? new BinStrTreeNode(*rhs._rightchild) : NULL;
+
+    return *this;
+}
+
+BinStrTreeNode::BinStrTreeNode() :
+    _count(0),
+    _leftchild(0),
+    _rightchild(0)
+{
+
+}
+
+BinStrTreeNode::BinStrTreeNode(const BinStrTreeNode & rhs) :
+    _count(rhs.count),
+    _value(rhs._value)
+
+{
+    _leftchild = rhs._leftchild ? new BinStrTreeNode(*rhs._leftchild) : 0;
+    _rightchild = rhs._rightchild ? new BinStrTreeNode(*rhs._rightchild) : 0;
+}
+
+BinStrTreeNode::~BinStrTreeNode() {
+    delete _rightchild;
+    delete _leftchild;
+}
+
+(b) class BinStrTree {
+public:
+    // ...
+private:
+     BinStrTreeNode *_root;
+};
+
+BinStrTree & BinStrTree::operator=(const BinStrTree &rhs) {
+    if (this == &rhs)
+        return *this;
+    delete _root;
+    _root = rhs._root ? new BinStrTree(*rhs._root) : NULL;
+}
+
+BinStrTree() :
+    _root(NULL)
+{
+
+}
+
+BinStrTree::BinStrTree(const BinStrTree &rhs) {
+    _root = rhs._root ? new BinStrTree(*rhs._root) : NULL;
+}
+
+BinStrTree::~BinStrTree() {
+    delete _root;
+}
+
+(c) class iMatrix {
+      public:
+            // ...
+      private:
+             int _rows;
+             int _cols;
+            int *_matrix;
+      };
+iMatrix & iMatrix::operator=(const iMatrix &rhs) {
+    if (this == &rhs)
+        return *this;
+
+    _rows = rhs._rows;
+    _cols = rhs._cols;
+    delete [] matrix;
+    matrix = new int[_rows * _cols];
+    copy(rhs._matrix, rhs._matrix + rhs._rows * rhs._cols, _matrix);
+
+    return this;
+}
+iMatrix::iMatrix() :
+    _rows(0),
+    _cols(0),
+    _matrix(0)
+{
+
+}
+
+iMatrix::iMatrix(const iMatrix &rhs) :
+    _rows(rhs._rows),
+    _cols(rhs._cols)
+{
+    if (rhs._matrix == NULL) {
+        _matrix = NULL;
+        return;
+    }
+
+    _matrix = new int[_cols * rows];
+    copy(rhs._matrix, rhs._matrix + rhs._cols * rhs._rows, _matrix);
+}
+
+iMatrix::~iMatrix() {
+    delete [] _matrix;
+}
+
+(d) class theBigMix {
+      public:
+            // .
+      private:
+             BinStrTree             _bst;
+             iMatrix               _im;
+             string                _name;
+            vector<float> *_pvec;
+      };
+theBigMix & theBigMix::operator=(const theBigMix &rhs) {
+    if (this == &rhs)
+        return *this;
+
+    _bst = rhs._bst;
+    _im = rhs._im;
+    _name = rhs._name;
+    delete _pvec;
+    _pvec = rhs._pvec ? new vector<float>(*rhs._pvec) : NULL;
+
+    return *this;
+}
+theBigMix::theBigMix() :
+    _pvec(NULL)
+{
+
+}
+
+theBigMix::theBigMix(const theBigMix &rhs) :
+    _bst(rhs._bst),
+    _im(rhs._im),
+    _name(rhs._name)
+{
+    if (rhs._pvec == NULL) {
+        _pvec = NULL;
+        return;
+    }
+
+    _pvec = new vector<float>(*pvec);
+}
+
+theBigMix::~theBigMix() {
+    delete _pvec;
+}

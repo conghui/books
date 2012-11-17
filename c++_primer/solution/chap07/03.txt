@@ -1,0 +1,20 @@
+Given the following declarations, which function calls, if any, are in error? Why?
+double calc( double );
+int count( const string &, char );
+void sum( vector<int> &, int );
+vector<int> vec( 10 );
+(a) calc( 23.4, 55.1 );
+(b) count( "abcda", 'a' );
+(c) sum( vec, 43.8 );
+(d) calc( 66 );
+
+
+solution:
+(a). Error. The function call provides two arguments but the function prototype 
+     only accept one parameter.
+(b). It is OK. implicit convertion will be performed on "abcda", from const 
+     char * to const string &.
+(c). It is OK. implicit convertion will be performed on 43.8, from double to 
+     int.
+(d). It is OK. implicit convertion will be performed on 66, from int to 
+     double.

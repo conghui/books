@@ -1,0 +1,19 @@
+How many destructor invocations occur in the following code fragment?
+
+void mumble( const char *name, double balance, char acct_type )
+{
+    Accout acct;
+    if ( ! name )
+        return;                 // invokes
+    if ( balance <= 99 )
+        return;                 // invokes
+    switch( acct_type ) {
+        case 'z': return;       // invokes
+        case 'a':
+        case 'b': return;       // invokes
+    }
+    // ...                      // invokes
+}
+
+
+The destructor will invokes at every exit point. So if the destructor is inlined, the code will expand larger.

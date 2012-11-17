@@ -1,0 +1,25 @@
+Explain what happens in the following new and delete expressions:
+class Exercise {
+public:
+    Exercise();
+    ~Exercise();
+};
+Exercise *pe = new Exercise[20];
+delete[] pe;
+
+Change the new and delete expressions to call the global operators new()
+and delete().
+
+in the operator new[]() expression, it first check whether the class
+Exercise have a user defined operator new[]() member function, if there is.
+the user defined operator new[]() member function is called, otherwise, the
+global new() function is called.
+
+In the operator delete[]() expression, it first check whether the class
+Exercise has a user defined operator delete[]() member function, if there
+is, the user defined operator delete[]() member function is called,
+otherwise, the global delete[]() function is called.
+
+changes:
+Exercise *pe = ::new Exercise[20];
+::delete [] pe;

@@ -1,0 +1,27 @@
+A potential pitfall in the use of dynamic class arrays is to forget to
+place the bracket pair to indicate the pointer addresses an array; that is,
+      to write
+// oops: no check if parray addresses an array
+delete parray;
+rather than
+// ok: retrieve size of array parray addresses
+delete [] parray;
+The presence of the bracket pair causes the compiler to retrieve the size
+of the array. The destructor is then applied size times to each element of
+the array in turn. Otherwise, a single element is destructed. The fullspace
+allocated is returned to the free store in either case. In the original
+language design, extensive discussion took place on whether to require the
+bracket pair to initiate a search, on one hand, or whether to retain the
+original language requirement for the programmer to provide the explicit
+array size within the bracket pair:
+// original language design required explicit size
+delete [10] parray;
+Why do you think the language was changed so as not to require the user to
+provide the explicit size of the array, requiring storage and retrieval of
+the size, but was not changed to omit the bracket pair on the delete
+expression, requiring that the implementation remember whether the pointer
+addresses a single object or an array? How would you have designed the
+language?
+
+opinion:
+When specifying the size of the array, it is easier to get error.

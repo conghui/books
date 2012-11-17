@@ -1,0 +1,10 @@
+Identify which member functions of the Screen class implemented in Chapter
+13, in Sections 13.3, 13.4, and 13.6, are candidates for operator
+overloading.
+
+forward     ++
+backward    --
+get         []
+set         =,[]
+copy        =
+isEqual     ==

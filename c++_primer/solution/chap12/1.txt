@@ -1,0 +1,15 @@
+One criticism of the generic algorithms is that their design, although
+elegant, places the burden ofcorrectness on the programmer. For example, an
+invalid iterator or iterator pair marking an invalid rangeresults in
+undefined run-time behavior. How valid is this criticism? Should use of the
+algorithms be limitedto only the more-experienced programmers? In general,
+should programmers be protected againstpotentially error-prone constructs,
+such as the generic algorithms, pointers, and explicit casts?
+
+Answer:
+It is the programmer's resposibility to take care of the code they write.
+If they can not write safe and useful code, then they are not good
+programmers. C/C++ is quite efficient and thus have to leave the task of
+checking the code to the programmers. If the checking codes are written
+into the library, then the programmer couldn't remove them if they want to
+have a better efficiency.

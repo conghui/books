@@ -1,0 +1,5 @@
+What would happen if the stopping condition of factorial() were as follows?
+if ( val != 0 )
+
+solution:
+infinite recursion.

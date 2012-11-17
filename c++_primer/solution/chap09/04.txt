@@ -1,0 +1,15 @@
+Which ones of the following initializations, if any, are errors? Why?
+(a) void reset( int * );
+    void (*pf)( void * ) = reset;
+(b) int calc( int, int );
+    int (*pf1)( int, int ) = calc;
+(c) extern "C" int compute( int *, int );
+    int (*pf3)( int*, int ) = compute;
+(d) void (*pf4)( const matrix & ) = 0;
+
+solution:
+(a) Error. The argument list doesn't match.
+(b) It is perfectly matched.
+(c) It doesn't match. the pointer pf3 should also be qualified with extern 
+    "C";
+(d) OK.

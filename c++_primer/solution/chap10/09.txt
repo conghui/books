@@ -1,0 +1,6 @@
+Given the following template definition for sum()
+template <typename Type>
+     Type sum( Type op1, char op2 );
+how would you declare an explicit instantiation declaration for a template argument of type string?
+
+template string sum<string>(string op1, char op2);

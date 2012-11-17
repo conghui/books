@@ -1,0 +1,20 @@
+Which of the following, if any, are incorrect? Correct each instance that
+you identify as incorrect.
+(a) Account *parray[10] = new Account[10];
+(b) Account iA[1024] = {
+    "Nhi", "Le", "Jon", "Mike", "Greg", "Brent", "Hank"
+     "Roy", "Elena" };
+(c) string *ps=string[5]("Tina","Tim","Chyuan","Mira","Mike");
+(d) string as[] = *ps;
+
+solution:
+(a) Error. Account *parray = new Account[10];
+(b) OK, calls the explicit initialization list.
+(c) Error. string ps[] = {
+                    string("Tina"),
+                    string("Tim"),
+                    string("Chyuan"),
+                    string("Mira"),
+                    string("Mike")
+};
+(d) Error. string *as = ps;

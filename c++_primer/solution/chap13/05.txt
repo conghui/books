@@ -1,0 +1,27 @@
+Another useful capability might include moving the cursor up or down one
+row of the screen. On reaching the top or bottom row of the screen, the
+cursor does not wrap around; it sounds a bell and remains where it is.
+Implement the up() and  down() functions, knowing that writing the
+character " 007 " to cout will sound the bell.
+
+namespace {
+    const char BELL = '\007';
+}
+
+inline void Screen::up() {
+    if (row() == 0) {
+        cout << BELL << flush;
+    }
+    else {
+        _cursor -= _width;
+    }
+}
+
+inline void Screen::down() {
+    if (row() == _height) {
+        cout << BELL << flush;
+    }
+    else {
+        _cursor += _width;
+    }
+}

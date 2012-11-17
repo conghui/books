@@ -1,0 +1,504 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+%Fixme: is this really necessary?
+\DeclareRobustCommand\nobreakspace{\leavevmode\nobreak\ }
+\date{}
+\end_preamble
+\options UTF8
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package none
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\listings_params "language={C++}"
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Class Inheritance and Subtyping
+\end_layout
+
+\begin_layout Subsection*
+An Object-Oriented Design
+\end_layout
+
+\begin_layout Standard
+An abstract class can be thought of as an incomplete class that is more
+ or less finished with each subsequent class derivation
+\end_layout
+
+\begin_layout Standard
+Our abstract Query base class defines the set of data and function members
+ that are common to all the query types.
+ Derivations from Query, such as AndQuery, attempt to define what is unique
+ to each particular type of query.
+ 
+\end_layout
+
+\begin_layout Standard
+When we speak of polymorphism within C++, we primarily mean the ability
+ of a pointer or a reference of a base class to address any of its derived
+ classes.
+\end_layout
+
+\begin_layout Standard
+In C++, polymorphism exists only within individual class hierarchies.
+ 
+\end_layout
+
+\begin_layout Standard
+The C++ language supports polymorphism in the following ways:
+\end_layout
+
+\begin_layout Enumerate
+Through the implicit conversion of a derived class pointer, a reference
+ to a pointer, or a reference of its public base type:
+\end_layout
+
+\begin_layout Enumerate
+Through the virtual function mechanism:
+\end_layout
+
+\begin_layout Enumerate
+Through the dynamic_cast and typeid operators 
+\end_layout
+
+\begin_layout Standard
+The class specified in the derivation list must be defined prior to being
+ specified as a base class.
+\end_layout
+
+\begin_layout Standard
+The forward declaration of a derived class does not include its derivation
+ list, but simply the class name — the same as if it were a nonderived class.
+\end_layout
+
+\begin_layout Section*
+Base Class Member Access
+\end_layout
+
+\begin_layout Standard
+While the base class members can be accessed directly, they retain the scope
+ of the base class in which they are defined.
+ The overloaded candidate functions of a name must all occur in the same
+ scope.
+ 
+\end_layout
+
+\begin_layout Standard
+We can achieve the same result with the using declaration, as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+class Shy : public Diffident {
+\end_layout
+
+\begin_layout Plain Layout
+
+public:
+\end_layout
+
+\begin_layout Plain Layout
+
+    // ok: under Standard C++, the using declaration
+\end_layout
+
+\begin_layout Plain Layout
+
+    //     creates an overloaded set of
+\end_layout
+
+\begin_layout Plain Layout
+
+    //     base and derived class members
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+    void mumble( string whatYaSay );
+\end_layout
+
+\begin_layout Plain Layout
+
+    using Diffident::mumble;
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+    // ...
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In C++, a base class pointer can only access the data members and member
+ functions, including virtual member functions, declared (or inherited)
+ within its class regardless of the actual object it may address.
+ Declaring a member function virtual only delays resolution of which instance
+ to invoke based on the actual class type addressed by pb during execution
+ of the program.
+\end_layout
+
+\begin_layout Standard
+Friendship is not iherited.
+\end_layout
+
+\begin_layout Section*
+Base and Derived Class Construction
+\end_layout
+
+\begin_layout Standard
+The order of constructor invocation is always the following:
+\end_layout
+
+\begin_layout Enumerate
+The base class constructor.
+ If there is more than one base class, the constructors are invoked in the
+ order the base classes appear in the class derivation list, not in the
+ order in which they are listed in the member initialization list.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Member class object constructor.
+ If there is more than one member class object, the constructors are invoked
+ in the order in which the objects are declared within the class, not the
+ order in which they are listed in the member initialization list
+\end_layout
+
+\begin_layout Enumerate
+The derived class constructor.
+\end_layout
+
+\begin_layout Standard
+As a general rule, the derived class constructor should never assign a value
+ to a base class data member directly, but rather pass the value to the
+ appropriate base class constructor.
+\end_layout
+
+\begin_layout Standard
+A derived class constructor can invoke legally only the constructor of its
+ immediate base class 
+\end_layout
+
+\begin_layout Subsection*
+Destructors
+\end_layout
+
+\begin_layout Standard
+the order of destructor invocations is the following: 
+\end_layout
+
+\begin_layout Enumerate
+the NameQuery class destructor, 
+\end_layout
+
+\begin_layout Enumerate
+the string destructor for the data member _name, and
+\end_layout
+
+\begin_layout Enumerate
+the Query base class destructor.
+ 
+\end_layout
+
+\begin_layout Standard
+More generally, the order of destructor invocations for a derived class
+ object is the reverse of its constructor order of invocation.
+\end_layout
+
+\begin_layout Standard
+Within the derived class destructors, the delete expression is applied to
+ a Query* pointer.
+ But it is not the Query destructor that we want invoked.
+ Rather, we need to invoke the destructor of the class type of the object
+ actually addressed by the pointer.
+ To accomplish this, we must declare our Query base class destructor to
+ be virtual.
+ 
+\end_layout
+
+\begin_layout Section*
+Base and Derived Class Virtual Functions
+\end_layout
+
+\begin_layout Standard
+When a member function is virtual, the function invoked is the one defined
+ in the dynamic type of the class object (or pointer or reference) through
+ which it is invoked.
+ the virtual function mechanism works only as we expect when used with pointers
+ and references.
+\end_layout
+
+\begin_layout Subsection*
+Virtual Input/Output
+\end_layout
+
+\begin_layout Standard
+The base class first introducing a virtual function must specify the virtual
+ keyword within the class declaration.
+ If the definition is placed outside the class, the keyword virtual must
+ not again be specified.
+\end_layout
+
+\begin_layout Standard
+In order for a derived class instance of a virtual function to override
+ the instance active in its base class, its prototype must match that of
+ the base class exactly.
+ The return value must also be the same, with one exception: The return
+ value of the derived instance can be a publicly derived class type of the
+ type of the return value of the base instance.
+\end_layout
+
+\begin_layout Subsection*
+Pure Virtual Functions
+\end_layout
+
+\begin_layout Standard
+A class containing (or inheriting) one or more pure virtual functions is
+ recognized as an abstract base class by the compiler.
+ An attempt to create an independent class object of an abstract base class
+ results in a compile-time error.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Static Invocation of a Virtual Function
+\end_layout
+
+\begin_layout Standard
+When we invoke a virtual function using the class scope operator, we override
+ the virtual mechanism, causing the virtual function to be resolved statically
+ at compile-time.
+\end_layout
+
+\begin_layout Standard
+Why might we wish to override the virtual mechanism? Often, for efficiency.
+ Within a derived class virtual function, it is sometimes necessary to invoke
+ a base class instance to complete an operation that has been factored across
+ the base and derived instances.
+ 
+\end_layout
+
+\begin_layout Standard
+As is usual with an apparent paradox, we are missing information: A pure
+ virtual function, although it may not be invoked through the virtual mechanism,
+ can be invoked statically.
+\end_layout
+
+\begin_layout Subsection*
+Virtual Destructors
+\end_layout
+
+\begin_layout Standard
+The behavior of the destructor under inheritance is as follows: 
+\end_layout
+
+\begin_layout Enumerate
+The destructor of the derived class is invoked first.
+ 
+\end_layout
+
+\begin_layout Enumerate
+On completion, the destructor of the immediate base class is invoked statically
+ — inline expanded if declared as such.
+ 
+\end_layout
+
+\begin_layout Standard
+As a general rule of thumb, we recommend that the root base class of a class
+ hierarchy declaring one or more virtual functions declare its destructor
+ virtual as well.
+ However, unlike the base class constructor, the base class destructor,
+ in general, should not be made protected.
+\end_layout
+
+\begin_layout Subsection*
+Virtually a Virtual new Operator
+\end_layout
+
+\begin_layout Standard
+Unfortunately, the new operator cannot be made virtual because it is a static
+ member function applied to raw memory prior to the construction of the
+ class object .
+\end_layout
+
+\begin_layout Standard
+Although we cannot make the new operator virtual, we can provide a surrogate
+ new operator to allocate and copy our objects onto the free store.
+ This surrogate is generally named clone():
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+class Query {
+\end_layout
+
+\begin_layout Plain Layout
+
+public:
+\end_layout
+
+\begin_layout Plain Layout
+
+   virtual Query *clone() = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+   // ...
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here is one possible implementation of our NameQuery instance:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+class NameQuery : public Query {
+\end_layout
+
+\begin_layout Plain Layout
+
+public:
+\end_layout
+
+\begin_layout Plain Layout
+
+   virtual Query *clone()
+\end_layout
+
+\begin_layout Plain Layout
+
+      // invokes the NameQuery copy constructor
+\end_layout
+
+\begin_layout Plain Layout
+
+      { return new NameQuery( *this ); }
+\end_layout
+
+\begin_layout Plain Layout
+
+   // ...
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+there is one exception to the requirement that the return type of the derived
+ class must match exactly that of the base class instance.
+ The exception is to support this very case.
+ If the base instance of a virtual function returns a class type (or a pointer
+ or a reference to a class type), the derived instance may return a class
+ publicly derived from the class returned by the base class instance (or
+ a pointer or a reference to a class type).
+\end_layout
+
+\end_body
+\end_document
