@@ -6,6 +6,8 @@ TEMPLATE = app
 TARGET = 
 DEPENDPATH += .
 INCLUDEPATH += .
+QMAKE_CFLAGS_RELEASE += -std=c90
+QMAKE_CFLAGS_DEBUG += -ansi
 
 # Input
 SOURCES += main.c
