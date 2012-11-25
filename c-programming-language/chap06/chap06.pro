@@ -5,4 +5,4 @@
 TEMPLATE = subdirs
 
 # Directories
-SUBDIRS += 02 03
+SUBDIRS += 02 03 04
