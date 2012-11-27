@@ -1,0 +1,14 @@
+Given the following set of class data members, in which pstring addresses a dynamic character array, write an appropriate destructor.
+class NoName {
+public:
+    ~NoName();
+    // ...
+private:
+    char *pstring;
+    int     ival;
+    double dval;
+};
+
+NoName::~NoName() {
+    delete [] pstring;
+}

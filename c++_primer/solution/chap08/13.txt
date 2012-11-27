@@ -1,0 +1,4 @@
+Explain why you would use an unnamed namespace in your programs.
+
+1. we can restrict scope of the symbols within a source file.
+2. we dont's need to create the name of namespace.

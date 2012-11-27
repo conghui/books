@@ -1,0 +1,26 @@
+Which of the following function invocation is invalid?
+(a) enum Stat {Fail, Pass};
+    void test(Stat);
+    test(0);
+(b) void reset(void *);
+    reset(0);
+(c) void set(void *)
+    int *pi;
+    set(pi);
+(d) #include <list>
+    list<int> oper();
+    void print(list<int> &);
+    print(oper());
+(e) void print(const int);
+    int iobj;
+    print(iobj);
+
+solution
+(a) It is invalid. The parameter needs the type of enum Stat, but provided 
+    type is int.
+(b) It is okay. 0 can be converted to a pointer type.
+(c) It is okay. Any pointer type that points to data could be converted to 
+    void *
+(d) It is invalid. the print function expect a type of reference, which is a 
+    lvalue, but the oper() function return a rvalue.
+(e) It is exact match.

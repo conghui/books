@@ -1,0 +1,14 @@
+Which ones, if any, of the following template redeclarations are errors? Why?
+(a) template <class Type>
+           Type bar( Type, Type );
+      template <class Type>
+           Type bar( Type, Type );
+(b) template <class T1, class T2>
+            void bar( T1, T2 );
+     template <typename C1, typename C2>
+           void bar( C1, C2 );
+Solution:
+(a) It is okay.
+
+(b) It is okay. The meaning of keyword typename and keyword class are the same 
+in the template parameter list.

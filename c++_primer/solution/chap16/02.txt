@@ -1,0 +1,26 @@
+The following definition of List is incorrect. How would you fix it ?
+template <class elemenType>
+class ListItem;
+template <class elemType>
+class List {
+public:
+    List()
+        : _at_front( 0 ), _at_end( 0 ), _current( 0 ), _size( 0 )
+    {}
+    List( const List & );
+    List &operator=( const List & );
+    ~List();
+    void insert( ListItem<elemType> *ptr, elemType value );
+    int remove( elemType value );
+    ListItem<elemType> *find( elemType value );
+    void display( ostream &os = cout );
+    int size() {
+        return _size;
+    }
+
+private:
+    ListItem<elemType> *_at_front;
+    ListItem<elemType> *_at_end;
+    ListItem<elemType> *_current;
+    int _size;
+};

@@ -1,0 +1,38 @@
+Identify which, if any, of the following function template definitions are 
+illegal. Correct each one that youidentify.
+(a) template <class T, U, class V>
+          void foo( T, U, V );
+(b) template <class T>
+          T foo( int *T );
+(c) template <class T1, typename T2, class T3>
+          T1 foo( T2, T3 );
+(d) inline template <typename T>
+            T foo( T, unsigned int* );
+(e) template <class myT, class myT>
+          void foo( myT, myT );
+(f) template <class T>
+           foo( T, T );
+(g) typedef char Ctype;
+     template <class Ctype>
+       Ctype foo( Ctype a, Ctype b );
+
+solution:
+(a) Each template type parameter should be preceded by the key word class or 
+key word typename. The template type parameter U is not preceded by the key 
+word class or key word typename.
+
+(b) It is okay.
+
+(c) It is okay.
+
+(d) If the inline keyword is used with the template function, the keyword 
+inline should be placed after the template keyword, in front of the function.  
+The template function declaration should be modified to:
+        template<typename T>
+        inline T foo(T, unsigned int *);
+
+(e) The name of the parameter in the template parameter list should be used only once. myT is used twice.
+
+(f) The function has no return type.
+
+(g) It is legal. But the global type Ctype is hidded by the template type parameter Ctype.

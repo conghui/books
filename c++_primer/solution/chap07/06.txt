@@ -1,0 +1,17 @@
+Given the following function declarations, which ones, if any, of the 
+following function calls are errors? Why?
+// declarations
+void print( int arr[][5], int size );
+void operate(int *matrix[7]);
+char *screenInit( int height = 24, int width = 80,
+                  char background = ' ' );
+(a) screenInit(); // function call
+(b) int *matrix[5];
+     operator( matrix ); // function call
+(c) int arr[5][5];
+    print( arr, 5 ); // function call
+
+solution:
+(a) OK.
+(b) OK.
+(c) OK.

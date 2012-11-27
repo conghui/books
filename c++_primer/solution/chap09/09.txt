@@ -1,0 +1,52 @@
+Explain what happens during function overload resolution for the call to 
+compute() in    main(). Which functions are candidate functions? Which 
+functions are viable functions? What is the type conversion sequence applied 
+to the argument to match the parameter in each viable function? Which function 
+(if any) is the best viable function?
+
+namespace primerLib {
+        void compute( );
+         void compute( const void * );
+}
+using primerLib::compute;
+void compute( int );
+void compute( double, double = 3.4 );
+void compute( char*, char* = 0 );
+int main() {
+        compute( 0 );
+        return 0;
+}
+
+What would happen if the using declaration were located in main(), before the 
+call to compute()? Answer the same questions as before.
+
+
+solution:
+1. candidate functions: 
+    all the function compute() are the candidate functions.
+2. viable functions:
+    (a) void PrimerLib::compute(const void *);
+    (b) void compute(int);
+    (c) void compute(double, double = 3.4);
+    (d) void compute(char *, char * = 0);
+3. for each function, the following conversion sequence applies:
+    (a) void PrimerLib::compute(const void *);
+        1. the standard conversion 0 to void * pointer type.
+        2. the qualifier conversion applies from void * to const void *.
+    (b) void compute(int);
+        1. exactly match
+    (c) void compute(double, double = 3.4);
+        1. standard conversion, from int to double;
+    (d) void compute(char *, char * = 0);
+        1. standard conversion, from 0 to char *;
+
+    So, the void compute(int) is the best viable function.
+
+If the using declaration were located in main(), then 
+1. the candidate functions are:
+    (a) void compute( );
+    (b) void compute( const void * );
+2. the viable functions is:
+    (a) void compute(const void *);
+3. there is only one viable function, and thus it is the best viable function, 
+   so the function void compute(const void *) is invoked.

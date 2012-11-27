@@ -1,0 +1,564 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+%Fixme: is this really necessary?
+\DeclareRobustCommand\nobreakspace{\leavevmode\nobreak\ }
+\end_preamble
+\options UTF8
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package none
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+date{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Chapter 7: Function
+\end_layout
+
+\begin_layout Subsection*
+Reference && Pointer
+\end_layout
+
+\begin_layout Standard
+reference must be initialized to an object, and once initialized, it can
+ not be made to refer another object.
+ A pointer can address of a sequenceof object or address no object at all.
+\end_layout
+
+\begin_layout Standard
+Because a pointer can either address an object or address no object at all,
+ a function cannot safely dereference a pointer before it firstly confirm
+ that the pointer does address an object.
+\end_layout
+
+\begin_layout Standard
+On the other hand, with a reference parameter, a function doesn't have to
+ guard it refer to an object.
+ A reference has to refer to an object, whether it is willing or not.
+ 
+\end_layout
+
+\begin_layout Standard
+So, if the parameter will pointer to another object or it will pointer to
+ no object at all, the parameter should be an pointer.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0ex"
+width "95page%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+One important use of reference parameters is to allow us to implement overloaded
+ operators efficiently while keeping their use intuitive.
+ For example, when we overload the operator+ in class Matrix, if we define
+\end_layout
+
+\begin_layout LyX-Code
+Matrix operator+(Matrix *m1, Matrix *m32);
+\end_layout
+
+\begin_layout Standard
+It is ok and gain high efficiency, but we have to use it by
+\end_layout
+
+\begin_layout LyX-Code
+&m1 + &m2
+\end_layout
+
+\begin_layout Standard
+But, when we want to add three matrix object, we have to
+\end_layout
+
+\begin_layout LyX-Code
+&(&m1 + &m2) + &m3
+\end_layout
+
+\begin_layout Standard
+No one would expect to write that.
+\end_layout
+
+\begin_layout Subsection*
+default argument
+\end_layout
+
+\begin_layout Standard
+The default arguments are provided in the function prototype, ont int the
+ function definition.
+\end_layout
+
+\begin_layout Standard
+Arguments to the call are resolved by position, and default arguments are
+ used only to substitute the missing trailing arguments of a function call.
+ 
+\end_layout
+
+\begin_layout Standard
+The following prototypes are valid:
+\end_layout
+
+\begin_layout LyX-Code
+void f(int a, b, c = 0);
+\end_layout
+
+\begin_layout LyX-Code
+void g(int a, b = 0, c = 0);
+\end_layout
+
+\begin_layout LyX-Code
+void h(int a = 0, b = 0, c = 0);
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout Standard
+But the following prototypes are invalid:
+\end_layout
+
+\begin_layout LyX-Code
+void f(int a = 0, b, c); 
+\end_layout
+
+\begin_layout LyX-Code
+void g(int a, b = 0, c);
+\end_layout
+
+\begin_layout LyX-Code
+void h(int a = 0, b, c = 0);
+\end_layout
+
+\begin_layout Standard
+However, if redeclaration appears, the following declarations are valid:
+\end_layout
+
+\begin_layout LyX-Code
+void f(int, int, int = 0);  //ok
+\end_layout
+
+\begin_layout LyX-Code
+void f(int, int = 0, int);  //ok
+\end_layout
+
+\begin_layout LyX-Code
+void f(int = 0, int, int);  //ok
+\end_layout
+
+\begin_layout Standard
+But the following are invalid:
+\end_layout
+
+\begin_layout LyX-Code
+void f(int = 0, int, int);  //invalid at first.
+\end_layout
+
+\begin_layout LyX-Code
+void f(int, int = 0, int);  //invalid
+\end_layout
+
+\begin_layout LyX-Code
+void f(int, int, int = 0);  //ok, the the previous two is invalid.
+\end_layout
+
+\begin_layout Standard
+What's more, the following are invalid either:
+\end_layout
+
+\begin_layout LyX-Code
+void f(int, int, int = 0); //ok
+\end_layout
+
+\begin_layout LyX-Code
+void f(int, int = 0, int = 0); //invalid, the third default value should
+ be eliminated.
+\end_layout
+
+\begin_layout Standard
+The default argument could be any expression, including function calls.
+\end_layout
+
+\begin_layout Subsection*
+Linkage Directive
+\end_layout
+
+\begin_layout Standard
+The linkage directive 
+\emph on
+extern 
+\begin_inset Quotes eld
+\end_inset
+
+C
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph default
+should be put outside of a function, not within a function.
+\end_layout
+
+\begin_layout Standard
+The linkage directive 
+\family sans
+\emph on
+extern "C"
+\family default
+\emph default
+ can have one of the two forms.
+ It can be a single directive form, or a compond directive form.
+\end_layout
+
+\begin_layout LyX-Code
+extern "C" int add(int, int); //single directive form
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+extern "C" { //compond directive form
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+int add(int, int);
+\end_layout
+
+\begin_layout LyX-Code
+int sub(int, int);
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+extern "C" { //compond directive form
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+#include "foo.h"
+\end_layout
+
+\begin_layout LyX-Code
+#include "bar.h"
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+Having three files, 
+\family sans
+foo.h
+\family default
+, 
+\family sans
+foo.c
+\family default
+, 
+\family sans
+main.cxx
+\family default
+.
+ If in file 
+\family sans
+main.cxx
+\family default
+, a function that is defined in foo.c and declared in foo.h is invoked, an
+ compile error will appear saying somewhat like 
+\emph on
+"undefine reference "
+\emph default
+ to the called function.
+ Why? The file 
+\family sans
+foo.c
+\family default
+ is compiled using the C compiler, but the 
+\family sans
+main.cxx
+\family default
+ is compiled by the C++ compiler, while in the linkage stage, the definition
+ of the called function could be found by the C++ compiler, so the error
+ is thrown out.
+ To fix this error, the 
+\family sans
+\emph on
+extern "C"
+\family default
+\emph default
+ directive should be put in front of the declaration, or of the include
+ directive which include this declaration of the function.
+\end_layout
+
+\begin_layout Standard
+One of the compatible way is to add the 
+\family sans
+\emph on
+extern "C"
+\family default
+\emph default
+ directive in the header file.
+ However, if you directly add 
+\family sans
+\emph on
+extern "C"
+\family default
+\emph default
+ to every function in the header file, some errors may occurs while compiling
+ the C source code, for example: in foo.h
+\end_layout
+
+\begin_layout LyX-Code
+extern "C" int add(int, int);
+\end_layout
+
+\begin_layout Standard
+and in foo.c, you include the header and give its definition:
+\end_layout
+
+\begin_layout LyX-Code
+#include "foo.h"
+\end_layout
+
+\begin_layout LyX-Code
+int add(int a, int b) 
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+I am sure the C source file may not pass the compiler.
+ The reason is simple, there is no definition of 
+\family sans
+\emph on
+extern "C"
+\family default
+\emph default
+ in C.
+ It is just part of C++.
+ You can solve this problem just modify the header a bit.
+\end_layout
+
+\begin_layout LyX-Code
+#ifdef __cplusplus 
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+extern "C" int add(int, int);
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+#endif
+\end_layout
+
+\begin_layout Standard
+every C++ program will have the macro 
+\family sans
+__cplusplus
+\family default
+ defined.
+\end_layout
+
+\begin_layout Standard
+You can have a further modification:
+\end_layout
+
+\begin_layout LyX-Code
+#ifndef FOO_H
+\end_layout
+
+\begin_layout LyX-Code
+#define FOO_H
+\end_layout
+
+\begin_layout LyX-Code
+#ifdef __cplusplus
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+extern "C" {
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+#endif
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+/* some declaration as what you did in C as usual */
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+/* and the in end of the file */
+\end_layout
+
+\begin_layout LyX-Code
+#ifdef __cplusplus
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+}
+\end_layout
+
+\end_deeper
+\begin_layout LyX-Code
+#endif
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+#endif
+\end_layout
+
+\begin_layout Standard
+I am using vim editor, and of course, define the above snippet myself as
+ a function, and make it have a key binding for further use.
+ 
+\end_layout
+
+\begin_layout Subsection*
+pointer to extern "C" function
+\end_layout
+
+\begin_layout Standard
+A pointer can be declared to pointer to a 
+\emph on
+extern "C"
+\emph default
+ function, for example:
+\end_layout
+
+\begin_layout LyX-Code
+extern "C" void (*pf)(int);
+\end_layout
+
+\begin_layout Standard
+notice that, while intialize the pointer, the lvalue and rvalue should be
+ exactly the same type.
+ For example:
+\end_layout
+
+\begin_layout LyX-Code
+void f(int);
+\end_layout
+
+\begin_layout LyX-Code
+extern "C" (*pf)(int);
+\end_layout
+
+\begin_layout LyX-Code
+pf = f; // illegal! 
+\end_layout
+
+\end_body
+\end_document

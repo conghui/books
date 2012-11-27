@@ -1,0 +1,8 @@
+Name the portions of program text that are considered in class scope.
+
+solution:
+1. the definition of the class.
+2. if the definition of the class is outside of the class body, then every
+   thing declared in the class body belong to the class scope.
+3. in the definition of static date member, everything after the appearence
+   of the name of static data member is belongs to the class scope.

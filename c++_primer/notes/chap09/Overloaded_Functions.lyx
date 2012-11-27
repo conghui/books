@@ -1,0 +1,843 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+%Fixme: is this really necessary?
+\DeclareRobustCommand\nobreakspace{\leavevmode\nobreak\ }
+\date{}
+\end_preamble
+\options UTF8
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package none
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\listings_params "language={C++}"
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Overloaded Functions
+\end_layout
+
+\begin_layout Section*
+How to Overload a Function Name
+\end_layout
+
+\begin_layout Standard
+When a function name is declared more than once in a particular scope, the
+ compiler interprets the second (and subsequent) declarations as follows.
+\end_layout
+
+\begin_layout Enumerate
+If the parameter lists of the two functions differ in either the number
+ or type of their parameters, the two functions are considered to be overloaded.
+ For example:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// overloaded functions 
+\end_layout
+
+\begin_layout Plain Layout
+
+void print( const string & ); 
+\end_layout
+
+\begin_layout Plain Layout
+
+void print( vector<int> & );
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+If both the return type and the parameter list of the two function declarations
+ match exactly, the second declaration is treated as a redeclaration of
+ the first.
+ For example:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// declares the same function 
+\end_layout
+
+\begin_layout Plain Layout
+
+void print( const string &str ); 
+\end_layout
+
+\begin_layout Plain Layout
+
+void print( const string & );
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The parameter names are irrelevant when parameter lists are compared.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+If the parameter lists of the two functions match exactly but the return
+ types differ, the second declaration is treated as an erroneous redeclaration
+ of the first and is flagged at compile-time as an error.
+ For example:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+unsigned int max( int i1, int i2 ); 
+\end_layout
+
+\begin_layout Plain Layout
+
+int max( int , int ); // error: only return type is different
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A function's return type is not enough to distinguish between two overloaded
+ functions.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+If the parameter lists of the two functions differ only in their default
+ arguments, the second declaration is treated as a redeclaration of the
+ first.
+ For example:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// declares the same function 
+\end_layout
+
+\begin_layout Plain Layout
+
+int max( int *ia, int sz ); 
+\end_layout
+
+\begin_layout Plain Layout
+
+int max( int *, int = 10 );
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+When a parameter type is const or volatile, the const or volatile qualifier
+ is not taken into account when the declarations of different functions
+ are identified.
+ For example, the following two delarations declare the same function:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// declares the same function 
+\end_layout
+
+\begin_layout Plain Layout
+
+void f( int ); 
+\end_layout
+
+\begin_layout Plain Layout
+
+void f( const int ); 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+However, if const or volatile applies to the type to which a pointer or
+ reference parameter refers, then the const or volatile qualifier is taken
+ into account when the declarations of different functions are identified.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// declares different functions 
+\end_layout
+
+\begin_layout Plain Layout
+
+void f( int* ); 
+\end_layout
+
+\begin_layout Plain Layout
+
+void f( const int* );
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// also declares different functions 
+\end_layout
+
+\begin_layout Plain Layout
+
+void f( int& ); 
+\end_layout
+
+\begin_layout Plain Layout
+
+void f( const int& ); 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+When Not to Overload a Function Name
+\end_layout
+
+\begin_layout Standard
+It is not beneficial whenever the different function names provide information
+ that would make the program easier to understand.
+\end_layout
+
+\begin_layout Standard
+Programmers are best served by not thinking of each language feature as
+ the next mountain to climb.
+ Use of a feature should follow from the logic of the application and not
+ simply because it is there.
+ Programmers should not force overloaded functions into their applications.
+ Only where it feels natural to use them should they be implemented.
+\end_layout
+
+\begin_layout Subsection*
+Overloading and Scope
+\end_layout
+
+\begin_layout Standard
+All the functions in a set of overloaded functions are declared in the same
+ scope.
+ 
+\end_layout
+
+\begin_layout Standard
+A user cannot specify a parameter list in a using declaration for a function.
+ 
+\end_layout
+
+\begin_layout Standard
+A using declaration always declares aliases for all the functions in a set
+ of overloaded functions.
+\end_layout
+
+\begin_layout Standard
+Recall that a using declaration is a declaration.
+ It is as if the functions introduced by the using declaration were declared
+ where the using declaration appears.
+ For this reason, the functions introduced by the using declaration overload
+ the other declarations of the functions with the same name already present
+ in the scope where the using declaration appears.
+\end_layout
+
+\begin_layout Standard
+This is also true if many using directives are present.
+ The member functions from different namespaces that have the same name
+ are added to the same overload set.
+\end_layout
+
+\begin_layout Section*
+extern "C" and Overloaded Functions
+\end_layout
+
+\begin_layout Standard
+A linkage directive can be specified for only one function in a set of overloade
+d functions.
+ For example, a program that includes the following two declarations is
+ not legal:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+// error: two extern "C" functions in set of overloaded functions
+\end_layout
+
+\begin_layout Plain Layout
+
+extern "C" void print( const char* ); 
+\end_layout
+
+\begin_layout Plain Layout
+
+extern "C" void print( int ); 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The linkage directive does not influence the function that is selected for
+ a function call; only the types of the parameters are used to select the
+ function called.
+ The function chosen is the one that best matches the type of the function
+ arguments.
+\end_layout
+
+\begin_layout Section*
+The Three Steps of Overload Resolution
+\end_layout
+
+\begin_layout Standard
+The steps of function overload resolution are the following:
+\end_layout
+
+\begin_layout Enumerate
+Identify the set of overloaded functions considered for the call and identify
+ the properties of the argument list in the function call.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Select the functions from the set of overloaded functions that can be called
+ with the arguments specified in the call, given the number of arguments
+ and their types.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Select the function that best matches the call.
+ 
+\end_layout
+
+\begin_layout Standard
+The first step of function overload resolution identifies the set of overloaded
+ functions considered for the call.
+ The functions in this set are called candidate functions.
+ A candidate function is a function with the same name as the function that
+ is called and for which a declaration is visible at the point of the call.
+\end_layout
+
+\begin_layout Standard
+The second step of function overload resolution selects the functions from
+ the set of candidate functions found in step 1 that can be called with
+ the arguments specified in the call.
+ The functions thus selected are called the viable functions.
+ A viable function has the same number of parameters as there are arguments
+ in the argument list in the call, or a viable function has more parameters
+ than there are arguments in the argument list in the call and each additional
+ parameter has an associated default argument.
+ For a function to be viable, there must exist conversions that can convert
+ each argument in the argument list to the type of its corresponding parameter
+ in the function parameter list.
+\end_layout
+
+\begin_layout Standard
+The third step of function overload resolution consists of selecting the
+ function that matches the function call the best.
+ This function is called the best viable function
+\end_layout
+
+\begin_layout Standard
+The best viable function is the function for which the following apply.
+\end_layout
+
+\begin_layout Enumerate
+The conversions applied to the arguments are no worse than the conversions
+ necessary to call any other viable function.
+ 
+\end_layout
+
+\begin_layout Enumerate
+The conversions on some arguments are better than the conversions necessary
+ for the same arguments when calling the other viable functions.
+ 
+\end_layout
+
+\begin_layout Section*
+Argument Type Conversions
+\end_layout
+
+\begin_layout Standard
+During the second step of function overload resolution, the compiler identifies
+ and ranks the conversions that can apply to each argument in a function
+ call to convert it to the type of the corresponding parameter in each viable
+ function.
+ There are three possible outcomes of this ranking:
+\end_layout
+
+\begin_layout Enumerate
+An exact match.
+ The argument matches the type of the function parameter exactly.
+\end_layout
+
+\begin_layout Enumerate
+Match with a type conversion.
+\end_layout
+
+\begin_layout Enumerate
+No match.
+\end_layout
+
+\begin_layout Standard
+For the argument to be an exact match, the argument need not exactly match
+ the type of the parameter.
+ There are some minor conversions that can be applied to the argument.
+ The possible conversions in the exact match category are the following
+ conversions:
+\end_layout
+
+\begin_layout Itemize
+Lvalue-to-rvalue conversion 
+\end_layout
+
+\begin_layout Itemize
+Array-to-pointer conversion 
+\end_layout
+
+\begin_layout Itemize
+Function-to-pointer conversion 
+\end_layout
+
+\begin_layout Itemize
+Qualification conversions 
+\end_layout
+
+\begin_layout Standard
+Type conversions are ranked as follows: an exact match is better than a
+ promotion, a promotion is better than a standard conversion, and a standard
+ conversion is better than a user-defined conversion.
+\end_layout
+
+\begin_layout Subsection*
+Details of an Exact Match
+\end_layout
+
+\begin_layout Standard
+An enumeration type defines a unique type that matches exactly only the
+ enumerators within the enumeration and the objects declared to be of the
+ enumeration type.
+\end_layout
+
+\begin_layout Standard
+When a function expects a pass-by-value argument, an lvalue-to-rvalue conversion
+ is performed when the argument is an lvalue.
+\end_layout
+
+\begin_layout Standard
+Not all function calls require that an lvalue-to-rvalue conversion take
+ place on the arguments.
+ A reference represents an lvalue; when a function has a reference parameter,
+ the function that is called receives an lvalue.
+ For this reason, there is no lvalue-to-rvalue conversion applied to an
+ argument that has a corresponding reference parameter.
+\end_layout
+
+\begin_layout Standard
+The second conversion allowed in an exact match situation is the array-to-pointe
+r conversion.
+\end_layout
+
+\begin_layout Standard
+The next conversion allowed in the exact match situation is the function-to-poin
+ter conversion.
+ 
+\end_layout
+
+\begin_layout Standard
+The last conversions listed under the exact match category are the qualification
+ conversions.
+ A qualification conversion affects only pointers.
+ It is a conversion that adds const or volatile qualifiers (or both) to
+ the type to which a pointer points.
+\end_layout
+
+\begin_layout Standard
+A qualification conversion applies only to the type pointed to by a pointer.
+ No type conversion applies when a parameter is of const or volatile type
+ and the argument is not:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+extern void takeCI( const int );
+\end_layout
+
+\begin_layout Plain Layout
+
+int main() {
+\end_layout
+
+\begin_layout Plain Layout
+
+	int ii = ...; 
+\end_layout
+
+\begin_layout Plain Layout
+
+	takeCI(ii); // no qualification conversion 
+\end_layout
+
+\begin_layout Plain Layout
+
+	return 0; 
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is also the case if the argument is a pointer and the const or volatile
+ qualifier applies to the pointer itself:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+extern void init( int *const ); 
+\end_layout
+
+\begin_layout Plain Layout
+
+extern int *pi;
+\end_layout
+
+\begin_layout Plain Layout
+
+int main() { 
+\end_layout
+
+\begin_layout Plain Layout
+
+	// ...
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+	init(pi); // no qualification conversion 
+\end_layout
+
+\begin_layout Plain Layout
+
+	return 0; 
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+No qualification conversion is applied to the argument pi, and the argument
+ exactly matches the type of the function parameter.
+\end_layout
+
+\begin_layout Subsection*
+Details of a Promotion
+\end_layout
+
+\begin_layout Standard
+A promotion is one of the following conversions.
+\end_layout
+
+\begin_layout Enumerate
+An argument of type char, unsigned char, or short is promoted to type int.
+ An argument of type unsigned short is promoted to type int if the machine
+ size of an int is larger than that of a short integer; otherwise, it is
+ promoted to type unsigned int.
+ 
+\end_layout
+
+\begin_layout Enumerate
+An argument of type float is promoted to type double.
+ 
+\end_layout
+
+\begin_layout Enumerate
+An argument of an enumeration type is promoted to the first of the following
+ type that can represent all the values of the enumeration constants: int,
+ unsigned int, long, or unsigned long.
+ 
+\end_layout
+
+\begin_layout Enumerate
+An argument of type bool is promoted to type int.
+\end_layout
+
+\begin_layout Standard
+A promotion is applied when the type of the argument is one of the source
+ types just described and the function parameter type is the associated
+ promoted type.
+\end_layout
+
+\begin_layout Subsection*
+Details of a Standard Conversion
+\end_layout
+
+\begin_layout Standard
+There are five kinds of conversions grouped in the category of standard
+ conversion:
+\end_layout
+
+\begin_layout Itemize
+The integral conversions: the conversions from any integral type or enumeration
+ type to any other integral type (excluding the conversions that were listed
+ as promotions earlier).
+ 
+\end_layout
+
+\begin_layout Itemize
+The floating point conversions: the conversions from any floating point
+ type to any other floating point type (excluding the conversions that were
+ listed as promotions earlier).
+ 
+\end_layout
+
+\begin_layout Itemize
+The floating-integral conversions: the conversions from any floating point
+ type to any integral type or from any integral type to any floating point
+ type.
+ 
+\end_layout
+
+\begin_layout Itemize
+The pointer conversions: the conversion of the integer value zero to a pointer
+ type and the conversion of a pointer of any type to the type void*.
+ 
+\end_layout
+
+\begin_layout Standard
+The bool conversions: the conversions from any integral type, floating point
+ type, enumeration type, or pointer type to the type bool.
+ 
+\end_layout
+
+\begin_layout Standard
+All standard conversions are treated as requiring equal work.
+ The conversion from char to unsigned char, for example, does not take precedenc
+e over the conversion from char to double.
+ Closeness of type is not considered.
+ If two viable functions require standard conversions on the argument to
+ match the type of their parameter, the call is ambiguous and it is flagged
+ at compile-time as an error.
+ 
+\end_layout
+
+\begin_layout Standard
+However, because enumeration types are not integer types, an enumeration
+ value that evaluates to 0 cannot be converted to a pointer type.
+ 
+\end_layout
+
+\begin_layout Standard
+Only pointers to data types can be converted to the type void* with a pointer
+ standard conversion.
+ Pointers to functions cannot be converted to the type void* with a standard
+ conversion.
+\end_layout
+
+\begin_layout Subsection*
+Candidate Functions
+\end_layout
+
+\begin_layout Standard
+A candidate function will be found in one of the following two ways.
+\end_layout
+
+\begin_layout Itemize
+A declaration for the function is visible at the point of the call.
+\end_layout
+
+\begin_layout Itemize
+If the type of a function argument is declared within a namespace, the namespace
+ member functions that have the same name as the function called are added
+ to the set of candidate functions.
+ 
+\end_layout
+
+\begin_layout Standard
+The candidate functions are therefore the union of the functions visible
+ at the point of the call and the functions declared within the namespaces
+ of the argument types.
+\end_layout
+
+\begin_layout Standard
+A function declared in a nested scope hides rather than overloads a function
+ having the same name in an enclosing scope.
+ The candidate functions in such a situation are the functions declared
+ in the nested scope, that is, the functions that are not hidden from the
+ function call.
+\end_layout
+
+\begin_layout Standard
+The resolution of the calls in func() is unaffected whether the using directive
+ appears in global scope or appears in func()'s local scope:
+\end_layout
+
+\begin_layout Subsection*
+Best Viable Function
+\end_layout
+
+\begin_layout Standard
+The best viable function is the viable function for which both of the following
+ apply.
+\end_layout
+
+\begin_layout Enumerate
+The conversions applied to the arguments are no worse than the conversions
+ necessary to call any other viable function.
+ 
+\end_layout
+
+\begin_layout Enumerate
+The conversions on some arguments are better than the conversions necessary
+ for the same arguments when any of the other viable functions are called.
+ 
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,22 @@
+Using the following Account class definition
+class Account{
+public:
+    Account();
+    explicit Account( const char*, double=0.0 );
+        // ...
+};
+explain what happens with the following definitions:
+Account acct;
+(a) Account acct;
+(b) Account acct2 = acct;
+(c) Account acct3 = "Rena Stern";
+(d) Account acct4( "Anna Engel", 400.00 );
+(e) Account acct5 = Account( acct3 );
+
+
+solution:
+(a) invokes the default constructor.
+(b) the compiler will use the default memberwise initialization.
+(c) Error occurs.
+(d) invoke the explicit Account(const char *, doubl = 0.0);
+(e) the same as (b).

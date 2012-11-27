@@ -1,0 +1,6 @@
+Give two reasons that the exception declaration of a catch clause should 
+declare a reference.
+
+1. when passing large object.
+2. when the statements in the catch clause want to do some modification on the 
+   object.

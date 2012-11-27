@@ -1,0 +1,26 @@
+Given a class named Person, with the following two data members
+    string _name;
+    string _address;
+and the following member functions
+    Person( const string &n, const string &a )
+        : _name( n ), _address( a ) { }
+    string name() { return _name; }
+    string address() { return _address; }
+which members would you declare in the public section of the class and
+which members would you declare in the private section of the class?
+Explain your choice.
+
+#include <string>
+using namespace std;
+
+class Person
+{
+public:
+    Person(const string &n, const string &a) :
+        _name(n), _address(a) { }
+    inline string name() { return _name; }
+    inline string address() { return _address; }
+private:
+    string _name;
+    string _address;
+};

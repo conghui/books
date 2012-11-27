@@ -1,0 +1,60 @@
+Suppose we have the following set of template definitions and specializations and variable and function declarations:
+
+int i;
+unsigned int ui;
+char str[24];
+int ia[24];
+template <class T> T calc( T*, int );
+template <class T> T calc( T, T );
+template<> char calc( char*, int );
+double calc( double, double );
+
+Identify which, if any, template instantiation or function is invoked for each of the following calls. For each call, list the candidate functions, list the viable functions, and explain why the best viable function is selected.
+(a) calc( str, 24 );               (d) calc( i, ui );
+(b) calc( ia, 24 );                (e) calc( ia, ui );
+(c) calc( ia[0], i );            (f) calc( &i, i );
+
+solution:
+(a) candidate functions:
+        template<> char calc(char *, int);
+        double calc(double, double);
+    viable functions:
+        template<> char calc(char *, int);
+
+(b) candiate functions:
+        int calc(int *, int);
+        double calc(double, double);
+    viable function:
+        int calc(int *, int);
+
+(c) candidate functions:
+        int calc(int, int);
+        double calc(double, double);
+    viable functions:
+        int calc(int, int);
+        double calc(double, double);
+    best viable functions:
+        int calc(int, int);
+
+(d) candidate function:
+        double calc(double, double);
+    viable function:
+        double calc(double, double);
+    best viable function:
+        double calc(double, double);
+
+(e) candidate function:
+        int calc(int *, int);
+        double calc(double, douvble);
+    viable function:
+        int calc(int *, int);
+    best viable function:
+        int clac(int *, int);
+
+(f) candidate function:
+        int calc(int *, int)
+        double calc(double, double);
+    viable function:
+        int calc(int *, int);
+    best viable function:
+        int calc(int *, int);

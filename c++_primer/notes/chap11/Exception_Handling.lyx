@@ -1,0 +1,617 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+%Fixme: is this really necessary?
+\DeclareRobustCommand\nobreakspace{\leavevmode\nobreak\ }
+\date{}
+\end_preamble
+\options UTF8
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package none
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\listings_params "language={C++}"
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Exception Handling
+\end_layout
+
+\begin_layout Section*
+Throwing an Exception
+\end_layout
+
+\begin_layout Standard
+In C++, exceptions are most often implemented using classes.
+\end_layout
+
+\begin_layout Standard
+An exception is an object, and pop() must throw an object of class type.
+ 
+\end_layout
+
+\begin_layout Section*
+The Try Block
+\end_layout
+
+\begin_layout Standard
+We want to separate the code that handles the program anomalies from the
+ code that implements the normal manipulation of the stack.
+ We believe that this strategy makes the code easier to follow and easier
+ to maintain.
+ 
+\end_layout
+
+\begin_layout Standard
+instead of placing the try block within the function definition we can enclose
+ the function body within a function try block.
+ 
+\end_layout
+
+\begin_layout Section*
+Catching an Exception
+\end_layout
+
+\begin_layout Standard
+The C++ exception handling mechanism is said to be nonresumptive; once the
+ exception has been handled, the execution of the program does not resume
+ where the exception was originally thrown.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Exception Objects
+\end_layout
+
+\begin_layout Standard
+The exception declaration of a catch clause can be either a type declaration
+ or an object declaration.
+ 
+\end_layout
+
+\begin_layout Standard
+An object should be declared when it is necessary to obtain the value or
+ manipulate the exception object created by the throw expression.
+ If we design our exception classes to store information in the exception
+ object when the exception is thrown and if the exception declaration of
+ the catch clause declares an object, the statements within the catch clause
+ can use this object to refer to the information stored by the throw expression.
+\end_layout
+
+\begin_layout Standard
+An exception object is always created at the throw point even though the
+ throw expression is not a constructor call and even though it doesn't appear
+ to be creating an exception object.
+\end_layout
+
+\begin_layout Standard
+As is the case for function parameters, the exception declaration of a catch
+ clause can be changed to a reference declaration.
+ The catch clause then directly refers to the exception object created by
+ the throw expression instead of creating a local copy.
+ 
+\end_layout
+
+\begin_layout Standard
+For the same reasons that parameters of class type should be declared as
+ references to prevent unnecessary copying of large class objects, it is
+ also preferable if exception declarations for exceptions of class type
+ are declared as references.
+\end_layout
+
+\begin_layout Subsection*
+Stack Unwinding
+\end_layout
+
+\begin_layout Standard
+The process by which compound statements and function definitions exit because
+ of a thrown exception in the search for a catch clause to handle the exception
+ is called stack unwinding.
+ As the stack is unwound, the lifetime of local objects declared in the
+ compound statements and in function definitions that are exited ends.
+\end_layout
+
+\begin_layout Standard
+C++ guarantees that, as the stack is unwound, the destructors for local
+ class objects are called even though their lifetime ends because of a thrown
+ exception.
+ 
+\end_layout
+
+\begin_layout Standard
+If no handler is found, the program calls the terminate() function defined
+ in the C++ standard library.
+ The default behavior of terminate() is to call abort(), indicating the
+ abnormal exit from the program.
+ 
+\end_layout
+
+\begin_layout Standard
+By now, you will probably have noticed many similarities between exception
+ handling and function calls.
+ A throw expression behaves somewhat like a function call, and the catch
+ clause behaves somewhat like a function definition.
+ The main difference between these two mechanisms is that all the information
+ necessary to set up a function call is available at compile-time, and that
+ is not true for the exception handling mechanism.
+ C++ exception handling requires run-time support.
+\end_layout
+
+\begin_layout Subsection*
+Rethrow
+\end_layout
+
+\begin_layout Standard
+It is possible that a single catch clause cannot completely handle an exception.
+ After some corrective actions, a catch clause may decide that the exception
+ must be handled by a function further up the list of function calls.
+ A catch clause can pass the exception to another catch clause further up
+ the list of function calls by rethrowing the exception.
+ A rethrow expression has this form:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+throw;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A rethrow expression rethrows the exception object.
+ A rethrow can appear only in the compound statement of a catch clause.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+catch ( exception eObj ) { 
+\end_layout
+
+\begin_layout Plain Layout
+
+	if ( canHandle( eObj ) ) 
+\end_layout
+
+\begin_layout Plain Layout
+
+		// handle the exception 
+\end_layout
+
+\begin_layout Plain Layout
+
+		return; 
+\end_layout
+
+\begin_layout Plain Layout
+
+	else 
+\end_layout
+
+\begin_layout Plain Layout
+
+		// rethrow it for another catch clause to handle 
+\end_layout
+
+\begin_layout Plain Layout
+
+		throw; 
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To modify the original exception object, the exception declaration within
+ the catch clause must declare a reference.
+ 
+\end_layout
+
+\begin_layout Standard
+another good reason to declare the exception declaration of the catch clause
+ as a reference is to ensure that modifications applied to the exception
+ object within the catch clause are reflected in the exception object that
+ is rethrown.
+ 
+\end_layout
+
+\begin_layout Subsection*
+The Catch-All Handler
+\end_layout
+
+\begin_layout Standard
+This catch clause has an exception declaration of the form (...), where the
+ three dots are referred to as an ellipsis.
+ This catch clause is entered for any type of exception.
+\end_layout
+
+\begin_layout Standard
+A catch (...) clause can be used by itself or in combination with other catch
+ clauses.
+ If it is used in combination with other catch clauses, we must take some
+ care when organizing the set of catch clauses associated with the try block.
+\end_layout
+
+\begin_layout Standard
+Once a match is found, subsequent catch clauses are not examined.
+ This implies that if a catch (...) is used in combination with other catch
+ clauses, it must always be placed last in a list of exception handlers;
+ otherwise, a compiler error is issued.
+ 
+\end_layout
+
+\begin_layout Section*
+Exception Specifications
+\end_layout
+
+\begin_layout Standard
+An exception specification provides a solution that can be used to list
+ the exceptions a function may throw with the function declaration.
+ It guarantees that the function does not throw any other types of exceptions.
+\end_layout
+
+\begin_layout Standard
+An exception declaration is part of the function's interface, and it must
+ be specified on the function declarations that appear in header files.
+ An exception specification is a contract between the function and the rest
+ of the program.
+ It is a guarantee that the function will not throw any exception not listed
+ in its exception specification.
+\end_layout
+
+\begin_layout Standard
+If a function declaration specifies an exception specification, a redeclaration
+ of the same function must specify an exception specification with the same
+ types.
+ The exception specifications on different declarations of the same function
+ are not cumulative.
+\end_layout
+
+\begin_layout Standard
+If a function throws an exception not listed in its exception specification,
+ the function unexpected(), defined in the C++ standard library, is invoked.
+ The default behavior of unexpected() is to call terminate().
+\end_layout
+
+\begin_layout Standard
+If the function handles the exception itself and if the exception is handled
+ before it "escapes" outside the function, then all is fine.
+ For example:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void recoup( int op1, int op2 ) throw(ExceptionType)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+   try {
+\end_layout
+
+\begin_layout Plain Layout
+
+      // ...
+\end_layout
+
+\begin_layout Plain Layout
+
+      throw string("we're in control");
+\end_layout
+
+\begin_layout Plain Layout
+
+   }
+\end_layout
+
+\begin_layout Plain Layout
+
+      // handles the exception thrown
+\end_layout
+
+\begin_layout Plain Layout
+
+      catch ( string ) {
+\end_layout
+
+\begin_layout Plain Layout
+
+        // do whatever is needed
+\end_layout
+
+\begin_layout Plain Layout
+
+   }
+\end_layout
+
+\begin_layout Plain Layout
+
+} // OK, unexpected() is not called
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+An empty exception specification guarantees that the function does not throw
+ any exception.
+ For example, the function no_problem() guarantees not to throw an exception:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+extern void no_problem() throw();
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If a function declaration does not specify an exception specification, the
+ function can throw exceptions of any type.
+\end_layout
+
+\begin_layout Standard
+No type conversion is allowed between the type of the exception thrown and
+ a type specified by the exception specification.
+ For example:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int convert( int parm ) throw(string)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+   // ...
+\end_layout
+
+\begin_layout Plain Layout
+
+   if ( somethingRather )
+\end_layout
+
+\begin_layout Plain Layout
+
+      // program error:
+\end_layout
+
+\begin_layout Plain Layout
+
+      // convert() does not allow exception of type const char*
+\end_layout
+
+\begin_layout Plain Layout
+
+      throw "help!";
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Exception Specifications and Pointers to Functions
+\end_layout
+
+\begin_layout Standard
+An exception specification can also be provided in the declaration of a
+ pointer to function.
+ For example:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void (*pf)( int ) throw(string); 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The exception specifications of both pointers do not have to be identical.
+ However, the exception specification of the pointer used as the initializer
+ or rvalue must be either as restrictive as or more restrictive than the
+ exception specification of the pointer that is initialized or assigned
+ to.
+ For example:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void recoup( int, int ) throw(exceptionType);
+\end_layout
+
+\begin_layout Plain Layout
+
+void no_problem() throw();
+\end_layout
+
+\begin_layout Plain Layout
+
+void doit( int, int ) throw(string, exceptionType);
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+// ok: recoup() is as restrictive as pf1
+\end_layout
+
+\begin_layout Plain Layout
+
+void (*pf1)( int, int ) throw(exceptionType) = &recoup;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+// ok: no_problem() is more restrictive than pf2
+\end_layout
+
+\begin_layout Plain Layout
+
+void (*pf2)() throw(string) = &no_problem;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+// error: doit() is less restrictive than pf3
+\end_layout
+
+\begin_layout Plain Layout
+
+void (*pf3)( int, int ) throw(string) = &doit;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document

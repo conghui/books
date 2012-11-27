@@ -1,0 +1,15 @@
+bin_PROGRAMS = 07 12 15 16 17 18 19 20 21 23 24
+
+07_SOURCES = 07.cxx
+12_SOURCES = 12.cxx
+15_SOURCES = 15.cxx
+16_SOURCES = 16.cxx
+17_SOURCES = 17.cxx
+18_SOURCES = 18.cxx
+19_SOURCES = 19.cxx
+20_SOURCES = 20.cxx
+21_SOURCES = 21.cxx
+23_SOURCES = 23.cxx
+24_SOURCES = 24.cxx
+
+AM_CXXFLAGS = -Wall -Wextra -Werror

@@ -1,0 +1,25 @@
+The this pointer can be used to modify the class object to which it refers
+as well as to override the object with a new object of the same type.
+For example, here is the member function assign() of the class
+classType. Can you explain what it does?
+classType& classType::assign( const classType &source )
+{
+    if ( this != &source )
+    {
+        this->~classType();
+        new (this) classType( source );
+    }
+    return *this;
+}
+Recall that ~classType() is the name of the destructor. The new expression
+may look a little bit funny, but we have seen this new expression called
+placement new expression in Section 8.4. What is your opinion of this kind
+of coding style? Do you believe this is a safe operation? Why or why not?
+
+The function first compare if the parameter is the same as the *this. If
+they are difference, then release the resource of current *this, invoke
+the destruction, then new a object that is a copy of source, place the
+content in where this points to.
+
+It is not safe if the classType doesn't have it own copy constructor if the
+class contains pointers.

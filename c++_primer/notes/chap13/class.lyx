@@ -1,0 +1,336 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+%Fixme: is this really necessary?
+\DeclareRobustCommand\nobreakspace{\leavevmode\nobreak\ }
+\end_preamble
+\options UTF8
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package none
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format html
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection*
+Friend
+\end_layout
+
+\begin_layout Standard
+The friend mechanism allows a class to grand functions access to its nonpublic
+ members.
+\end_layout
+
+\begin_layout Standard
+A friend declaration begins with the keyword friend.
+ It may appear only within a class definition.
+ Since friends are not members of the class granting friendship, they are
+ not affected by the public, private, or protected section in which they
+ are declared with the class body.
+\end_layout
+
+\begin_layout Subsection*
+Class declaration
+\end_layout
+
+\begin_layout Standard
+Once cannot define objects of a class type if the class is not defined,
+ because the size of the class type is not known and the compiler does not
+ know how much of storage to reserve for an object of that class type.
+\end_layout
+
+\begin_layout Standard
+However, a pointer or reference to that class type can be declared.
+ Pointers and references are permited because both have a fixed size that
+ is independent of the size of the type to which they refer.
+ However, because the size of the class and the class members are unknown,
+ one cannot apply the dereference operator (*) to such a pointer.
+\end_layout
+
+\begin_layout Standard
+Because a class is not considered defined until its class body is complete,
+ a class cannot have data members of its own type.
+ However, a class is considered declared as soon as its class head has been.
+ A class can then have data members that have pointers and references to
+ its own class type.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Inline number function
+\end_layout
+
+\begin_layout Standard
+The functions defined in the class definition are handled automatically
+ as inline functions.
+ Of course, you can explicit place the inline keyword in front of the function
+ definition in the class definition.
+\end_layout
+
+\begin_layout Standard
+If you don't want to define the inline functions in the class definition.
+ You can define them in the souce file via either of the three ways:
+\end_layout
+
+\begin_layout Enumerate
+place the inline keyword in front of the function declaration in the class
+ definition.
+\end_layout
+
+\begin_layout Enumerate
+place the inline keyword in front of the function definition in the source
+ file.
+\end_layout
+
+\begin_layout Enumerate
+place the inline keyword both in the declaration and definition.
+\end_layout
+
+\begin_layout Subsection*
+const function
+\end_layout
+
+\begin_layout Standard
+only member functions declared as const can be invoked for a class object
+ that is const.
+\end_layout
+
+\begin_layout Standard
+Declaring a member function const guarantees that the member function does
+ not modify the class data members, but if the class contains pointers,
+ the objects to which the pointers refer may be modified within a const
+ member function.
+\end_layout
+
+\begin_layout Subsection*
+mutable
+\end_layout
+
+\begin_layout Standard
+To allow a class data member to be modified even though it is the data member
+ of a const object, we can declare the data member as mutable.
+ A mutable data member is a member that is never const, even when it is
+ the data member of a const object.
+ A mutable member can be always be updated, even in a const member function.
+ 
+\end_layout
+
+\begin_layout Subsection*
+static data member
+\end_layout
+
+\begin_layout Standard
+A static data member is a single, shared object accessible to all objects
+ of its class type.
+\end_layout
+
+\begin_layout Enumerate
+There are two advantages of using a static data member over using a global
+ object:
+\end_layout
+
+\begin_layout Enumerate
+A static member is not entered into the program's global namespace, thus
+ removing the possibility of an accidental conflict of names with other
+ global objects in our program.
+\end_layout
+
+\begin_layout Standard
+Information hiding can be enforced.
+ A static member can be private member; a global member cannot.
+\end_layout
+
+\begin_layout Standard
+A data member is made static by prefixing the data member declaration within
+ the class body with the keyword static.
+ static member obey the public/private/protected access rules.
+\end_layout
+
+\begin_layout Standard
+As with the global object, only one definition of a static data member can
+ be provided in a program.
+ This means that the static data member initialization should not be placed
+ in the header files, but rather in the files containing the definition
+ of the class noninline member functions.
+\end_layout
+
+\begin_layout Standard
+As a special case, a const static data member of integral type can be initialize
+ within the class body with a constant value.
+ 
+\end_layout
+
+\begin_layout Standard
+A const static data member of integral type initialized with a constant
+ value is a constant expression.
+ A class designer can declare such a static data member if there is a need
+ to use the named constant value within the class body.
+\end_layout
+
+\begin_layout Standard
+the static data member name is in the scope of its class and can refer to
+ the class's other data member.
+\end_layout
+
+\begin_layout Subsection*
+static member function
+\end_layout
+
+\begin_layout Standard
+the function declaration in the class body is preceded with the keyword
+ static and the function may not be declared as const or volatile.
+ The function definition that appears outside of the class body must not
+ specified the keyword static.
+\end_layout
+
+\begin_layout Standard
+A static member function does not have a this pointer; therefore, referring
+ either implicit or explicit to the this pointer within a static memer function
+ results in a compile-time error.
+ 
+\end_layout
+
+\begin_layout Subsection*
+pointer to member funtion
+\end_layout
+
+\begin_layout Standard
+A pointer to function may not be assigned the address of a member function
+ even when the return type and the parameter list of the two match exactly.
+\end_layout
+
+\begin_layout Standard
+A pointer to a member function must match the type of the functin it is
+ assigned, not in two but in three areas:
+\end_layout
+
+\begin_layout Enumerate
+the type and the number of parameters
+\end_layout
+
+\begin_layout Enumerate
+the return type
+\end_layout
+
+\begin_layout Enumerate
+the class type of which it is a member.
+\end_layout
+
+\begin_layout Standard
+A pointer to member function muest first be bound to an object or a pointer
+ to obtain a this pointer for the function invocation before the function
+ to which it refers can be called.
+ Although both an ordinary pointer to function and a pointer to member function
+ are called pointers, they are different types.
+\end_layout
+
+\begin_layout Subsection*
+Using a ponter to class member
+\end_layout
+
+\begin_layout Standard
+Pointers to class members must always be accessed through a specific object
+ or pointer to an object of class type.
+ We do this by using the two pointer to member operators (.* for class objects
+ and reference, and ->* for pointers to class objects).
+ For example:
+\end_layout
+
+\begin_layout LyX-Code
+int (Screen:: *pmfi)() = &Screen::height;
+\end_layout
+
+\begin_layout LyX-Code
+Screen & (Screen:: *pmfS)(const Screen &) = &Screen::copy;
+\end_layout
+
+\begin_layout LyX-Code
+Screen myScreen, *bufScreen;
+\end_layout
+
+\begin_layout LyX-Code
+if ((myScreen.*pmfi)() == (bufScreen->*pmfi)())
+\end_layout
+
+\begin_deeper
+\begin_layout LyX-Code
+(bufScreen->*pmfS)(myScreen);
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Pointers to static class members
+\end_layout
+
+\begin_layout Standard
+There is a difference between pointers to nonstatic class members and pointers
+ to static class members.
+ The pointer to class member syntax is not used to refer to a class static
+ member.
+ Static class members are global objects and functions that belong to the
+ class.
+ Pointer to these are ordinary pointers.
+\end_layout
+
+\begin_layout Standard
+The declaration of a pointer to static class member looks the same as that
+ of a pointer to a nonclass member.
+ Dereferencing the pointer doesn't require a class object.
+ 
+\end_layout
+
+\end_body
+\end_document

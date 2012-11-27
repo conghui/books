@@ -1,0 +1,9 @@
+Name two type conversions allowed on function arguments involved in template 
+argument deduction.
+
+Solution:
+1. lvalue conversion, it includes lvalue to right value conversion, array to 
+   pointer conversion, function to pointer conversion.
+2. qualifier conversion. It includes the const and volatile keyword qualified 
+   preceded by the  pointer.
+3. derived class to base class conversion.

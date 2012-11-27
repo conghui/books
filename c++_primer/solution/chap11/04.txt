@@ -1,0 +1,4 @@
+Explain why we say that the C++ exception handling model is nonresumptive.
+
+Because the stack unwinds and just to the catch clouse where to handle the 
+exception, then the program executes from there.

@@ -1,0 +1,60 @@
+Provide the definitions for the overloaded increment and decrement 
+operators of class ScreenPtr when they are declared as friend functions.
+
+Screen & operator++(ScreenPtr &ps) {
+    if (ps.size() == 0) {
+        cerr << "cannot increment pointer to single object\n";
+        return *this.ptr;
+    }
+
+    if (ps.offset >= ps.size() - 1) {
+        cerr << "already at the end of the array\n";
+        return *this.ptr;
+    }
+    ++ps.offset;
+    return *++ps.ptr;
+}
+
+Screen & operator--(ScreenPtr &ps) {
+    if (ps.size() == 0) {
+        cerr << "cannot decrement pointer to single object\n";
+        return *this.ptr;
+    }
+
+    if (ps.offset <= 0) {
+        cerr << "already at the beginning of the array\n";
+        return *this.ptr;
+    }
+    
+    --ps.offset;
+    return *--ps.ptr;
+}
+
+Screen & operator++(ScreenPtr &ps, int) {
+    if (ps.size() == 0) {
+        cerr << "cannot increment pointer to single object\n";
+        return *this.ptr;
+    }
+
+    if (ps.offset >= ps.size() - 1) {
+        cerr << "already at the end of the array\n";
+        return *this.ptr;
+    }
+    ++ps.offset;
+    return *ps.ptr++;
+}
+
+Screen & operator--(ScreenPtr &ps, int) {
+    if (ps.size() == 0) {
+        cerr << "cannot decrement pointer to single object\n";
+        return *this.ptr;
+    }
+
+    if (ps.offset <= 0) {
+        cerr << "already at the beginning of the array\n";
+        return *this.ptr;
+    }
+    
+    --ps.offset;
+    return *ps.ptr--;
+}

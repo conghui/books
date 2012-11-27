@@ -1,0 +1,196 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+%Fixme: is this really necessary?
+\DeclareRobustCommand\nobreakspace{\leavevmode\nobreak\ }
+\end_preamble
+\options UTF8
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package none
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Constructor
+\end_layout
+
+\begin_layout Standard
+The primary drawbacks to the explicit initialization list are that 
+\end_layout
+
+\begin_layout Enumerate
+it can only be applied to class object for which all the data members are
+ public
+\end_layout
+
+\begin_layout Enumerate
+it requires the explicit intervention of the programmer, adding to the possibili
+ty of accident or error.
+\end_layout
+
+\begin_layout Standard
+But the explicit initialization can be accomplished at the load time, saving
+ the start-up cost of a constructor, even one can defined as inline, particularl
+y for global objects.
+\end_layout
+
+\begin_layout Standard
+Three are three generally equivalent forms for specifying the arguments
+ to a constructor:
+\end_layout
+
+\begin_layout LyX-Code
+Account acct1("Anna Press"); 
+\end_layout
+
+\begin_layout LyX-Code
+Account acct2 = Account("Anna Press"); 
+\end_layout
+
+\begin_layout LyX-Code
+Account acct3 = "Anna Press";
+\end_layout
+
+\begin_layout Standard
+The acct3 form can only be used when specifying in a single argument.
+ For two or more than arguments, only the acct1 and acct2 forms can be used.
+ In genreal, we recommend using acct1 form.
+\end_layout
+
+\begin_layout Standard
+A class object can only be defined without specifying a set of arguments
+ provided it either declared no constructors or it declares a default constructo
+r.
+\end_layout
+
+\begin_layout Standard
+The container classes require their class elements to provided either a
+ default constructor or no constructor at all.
+ Similarly, allocation of a dynamic array of class objects also requires
+ either a default constructor or no constructor at all.
+\end_layout
+
+\begin_layout Standard
+A constructor may not be declared with either the const or volatile keyword.
+\end_layout
+
+\begin_layout Standard
+A const class object is there fore considered const from the time its constructo
+r completes to the time its destruction starts.
+ The same holds true for a volatile class object.
+\end_layout
+
+\begin_layout Standard
+The predominant uses of nonpublic constructors in real world are
+\end_layout
+
+\begin_layout Enumerate
+to prevent the copying of one class object with another object of its class.
+\end_layout
+
+\begin_layout Enumerate
+to indicate that a constructor is intended to be invoked only when the class
+ server as a base class within an inheritance hierarchy and not as an object
+ to be manipulated directly within the application.
+ 
+\end_layout
+
+\begin_layout Section*
+Destructor
+\end_layout
+
+\begin_layout Standard
+Whenever an individual heap object is deleted within a function, it is preferabl
+e to use an auto_ptr class object rather than an actual poiner.
+ 
+\end_layout
+
+\begin_layout Section*
+member initialization list
+\end_layout
+
+\begin_layout Standard
+For class objects, the distinction between initialization and assignment
+ is significant.
+ A member class object should always be initialized in the member initialization
+ list rather than assigned to within the body of constructor.
+\end_layout
+
+\begin_layout Standard
+const and reference data members must always be initialized in the member
+ initialization list; otherwise, a compile-time error results.
+\end_layout
+
+\begin_layout Standard
+The order of initialization is determined not by the order of names in the
+ initialization list but by the class declaration order of the members.
+ 
+\end_layout
+
+\begin_layout Section*
+Memberwise initialization
+\end_layout
+
+\begin_layout Standard
+memberwise because the unit of the initialization is the individual nonstatic
+ data member rather a bit-wise copy of the entire class object.
+ 
+\end_layout
+
+\end_body
+\end_document

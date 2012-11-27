@@ -1,0 +1,14 @@
+Explain the difference between a class declaration and a class definition. When would you use a class declaration? A class definition?
+
+The class definition have the whole class defined, including the class
+body, the member functions and the data members. But the class declaration
+only has declaration just like the normal declaration.
+
+If we want to define an object of the class, the class has to be defined
+and it is a complete type. We then can refer the member of the class.
+
+With only the class declaration, we can only define the pointers to that
+class or references that refer to that class, but can not define the object
+of that class, because the size of the class is unknown to the compiler,
+the compiler don't know how much storage should be reserve to the
+object.

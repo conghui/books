@@ -1,0 +1,7 @@
+Name the portions of program text that are in class scope and for which the
+completed scope of the class is considered (that is, for which all the
+members declared in the class body are considered).
+
+1. the definition of inline function.
+2. the default parameter of the member function. Of course, the default
+   parameter should be the static const integral type.

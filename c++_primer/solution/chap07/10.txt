@@ -1,0 +1,16 @@
+What potential run-time problem do you see with the following function 
+definition?
+vector<string> &readText( ) {
+   vector<string> text;
+   string word;
+    while ( cin >> word ) {
+      text.push_back( word );
+      // ...
+    }
+   // ....
+   return text;
+}
+
+solution:
+The scope of the variable text is within the function body. However, the 
+function's return type is a reference, making the return value invalid.

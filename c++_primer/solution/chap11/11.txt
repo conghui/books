@@ -1,0 +1,8 @@
+Which one, if any, of the following pointer assignments is in error? Why?
+void example() throw(string);
+(a) void (*pf1)() = example;
+(b) void (*pf2)() throw() = example;
+
+solution:
+(a) OK.
+(b) Error. Because the exception specification of pf1 is more strict than 

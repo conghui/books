@@ -1,0 +1,18 @@
+Which ones of the following delete expressions, if any, are potential run-time errors? Why?
+int globalObj;
+char buf[1000];
+void f() {
+    int *pi = &globalObj;
+    double *pd = 0;
+    float *pf = new float(0);
+    int *pa = new(buf)int[20];
+     delete pi; // (a) error. the memory that pi points to is not from the 
+                // heap.
+     delete pd; // (b) OK. Although pd == 0, but C++ can guarantee that if the 
+                // operand of delete is zero, then the delete expression 
+                // doesn't make any difference.
+     delete pf; // (c) Ok.
+    delete[] pa; // (d) error. the memory that ps points to is buf, not from 
+                //the heap.
+}
+

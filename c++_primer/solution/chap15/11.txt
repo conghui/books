@@ -1,0 +1,7 @@
+Explain why a class designer should provide a class placement operator delete().
+
+If a class has a user defined placement operator new() member function, 
+and while in the construction stage of the class, and an exception is 
+thrown, it will find whether a user defined class placement operator 
+delete() is defined, if there is, the user defined class placement operator 
+is called, otherwise, the memory leak results.

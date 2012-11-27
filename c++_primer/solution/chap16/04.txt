@@ -1,0 +1,50 @@
+
+Identify which, if any, of the following template instantiations are valid. Explain why.
+template < int *ptr > class Ptr {
+...
+};
+
+template < class Type, int size > class Fixed_Array {
+...
+};
+
+template < int hi, int wid > class Screen {
+...
+};
+
+(a) const int size = 1024;
+
+Ptr< &size > bp1;
+
+(b) int arr[10];
+
+Ptr< arr > bp2;
+
+(c) Ptr < 0 > bp3;
+
+(d) const int hi = 40;
+
+const int wi = 80;
+
+Screen < hi, wi + 32 > sObj;
+
+(e) const int size_val = 1024;
+
+Fixed_Array< string, size_val > fa1;
+
+(f) unsigned int fasize = 255;
+
+Fixed_Array< int, fasize > fa2;
+
+(g) const double db = 3.1415;
+
+Fixed_Array< double, db > fa3;
+
+solution:
+(a) no. the expected type is int *, but the given type is const int *.
+(b) OK.
+(c) no.
+(d) OK.
+(e) OK.
+(f) no. fasize should be a const value or const expression.
+(g) no. the compiler could not convert const double to int.

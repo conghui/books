@@ -1,0 +1,19 @@
+Explain the effect of the second declaration in each one of the following sets 
+of declarations.
+(a) int calc( int, int );
+    int calc( const int, const int );
+(b) int get();
+      double get();
+(c) int *reset( int * );
+     double *reset( double * );
+(d) extern "C" int compute( int *, int );
+    extern "C" double compute( double *, double );
+
+solution:
+(a) It is an error declaration. In the argument list, const int and int cannot 
+    be used to determine they are different overloaded functions.
+(b) It is an error declaration. The return type can not be used to determine 
+    they are different overloaded functions.
+(c) It is an overloaded function.
+(d) It is an error. An extern "C" can just not be put in front of different 
+    functions with the same names.

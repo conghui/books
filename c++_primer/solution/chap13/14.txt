@@ -1,0 +1,7 @@
+Pointers to members may also be declared as class data members. Modify the
+Screen class definition to contain a pointer to a Screen member function of
+the same type as home() and end().
+
+solution:
+typedef Screen& (Screen:: *pfhe_t)();
+pfhe_t _pfhe;

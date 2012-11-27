@@ -1,0 +1,35 @@
+Which ones, if any, of the following static data member declarations and definitions are errors? Explain why.
+// example.h
+class Example {
+public:
+ static double rate = 6.5;
+ static const int vecSize = 20;
+ static vector<double> vec(vecSize);
+};
+// example.C
+#include "example.h"
+double Example::rate;
+vector<double> Example::vec;
+
+
+solution:
+1. rate is an error. It should be defined in the source file, rather than
+   in the header file.
+
+2. vecSize is okay.
+
+3. Error. vec should be defined in the source file.
+
+the modified code is:
+
+class Example {
+public:
+    static double rate;
+    static const int vecSize = 20;
+    static vector<double> vec;
+};
+
+// example.C
+#include "example.h"
+double Example::rate = 6.5;
+vector<double> Example::vec(vecSize);
