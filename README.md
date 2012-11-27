@@ -1,17 +1,16 @@
 book-exercises
 ==============
 
-Solutions to the exercise of several books. Some are finished, and some are 
+Solutions to some of exercise of several books. Some are finished, and some are 
 still on their way out.
 
 ## DONE
 - *C-Programming-Language* by *Brain W.Kernighan* and *Dennis M.Ritchie*
-
+- *C++ Primer (3rd Edition)* by *Stanley Lippman* and *osee Lajoie*
 
 ## TO-DO
 - *CUDA by Example: An Introduction to General-Purpose GPU Programming* by 
 *Jason Sanders* and *Edward Kandrot*
-- *C++ Primer (3rd Edition)* by *Stanley Lippman* and *osee Lajoie*
 - *Algorithms in C, Parts 1-4: Fundamentals, Data Structures, Sorting, 
     Searching* by *Robert Sedgewick*
 - *STL Anotation* by *Jie Hou*
