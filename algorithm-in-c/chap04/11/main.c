@@ -24,25 +24,31 @@ void infix2postfix()
     char buf[BUFSIZ];
 
     stack_init(BUFSIZ);
+
     while ((c = getop(buf)) != EOF) {
         switch (c) {
             case NUMBER:
                 printf("%s ", buf);
                 break;
+
             case '(':
                 break;
+
             case '*':
             case '+':
             case '-':
             case '/':
                 stack_push(c);
                 break;
+
             case ')':
                 printf("%c ", stack_pop());
                 break;
+
             case '\n':
                 putchar(c);
                 break;
+
             default:
                 error("unrecognized character %c\n", c);
                 break;
@@ -57,38 +63,47 @@ void cal_post_expr()
     char buf[BUFSIZ];
 
     stack_init(BUFSIZ);
+
     while ((c = getop(buf)) != EOF) {
         switch (c) {
-        case NUMBER:
-            stack_push(atoi(buf));
-            break;
-        case '+':
-            stack_push(stack_pop() + stack_pop());
-            break;
-        case '*':
-            stack_push(stack_pop() * stack_pop());
-            break;
-        case '-':
-            op2 = stack_pop();
-            stack_push(stack_pop() - op2);
-            break;
-        case '/':
-            op2 = stack_pop();
-            if (op2 == 0) {
-                error("zero divisor\n");
-            }
-            stack_push(stack_pop() / op2);
-            break;
-        case '\n':
-            if (stack_count() == 1) {
-                printf("the result is: %d\n", stack_pop());
-            }
-            else {
-                error("invalid expression\n");
-            }
-            break;
-        default:
-            error("unrecognize character %x\n", c);
+            case NUMBER:
+                stack_push(atoi(buf));
+                break;
+
+            case '+':
+                stack_push(stack_pop() + stack_pop());
+                break;
+
+            case '*':
+                stack_push(stack_pop() * stack_pop());
+                break;
+
+            case '-':
+                op2 = stack_pop();
+                stack_push(stack_pop() - op2);
+                break;
+
+            case '/':
+                op2 = stack_pop();
+
+                if (op2 == 0) {
+                    error("zero divisor\n");
+                }
+
+                stack_push(stack_pop() / op2);
+                break;
+
+            case '\n':
+                if (stack_count() == 1) {
+                    printf("the result is: %d\n", stack_pop());
+                } else {
+                    error("invalid expression\n");
+                }
+
+                break;
+
+            default:
+                error("unrecognize character %x\n", c);
         }
     }
 
@@ -112,7 +127,8 @@ void error(const char *fmt, ...)
  *
  * @return indicator
  */
-int getop(char *buf) {
+int getop(char *buf)
+{
     int c;
 
     /* skip the space */

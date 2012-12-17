@@ -14,7 +14,7 @@ static void error(const char *fmt, ...);
 
 T stackList_newnode(int n)
 {
-    T nn      = alloc(sizeof *nn);
+    T nn      = alloc(sizeof * nn);
     nn->entry = n;
     nn->next  = NULL;
 
@@ -28,8 +28,7 @@ void stackList_push(int n)
 
     if (top == NULL) {
         top = nn;
-    }
-    else {
+    } else {
         nn->next = top;
         top      = nn;
     }
@@ -56,8 +55,7 @@ int stackList_count()
     int count = 0;
     T cur;
 
-    for (cur = top; cur != NULL; cur = cur->next)
-    {
+    for (cur = top; cur != NULL; cur = cur->next) {
         count++;
     }
 
@@ -77,8 +75,7 @@ static void *alloc(size_t size)
 {
     void *p = malloc(size);
 
-    if (p == NULL)
-    {
+    if (p == NULL) {
         error("out of memory");
     }
 

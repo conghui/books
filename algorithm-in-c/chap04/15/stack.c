@@ -21,7 +21,8 @@ void stack_push(const char *item)
     *top++ = p;
 }
 
-int stack_full() {
+int stack_full()
+{
     return top == buf + BUFSIZ - 1;
 }
 

@@ -12,7 +12,7 @@ static size_t N;
 
 void stack_init(size_t size)
 {
-    buf = malloc(sizeof *buf * size);
+    buf = malloc(sizeof * buf * size);
     assert(buf);
     top = buf;
     N   = size;
@@ -30,11 +30,13 @@ void stack_push(Item n)
     *top++ = n;
 }
 
-int stack_full() {
+int stack_full()
+{
     return top == buf + N - 1;
 }
 
-int stack_empty() {
+int stack_empty()
+{
     return top == buf;
 }
 

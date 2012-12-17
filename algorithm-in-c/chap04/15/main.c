@@ -26,6 +26,7 @@ int main(void)
             case NUMBER:
                 stack_push(buf);
                 break;
+
             case '*':
             case '-':
             case '/':
@@ -37,15 +38,18 @@ int main(void)
                 stack_push(expr);
                 prevop = c;
                 break;
+
             case '\n':
                 stack_pop(expr);
                 puts(expr);
                 break;
+
             default:
                 error("unrecognize character");
                 break;
         }
     }
+
     return 0;
 }
 
@@ -106,8 +110,7 @@ static int precedence(int o)
 {
     if (o == '*' || o == '/') {
         return 2;
-    }
-    else if (o == '+' || o == '-') {
+    } else if (o == '+' || o == '-') {
         return 1;
     }
 
@@ -123,8 +126,7 @@ static int opgt(int a, int b)
 
     if (precedence(a) > precedence(b)) {
         return 1;
-    }
-    else {
+    } else {
         return 0;
     }
 }

@@ -27,6 +27,7 @@ void queue_push(Item n)
         fprintf(stderr, "the queue is full\n");
         exit(EXIT_FAILURE);
     }
+
     queue.content[queue.rear++] = n;
     queue.rear %= SIZE;
     queue.count++;
@@ -38,6 +39,7 @@ Item queue_pop()
         fprintf(stderr, "the queue is empty\n");
         exit(EXIT_FAILURE);
     }
+
     queue.front %= SIZE;
     queue.count--;
     return queue.content[queue.front++];

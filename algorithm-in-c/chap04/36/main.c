@@ -19,23 +19,20 @@ int main()
         pinput = input;
         poutput = output[i];
         printf("for pattern %s:\n", poutput);
-        for (; *poutput != '\0'; ) {
+
+        for (; *poutput != '\0';) {
             if (!deque_empty() && deque_front() == *poutput) {
                 printf("+\t%c\n", deque_pop_front());
                 poutput++;
-            }
-            else if (!deque_empty() && deque_back() == *poutput) {
+            } else if (!deque_empty() && deque_back() == *poutput) {
                 printf("*\t%c\n", deque_pop_back());
                 poutput++;
-            }
-            else { /* the deque is empty or not the first or last */
+            } else { /* the deque is empty or not the first or last */
                 if (islower(*pinput)) {
                     deque_push_back(*pinput++);
-                }
-                else if (isupper(*pinput)) {
+                } else if (isupper(*pinput)) {
                     deque_push_front(*pinput++);
-                }
-                else if (*pinput == '\0') {
+                } else if (*pinput == '\0') {
                     printf("unable to generate such pattern\n");
                     break;
                 }
@@ -44,5 +41,6 @@ int main()
 
         putchar('\n');
     }
+
     return 0;
 }

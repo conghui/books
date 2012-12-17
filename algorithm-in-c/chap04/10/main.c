@@ -14,29 +14,34 @@ int main(void)
     char buf[BUFSIZ];
 
     stack_init(BUFSIZ);
+
     while ((c = getop(buf)) != EOF) {
         switch (c) {
-        case NUMBER:
-            stack_push(atoi(buf));
-            break;
-        case '+':
-            stack_push(stack_pop() + stack_pop());
-            break;
-        case '*':
-            stack_push(stack_pop() * stack_pop());
-            break;
-        case '\n':
-            if (stack_count() == 1) {
-                printf("the result is: %d\n", stack_pop());
-            }
-            else {
-                fprintf(stderr, "invalid expression\n");
+            case NUMBER:
+                stack_push(atoi(buf));
+                break;
+
+            case '+':
+                stack_push(stack_pop() + stack_pop());
+                break;
+
+            case '*':
+                stack_push(stack_pop() * stack_pop());
+                break;
+
+            case '\n':
+                if (stack_count() == 1) {
+                    printf("the result is: %d\n", stack_pop());
+                } else {
+                    fprintf(stderr, "invalid expression\n");
+                    exit(EXIT_FAILURE);
+                }
+
+                break;
+
+            default:
+                fprintf(stderr, "unrecognize character %x\n", c);
                 exit(EXIT_FAILURE);
-            }
-            break;
-        default:
-            fprintf(stderr, "unrecognize character %x\n", c);
-            exit(EXIT_FAILURE);
         }
     }
 
@@ -52,7 +57,8 @@ int main(void)
  *
  * @return indicator
  */
-int getop(char *buf) {
+int getop(char *buf)
+{
     int c;
 
     /* skip the space */

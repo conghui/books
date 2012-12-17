@@ -15,7 +15,8 @@ void stack_push(int c)
     *top++ = c;
 }
 
-int stack_full() {
+int stack_full()
+{
     return top == buf + BUFSIZ - 1;
 }
 

@@ -18,7 +18,7 @@ void *alloc(size_t size)
 
 T newnode(Item n, T next)
 {
-    T nn      = alloc(sizeof *nn);
+    T nn      = alloc(sizeof * nn);
     nn->next  = next;
     nn->entry = n;
 
@@ -57,9 +57,9 @@ void stack_print()
 {
     T cur;
 
-    for (cur = top; cur != NULL; cur = cur->next)
-    {
+    for (cur = top; cur != NULL; cur = cur->next) {
         printf("%d ", cur->entry);
     }
+
     putchar('\n');
 }

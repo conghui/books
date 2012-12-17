@@ -5,6 +5,7 @@
 int main(void)
 {
     int i;
+
     for (i = 0; i < 10; i++) {
         randlist_push(i);
     }
@@ -12,6 +13,7 @@ int main(void)
     while (!randlist_empty()) {
         printf("%d ", randlist_pop());
     }
+
     putchar('\n');
     return 0;
 }

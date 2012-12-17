@@ -15,11 +15,13 @@ int main(void)
     while (!stack1_empty()) {
         printf("%d ", stack1_pop());
     }
+
     putchar('\n');
 
     while (!stack2_empty()) {
         printf("%d ", stack2_pop());
     }
+
     putchar('\n');
     return 0;
 }

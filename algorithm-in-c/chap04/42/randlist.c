@@ -9,11 +9,13 @@ static Item buf[MAXSIZE];
 static Item *tail = buf;
 static size_t rand_int(size_t n);
 
-int randlist_empty() {
+int randlist_empty()
+{
     return tail == buf;
 }
 
-int randlist_full() {
+int randlist_full()
+{
     return tail == buf + MAXSIZE;
 }
 

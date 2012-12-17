@@ -27,34 +27,44 @@ int main()
 
     infix2postfix(buffer);
     puts(buffer);
+
     while ((result = getop2(buf) != EOF)) {
         switch (result) {
             case '+':
                 STACK_push(STACK_pop() + STACK_pop());
                 break;
+
             case '*':
                 STACK_push(STACK_pop() * STACK_pop());
                 break;
+
             case '/':
                 op2 = STACK_pop();
+
                 if (op2 == 0) {
                     error("zero divisor\n");
                 }
+
                 STACK_push(STACK_pop() / op2);
                 break;
+
             case '-':
                 op2 = STACK_pop();
                 STACK_push(STACK_pop() / op2);
                 break;
+
             case '$':
                 STACK_push(sqrt(STACK_pop()));
                 break;
+
             case NUMBER:
                 STACK_push(atof(buf));
                 break;
+
             case '\n':
                 printf("%f\n", STACK_pop());
                 break;
+
             default:
                 error("unrecognize character %c\n", result);
                 break;
@@ -79,25 +89,32 @@ static void infix2postfix(char *s)
             case '$':
                 STACK_push(c);
                 break;
+
             case NUMBER:
                 strcat(s, buf);
                 s += strlen(buf);
                 c = atoi(buf);
+
                 if (c < 0) {
                     STACK_push('-');
                 }
+
                 break;
+
             case '(':
                 break;
+
             case ')':
                 c = (int)STACK_pop();
                 sprintf(s, "%c", c);
                 s++;
                 break;
+
             case '\n':
                 sprintf(s, "%c", '\n');
                 s++;
                 break;
+
             default:
                 error("unrecognized character\n");
         }
@@ -136,8 +153,7 @@ static int getop(char *s)
     if (issign(c)) {
         if (isdigit(c = getchar())) {
             *++s = c;
-        }
-        else {
+        } else {
             ungetc(c, stdin);
             return *s;
         }
@@ -151,6 +167,7 @@ static int getop(char *s)
     /* not a digit, is it a decimal point? */
     if (c == '.') {
         *++s = c;
+
         /* scan for the floating part */
         while (isdigit(c = getchar())) {
             *++s = c;
@@ -182,8 +199,7 @@ static int getop2(char *s)
     if (issign(c)) {
         if (isdigit(c = mygetchar())) {
             *++s = c;
-        }
-        else {
+        } else {
             myungetc(c);
             return *s;
         }
@@ -197,6 +213,7 @@ static int getop2(char *s)
     /* not a digit, is it a decimal point? */
     if (c == '.') {
         *++s = c;
+
         /* scan for the floating part */
         while (isdigit(c = mygetchar())) {
             *++s = c;

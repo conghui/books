@@ -21,7 +21,7 @@ static void *alloc(size_t size)
 
 static T newnode(Item entry, T prev, T next)
 {
-    T nn      = alloc(sizeof *nn);
+    T nn      = alloc(sizeof * nn);
     nn->prev  = prev;
     nn->next  = next;
     nn->entry = entry;
@@ -96,7 +96,8 @@ Item deque_pop_back()
     return ret;
 }
 
-int deque_empty() {
+int deque_empty()
+{
     return head == NULL && tail == NULL;
 }
 
@@ -117,13 +118,14 @@ Item deque_back()
 void deque_dump()
 {
     T cur;
-    
+
     if (deque_empty()) {
         putchar('\n');
         return ;
     }
 
     printf("\t\t\t");
+
     for (cur = head; cur != tail; cur = cur->next) {
         printf("%c ", cur->entry);
     }

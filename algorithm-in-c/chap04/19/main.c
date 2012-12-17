@@ -24,5 +24,6 @@ int main(void)
     while (!stackList_empty()) {
         stackList_pop();
     }
+
     return 0;
 }

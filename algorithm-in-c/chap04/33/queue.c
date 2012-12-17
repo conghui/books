@@ -14,7 +14,7 @@ static void *alloc(size_t size);
 
 T newnode(Item n, T next)
 {
-    T nn      = alloc(sizeof *nn);
+    T nn      = alloc(sizeof * nn);
 
     nn->entry = n;
     nn->next  = next;

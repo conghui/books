@@ -21,8 +21,7 @@ int main(void)
 
     if (eq(A, B)) {
         printf("Item A equals to Item B\n");
-    }
-    else {
+    } else {
         printf("Item A not equals to Item B\n");
     }
 

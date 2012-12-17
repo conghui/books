@@ -17,7 +17,7 @@ void *alloc(size_t size)
 
 T newnode(Item n, T prev, T next)
 {
-    T nn = alloc(sizeof *nn);
+    T nn = alloc(sizeof * nn);
 
     nn->entry  = n;
     nn->prev   = prev;
@@ -33,6 +33,7 @@ void stack_push(Item n)
     if (top != NULL) {
         top->next = nn;
     }
+
     top       = nn;
 }
 
@@ -62,14 +63,14 @@ void stack_print()
 {
     T cur;
 
-    for (cur = top; cur != NULL; cur = cur->prev)
-    {
+    for (cur = top; cur != NULL; cur = cur->prev) {
         printf("%d ", cur->entry);
     }
 }
 
 void stack_clear()
 {
-    while (!stack_empty())
+    while (!stack_empty()) {
         stack_pop();
+    }
 }

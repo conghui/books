@@ -6,8 +6,7 @@
 #define T link_t
 typedef struct T *T;
 
-struct T
-{
+struct T {
     Item entry;
     T    next;
 };
@@ -40,14 +39,11 @@ static void *alloc(size_t size)
 
 void queue_push(Item n)
 {
-    if (head == NULL)   /* the queue is empty */
-    {
+    if (head == NULL) { /* the queue is empty */
         head       = tail = newnode(n, NULL);
         head->next = head;
         return ;
-    }
-    else
-    {
+    } else {
         T nn       = newnode(n , tail->next);
         tail->next = nn;
         tail       = nn;
@@ -60,17 +56,14 @@ Item queue_pop()
     T   tmp;
     Item rt;
 
-    assert (!queue_empty());
+    assert(!queue_empty());
 
-    if (head->next == head)   /* the last element in the queue */
-    {
+    if (head->next == head) { /* the last element in the queue */
         tmp  = head;
         rt   = head->entry;
         head = NULL;
         tail = NULL;
-    }
-    else
-    {
+    } else {
         tmp = head;
         rt  = head->entry;
         head = head->next;

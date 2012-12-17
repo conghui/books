@@ -24,9 +24,11 @@ int main(void)
     }
 
     putchar('\n');
+
     while (!queue_empty()) {
         printf("%d ", queue_pop());
     }
+
     putchar('\n');
     return 0;
 }
