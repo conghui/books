@@ -22,19 +22,15 @@ static int eval(char **expr, int *v1)
     if ((c = getop(expr, &n)) == '(') {
         eval(expr, v1);
         eval(expr, v1);
-    }
-    else if (c == ')') {
+    } else if (c == ')') {
         return *v1;
-    }
-    else if (c == NUMBER) {
+    } else if (c == NUMBER) {
         *v1 = n;
         eval(expr, v1);
-    }
-    else if (c == '+') {
+    } else if (c == '+') {
         int n = *v1;
         *v1 = n + eval(expr, v1);
-    }
-    else if (c == '*') {
+    } else if (c == '*') {
         int n = *v1;
         *v1 = n * eval(expr, v1);
     }
@@ -59,7 +55,7 @@ static int getop(char **expr, int *n)
     }
 
     result = *p - '0';
-    
+
     while (isdigit(*++p)) {
         result = result * 10 + *p - '0';
     }

@@ -10,9 +10,11 @@ static char a[BUFSIZ];
 int main(void)
 {
     fgets(a, BUFSIZ, stdin);
-    if (a[strlen(a)-1] == '\n') {
-        a[strlen(a)-1] = '\0';
+
+    if (a[strlen(a) - 1] == '\n') {
+        a[strlen(a) - 1] = '\0';
     }
+
     printf("%d", eval());
     return 0;
 }
@@ -22,8 +24,9 @@ static int eval()
 {
     int x = 0;
 
-    while (a[i] == ' ')
+    while (a[i] == ' ') {
         i++;
+    }
 
     if (a[i] == '+') {
         i++;

@@ -25,13 +25,13 @@ int main(void)
     result = fac_mod(N, M);
     end    = clock();
     printf("%d! %% %d = %d; need %g sec\n",
-            N, M, result, (double)(end - start) / CLOCKS_PER_SEC);
+           N, M, result, (double)(end - start) / CLOCKS_PER_SEC);
 
     start = clock();
     result = fac_mod2(N, M);
     end    = clock();
-    printf("%d! %% %d = %d; need %g sec\n", 
-            N, M, result, (double)(end - start) / CLOCKS_PER_SEC);
+    printf("%d! %% %d = %d; need %g sec\n",
+           N, M, result, (double)(end - start) / CLOCKS_PER_SEC);
     return 0;
 }
 
@@ -52,6 +52,7 @@ int bar(int base, int exp, int mod)
     int result;
 
     result = 1;
+
     while (exp > 0) {
         if (exp % 2 == 1) {
             result = (result * base) % mod;
@@ -70,7 +71,7 @@ int fac_mod(int n, int mod)
         return 1;
     }
 
-    return ((n % mod)* fac_mod(n-1, mod)) % mod;
+    return ((n % mod) * fac_mod(n - 1, mod)) % mod;
 }
 
 int fac_mod2(int n, int mod)
@@ -79,6 +80,7 @@ int fac_mod2(int n, int mod)
     int result;
 
     result = 1;
+
     for (i = 1; i <= n; i++) {
         result *= i;
 

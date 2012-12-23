@@ -7,7 +7,7 @@ static unsigned long factorial(int n);
 
 int main(void)
 {
-    printf("log(%d!)=%g\n", n, lg(n));   
+    printf("log(%d!)=%g\n", n, lg(n));
     printf("log(%d!)=%g\n", n, log10(factorial(n)));
     return 0;
 }
@@ -18,7 +18,7 @@ static double lg(int n)
         return 0;
     }
 
-    return log10(n) + lg(n-1);
+    return log10(n) + lg(n - 1);
 }
 
 static unsigned long factorial(int n)
@@ -27,5 +27,5 @@ static unsigned long factorial(int n)
         return 1;
     }
 
-    return n * factorial(n-1);
+    return n * factorial(n - 1);
 }

@@ -22,11 +22,9 @@ static void eval(char **expr)
     if ((c = getop(expr, &n)) == '(') {
         eval(expr);
         eval(expr);
-    }
-    else if (c == NUMBER) {
+    } else if (c == NUMBER) {
         printf("%d ", n);
-    }
-    else if (c == '+' || c == '*' || c == '/') {
+    } else if (c == '+' || c == '*' || c == '/') {
         eval(expr);
         putchar(c);
         putchar(' ');
@@ -50,7 +48,7 @@ static int getop(char **expr, int *n)
     }
 
     result = *p - '0';
-    
+
     while (isdigit(*++p)) {
         result = result * 10 + *p - '0';
     }

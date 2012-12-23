@@ -47,15 +47,14 @@ static void eval(char **expr, char *v1, char *v2)
         strcpy(v1, buf);
         *v2 = nil;
         eval(expr, v1, v2);
-    }
-    else if (c == NUMBER) {
+    } else if (c == NUMBER) {
         if (*v1 == nil) {
             strcpy(v1, result);
 
-        }
-        else if (*v2 == nil) {
+        } else if (*v2 == nil) {
             strcpy(v2, result);
         }
+
         eval(expr, v1, v2);
     }
 }
@@ -67,7 +66,7 @@ static int getop(char **expr, char *s)
     while (isspace(*p)) {
         p++;
     }
-    
+
     s[0] = *p;
     s[1] = nil;
 

@@ -51,14 +51,13 @@ static int eval2(char *begin, char **end)
     if (**end == '+') {
         (*end)--;
         return eval2(begin, end) + eval2(begin, end);
-    }
-    else if (**end == '*') {
+    } else if (**end == '*') {
         (*end)--;
         return eval2(begin, end) * eval2(begin, end);
-    }
-    else if (isdigit(**end)) {
+    } else if (isdigit(**end)) {
         n = **end - '0';
         (*end)--;
+
         while (isdigit((**end)) && (*end) >= begin) {
             n = n * 10 + **end - '0';
             (*end)--;
@@ -76,19 +75,16 @@ static int eval(char *expr, int *v1, int *v2)
     if (isdigit(c = getop(&expr, &n))) {
         if (*v1 == 0) {
             *v1 = n;
-        }
-        else if (*v2 == 0) {
+        } else if (*v2 == 0) {
             *v2 = n;
         }
 
         eval(expr, v1, v2);
-    }
-    else if (c == '+') {
+    } else if (c == '+') {
         *v1 += *v2;
         *v2  = 0;
         eval(expr, v1, v2);
-    }
-    else if (c == '*') {
+    } else if (c == '*') {
         *v1 *= *v2;
         *v2  = 0;
         eval(expr, v1, v2);
@@ -112,14 +108,14 @@ static int getop(char **expr, int *n)
             cur++;
             *expr = cur;
             return c;
-        }
-        else {
+        } else {
             return EOF;
         }
     }
 
     /* we get a digit */
     result = *cur - '0';
+
     while (isdigit(*++cur)) {
         result = result * 10 + *cur - '0';
     }

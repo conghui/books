@@ -14,15 +14,16 @@ int main(void)
             assert(gcd(i, j) == gcd2(i, j));
         }
     }
-    
+
     printf("OK\n");
     return 0;
 }
 
 static int gcd(int m, int n)
 {
-    if (n == 0)
+    if (n == 0) {
         return m;
+    }
 
     return gcd(n, m % n);
 }
