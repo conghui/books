@@ -14,7 +14,18 @@ int main(void)
     int inner_length;
 
     inner_length = btree_internal_length(bt);
-    printf("The length of internal node is: %d\n", inner_length);
+    printf("The length of internal node is: %d, count=%d\n",
+            inner_length, count);
+
+    count = 0;
+    inner_length = btree_internal_length2(bt);
+    printf("The length of internal node is: %d, count = %d\n",
+            inner_length, count);
+
+    count = 0;
+    inner_length = btree_internal_length3(bt);
+    printf("The length of internal node is: %d, count = %d\n",
+            inner_length, count);
     btree_finalize(&bt);
     return 0;
 }
