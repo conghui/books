@@ -8,23 +8,18 @@ void compexch(int *a, int *b, int *c)
         if (*c < *a) {
             swap(c, a);
             swap(b, c);
-        }
-        else if (*c > *b) {
+        } else if (*c > *b) {
             return ; /* a < b < c */
-        }
-        else {
+        } else {
             /* a < c < b */
             swap(c, b);
         }
-    }
-    else {
+    } else {
         if (*c < *b) {
             swap(a, c);
-        }
-        else if (*c > *a) {
+        } else if (*c > *a) {
             swap(a, b);
-        }
-        else {
+        } else {
             swap(a, b);
             swap(b, c);
         }

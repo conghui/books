@@ -50,7 +50,7 @@ int main(void)
     int N  = 20;
     int *a = malloc(N * sizeof *a);
     init(a, 0, N-1);
-    
+
     print(a, 0, N-1);
     sort(a, 0, N-1);
     print(a, 0, N-1);
