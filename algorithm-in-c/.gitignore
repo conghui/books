@@ -1,5 +1,5 @@
 Makefile
-core
+*core*
 *.o
 chap01
 chap02
