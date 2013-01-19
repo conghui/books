@@ -35,9 +35,11 @@ void list_init_pool(int n)
     int i;
     freelist = calloc(n+1, sizeof *freelist);
     assert(freelist);
+
     for (i = 0; i < n+1; i++) {
         freelist[i].next = &freelist[i+1];
     }
+
     freelist[n].next = NULL;
     has_init = 1;
 }
@@ -61,7 +63,6 @@ T list_newnode(int n)
 T list_delete_next(T node)
 {
     assert(node && node->next);
-
     T tmp      = node->next;
     node->next = tmp->next;
     return tmp;
@@ -74,8 +75,7 @@ void list_insert_next(T dest, T src)
     if (dest->next == NULL) {
         src->next = src;
         dest->next = src;
-    }
-    else {
+    } else {
         src->next  = dest->next;
         dest->next = src;
     }
@@ -95,6 +95,7 @@ void list_print(T head)
 {
     assert(head);
     T cur = head->next;
+
     if (cur == NULL) {
         return ;
     }
@@ -119,7 +120,6 @@ void list_delete(T head)
 
     list_free_node(cur);
     free(head);
-
 #ifdef MEMPOOL
     free(freelist);
 #endif

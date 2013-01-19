@@ -13,14 +13,12 @@ int main(void)
     list_t *list;
     int     i;
     int     j;
-
     row  = 7;
     list = init_list(row);
 
     while (scanf("%d%d", &i, &j) == 2) {
         list_t nn = list_newnode(j);
         list_insert_next(list[i], nn);
-
         /* the link list is synmetric, so continue adding */
         nn = list_newnode(i);
         list_insert_next(list[j], nn);
@@ -28,20 +26,19 @@ int main(void)
 
     print(list, row);
     delete_list(list, row);
-
     return 0;
 }
 
 static list_t *init_list(int row)
 {
     int i;
-
     list_t *list = calloc(row, sizeof *list);
     assert(list);
 
     for (i = 0; i < row; i++) {
         list[i] = list_new();
     }
+
     return list;
 }
 
@@ -52,6 +49,7 @@ static void delete_list(list_t *list, int row)
     }
 
     int i;
+
     for (i = 0; i < row; i++) {
         list_free(list[i]);
     }

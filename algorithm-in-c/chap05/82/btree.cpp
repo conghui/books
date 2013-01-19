@@ -37,7 +37,6 @@ void dellink(link_t *l)
 link_t mytree()
 {
     link_t a, b, c, d, e, f, g, h;
-
     a = newlink('A', NULL, NULL);
     c = newlink('C', NULL, NULL);
     b = newlink('B', a, c);
@@ -46,7 +45,6 @@ link_t mytree()
     f = newlink('F', NULL, g);
     h = newlink('H', f, NULL);
     e = newlink('E', d, h);
-
     return e;
 }
 
@@ -74,7 +72,8 @@ void preorder2(link_t root, void (*visit)(link_t))
     }
 }
 
-void preorder3(link_t root, void (*visit)(link_t)) {
+void preorder3(link_t root, void (*visit)(link_t))
+{
     while (root != NULL) {
         visit(root);
         preorder3(root->l, visit);
@@ -88,7 +87,8 @@ void preorder4(link_t root, void (*visit)(link_t))
 
     while (root != NULL || !stk.empty())  {
         if (root == NULL) {
-            root = stk.top(); stk.pop();
+            root = stk.top();
+            stk.pop();
             root = root->r;
         }
 
@@ -106,13 +106,16 @@ void preorder_traverse(link_t root, void (*visit)(link_t))
 
     while (root != NULL || !stk.empty()) {
         if (root == NULL) {
-            root = stk.top(); stk.pop();
+            root = stk.top();
+            stk.pop();
         }
 
         visit(root);
+
         if (root->r != NULL) {
             stk.push(root->r);
         }
+
         root = root->l;
     }
 }
@@ -126,7 +129,6 @@ void inorder1(link_t root, void (*visit)(link_t))
     inorder1(root->l, visit);
     visit(root);
     inorder1(root->r, visit);
-
 }
 
 void inorder2(link_t root, void (*visit)(link_t))
@@ -145,7 +147,8 @@ void inorder3(link_t root, void (*visit)(link_t))
     while (root != NULL || !stk.empty()) {
         /* when to pop */
         if (root == NULL) {
-            root = stk.top(); stk.pop();
+            root = stk.top();
+            stk.pop();
             visit(root);
             root = root->r;
         }
@@ -163,7 +166,8 @@ void inorder_traverse(link_t root, void (*visit)(link_t))
 
     while (root != NULL || !stk.empty()) {
         if (root == NULL) {
-            root = stk.top(); stk.pop();
+            root = stk.top();
+            stk.pop();
             visit(root);
             root = root->r;
         }
@@ -173,13 +177,11 @@ void inorder_traverse(link_t root, void (*visit)(link_t))
             root = root->l;
         }
     }
-
 }
 
 void postorder1(link_t root, void (*visit)(link_t))
 {
-    if (root != NULL)
-    {
+    if (root != NULL) {
         postorder1(root->l, visit);
         postorder1(root->r, visit);
         visit(root);
@@ -193,7 +195,8 @@ void postorder_traverse(link_t root, void (*visit)(link_t))
     while (root != NULL || !stk.empty()) {
         if (root == NULL) {
             while (!stk.empty() && root == stk.top()->r) {
-                root = stk.top(); stk.pop();
+                root = stk.top();
+                stk.pop();
                 visit(root);
             }
 

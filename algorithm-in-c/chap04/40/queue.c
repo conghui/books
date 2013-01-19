@@ -55,7 +55,6 @@ Item queue_pop()
 {
     T   tmp;
     Item rt;
-
     assert(!queue_empty());
 
     if (head->next == head) { /* the last element in the queue */

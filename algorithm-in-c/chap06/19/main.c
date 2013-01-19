@@ -19,7 +19,6 @@ int main(void)
     print(a, N);
     sort(a, 0, N-1);
     print(a, N);
-
     return 0;
 }
 

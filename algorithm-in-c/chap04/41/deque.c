@@ -25,7 +25,6 @@ static T newnode(Item entry, T prev, T next)
     nn->prev  = prev;
     nn->next  = next;
     nn->entry = entry;
-
     return nn;
 }
 
@@ -104,14 +103,12 @@ int deque_empty()
 Item deque_front()
 {
     assert(!deque_empty());
-
     return head->entry;
 }
 
 Item deque_back()
 {
     assert(!deque_empty());
-
     return tail->entry;
 }
 

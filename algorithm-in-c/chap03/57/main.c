@@ -11,10 +11,8 @@ int main()
         str[len-1] = '\0'; /* replace '\n' with '\0' */
         const char *p1;
         const char *p2;
-
         p1 = str;   /* points to the fist */
         p2 = str + strlen(str) - 1; /* points to the last */
-
         char c1;
         char c2;
         int same = 1;
@@ -29,13 +27,11 @@ int main()
             if (c1 != c2) {
                 same = 0;
             }
-
         }
 
         if (same) {
             printf("YES\n");
-        }
-        else {
+        } else {
             printf("NO\n");
         }
     }

@@ -10,7 +10,6 @@ int main(void)
 {
     double d1;
     double d2;
-
     d1 = 3.1415926;
     d2 = 3.1415927;
 

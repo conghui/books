@@ -50,7 +50,6 @@ static void eval(char **expr, char *v1, char *v2)
     } else if (c == NUMBER) {
         if (*v1 == nil) {
             strcpy(v1, result);
-
         } else if (*v2 == nil) {
             strcpy(v2, result);
         }

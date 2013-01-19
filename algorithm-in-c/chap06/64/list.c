@@ -87,7 +87,6 @@ void list_sort(T t)
     while (t->head != NULL) {
         link_t max_prev; /* the prev node of max node */
         link_t max;     /* max node */
-
         max_prev       = findmaxprev(t->head);
 
         if (max_prev == NULL) { /* max node is the first node */

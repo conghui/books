@@ -22,7 +22,6 @@ int randlist_full()
 void randlist_push(Item n)
 {
     assert(!randlist_full());
-
     *tail++ = n;
 }
 
@@ -30,13 +29,10 @@ int randlist_pop()
 {
     size_t idx;
     Item rt;
-
     assert(!randlist_empty());
-
     idx = rand_int(tail - buf);
     rt       = buf[idx];
     buf[idx] = *--tail;
-
     return rt;
 }
 

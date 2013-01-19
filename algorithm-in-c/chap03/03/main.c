@@ -13,8 +13,8 @@ int main(void)
     double stddev;
     int R[] = {10, 100, 1000};
     int N[] = {1000, 10000, 100000, 1000000};
-
     printf("%s\t%s\t%s\t\t%s\n", "r", "n", "mean", "std.dev");
+
     for (i = 0; i < SIZE(R); i++) {
         for (j = 0; j < SIZE(N); j++) {
             mean_stddev(R[i], N[j], &mean, &stddev);

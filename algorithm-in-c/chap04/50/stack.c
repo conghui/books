@@ -82,12 +82,10 @@ Item stack_pop()
 {
     T tmp;
     Item reval;
-
     assert(!stack_empty());
     tmp  = head;
     reval = tmp->entry;
     head = head->next;
-
     free(tmp);
     return reval;
 }

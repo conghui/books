@@ -6,7 +6,6 @@ int main(void)
 {
     int i;
     list_t l;
-
     l = list_init();
 
     for (i = 1; i <= 9; i++) {
@@ -14,7 +13,6 @@ int main(void)
     }
 
     list_print(l);
-
     dellast(l);
     /*list_finalize(&l);*/
     return 0;

@@ -57,7 +57,6 @@ int deque_empty()
 Item deque_pop_front()
 {
     assert(!deque_empty());
-
     head = (head + 1) % MAX;
     count--;
     return content[head];
@@ -66,7 +65,6 @@ Item deque_pop_front()
 Item deque_pop_back()
 {
     assert(!deque_empty());
-
     tail = (tail - 1 + MAX) % MAX;
     count--;
     return content[tail];
@@ -75,7 +73,6 @@ Item deque_pop_back()
 Item deque_front()
 {
     assert(!deque_empty());
-
     size_t index = (head + 1) % MAX;
     return content[index];
 }
@@ -83,7 +80,6 @@ Item deque_front()
 Item deque_back()
 {
     assert(!deque_empty());
-
     size_t index = (tail - 1 + MAX) % MAX;
     return content[index];
 }

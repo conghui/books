@@ -8,7 +8,6 @@ int main(void)
     btree_t bt;
     char *pre = "123##45##67###8##";
     /*char *pre = "12#4##3##";*/
-
     bt = btree_init(pre);
     btree_del_node(bt, 7);
     btree_del_node(bt, 5);

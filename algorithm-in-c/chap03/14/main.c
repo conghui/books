@@ -38,9 +38,11 @@ int main(void)
         int j;
         int cnt = primecnt(i);
         printf("%4d: ", i);
+
         for (j = 10; j <= cnt; j += 10) {
             printf("*");
         }
+
         printf("\n");
     }
 

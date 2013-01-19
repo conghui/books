@@ -26,7 +26,6 @@ int stack_empty()
 void stack_push(Item n)
 {
     Item *p;
-
     assert(!stack_full());
 
     if ((p = find(n)) != NULL) { /* item exist */
@@ -38,13 +37,11 @@ void stack_push(Item n)
     } else { /* no such element in the stack, we can push it in */
         *top++ = n;
     }
-
 }
 
 Item stack_pop()
 {
     assert(!stack_empty());
-
     return *--top;
 }
 

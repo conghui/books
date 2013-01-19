@@ -24,7 +24,6 @@ int main()
     double op2;
     char buf[BUFSIZ];
     int result;
-
     infix2postfix(buffer);
     puts(buffer);
 

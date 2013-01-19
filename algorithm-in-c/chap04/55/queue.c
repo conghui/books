@@ -117,11 +117,9 @@ Item queue_pop()
 {
     Item reval;
     int idx;
-
     assert(!queue_empty());
     idx = rand() % count;
     reval   = content[idx];
-
     delete(reval);
     return reval;
 }

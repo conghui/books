@@ -3,7 +3,8 @@
 
 #include "digit.h"
 
-double rand_d(){
+double rand_d()
+{
     return (double)rand() / RAND_MAX;
 }
 

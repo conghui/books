@@ -28,7 +28,6 @@ void queue_push(Item n)
 static void queue_error(const char *fmt, ...)
 {
     va_list ap;
-
     va_start(ap, fmt);
     vfprintf(stderr, fmt, ap);
     fprintf(stderr, "\n");
@@ -50,7 +49,6 @@ Item queue_pop()
     Item tmp = content[head++];
     head    %= SIZE;
     count--;
-
     return tmp;
 }
 

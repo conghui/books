@@ -22,7 +22,6 @@ void infix2postfix()
 {
     int c;
     char buf[BUFSIZ];
-
     stack_init(BUFSIZ);
 
     while ((c = getop(buf)) != EOF) {
@@ -61,7 +60,6 @@ void cal_post_expr()
     int c;
     int op2;
     char buf[BUFSIZ];
-
     stack_init(BUFSIZ);
 
     while ((c = getop(buf)) != EOF) {
@@ -108,7 +106,6 @@ void cal_post_expr()
     }
 
     stack_free();
-
 }
 
 void error(const char *fmt, ...)
@@ -153,6 +150,5 @@ int getop(char *buf)
     }
 
     *buf = '\0';
-
     return NUMBER;
 }

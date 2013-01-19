@@ -5,7 +5,6 @@ int main(void)
 {
     int i;
     list_t head;
-
     head = list_new();
 
     for (i = 0; i < 10; i++) {
@@ -20,6 +19,5 @@ int main(void)
     list_for(evenhead, print);
     list_free(head);
     list_free(evenhead);
-
     return 0;
 }

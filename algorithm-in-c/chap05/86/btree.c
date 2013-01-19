@@ -41,9 +41,7 @@ void dellink(link_t *l)
 T btree_init()
 {
     T t = alloc(sizeof * t);
-
     link_t a, b, c, d, e, f, g, h;
-
     a = newlink('A', NULL, NULL);
     c = newlink('C', NULL, NULL);
     b = newlink('B', a, c);
@@ -52,7 +50,6 @@ T btree_init()
     f = newlink('F', NULL, g);
     h = newlink('H', f, NULL);
     e = newlink('E', d, h);
-
     t->root = e;
     return t;
 }

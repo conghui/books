@@ -31,14 +31,12 @@ T queue_init()
     t->size = 0;
     t->head = 0;
     t->tail = 0;
-
     return t;
 }
 
 void queue_finalize(T t)
 {
     assert(t);
-
     free(t);
 }
 
@@ -55,9 +53,7 @@ static int queue_full(T t)
 void queue_push(T t, int n)
 {
     size_t next;
-
     assert(!queue_full(t));
-
     next             = (t->tail + 1) % BUFSIZ;
     t->content[t->tail] = n;
     t->tail          = next;
@@ -68,13 +64,10 @@ int queue_pop(T t)
 {
     size_t next;
     int     reval;
-
     assert(!queue_empty(t));
-
     next = (t->head + 1) % BUFSIZ;
     reval   = t->content[t->head];
     t->head = next;
     t->size--;
-
     return reval;
 }

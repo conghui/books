@@ -22,15 +22,12 @@ void counting_sort(item_t *a, int l, int r);
 int main(void)
 {
     item_t a[N];
-
     for_each(a, N, init);
     for_each(a, N, print);
     putchar('\n');
-
     counting_sort(a, 0, N-1);
     for_each(a, N, print);
     putchar('\n');
-
     return 0;
 }
 
@@ -68,13 +65,11 @@ void counting_sort(item_t *a, int l, int r)
     int asize;
     int *cnt;
     item_t *b;
-
     findmaxmin(a, l, r, &max, &min);
     cntsize = max - min + 1;
     asize = r - l + 1;
     cnt = alloc(cntsize * sizeof *cnt);
     b   = alloc(asize * sizeof *b);
-
     memset(cnt, 0, cntsize * sizeof *cnt);
 
     for (i = l; i <= r; i++) {
@@ -88,7 +83,6 @@ void counting_sort(item_t *a, int l, int r)
     }
 
     memcpy(a, b, asize * sizeof *a);
-
     free(b);
     free(cnt);
 }
@@ -103,10 +97,8 @@ static void findmaxmin(item_t *a, int l, int r, int *max, int *min)
     } else {
         int mid = l + (r-l)/2;
         int max1, max2, min1, min2;
-
         findmaxmin(a, l, mid, &max1, &min1);
         findmaxmin(a, mid+1, r, &max2, &min2);
-
         *max = max1 > max2 ? max1 : max2;
         *min = min1 < min2 ? min1 : min2;
     }

@@ -29,6 +29,5 @@ void test()
     list_sort(list);
     list_show(list);
     putchar('\n');
-
     list_finalize(&list);
 }

@@ -12,7 +12,6 @@ int main()
     const char *input = "EasY";
     const char *pinput; /* point to input */
     const char *poutput; /* point to output */
-
     size_t i;
 
     for (i = 0; i < SIZE(output); i++) {

@@ -9,6 +9,5 @@ int main()
 {
     Item a = 1;
     ITEMShow(a);
-
     return 0;
 }

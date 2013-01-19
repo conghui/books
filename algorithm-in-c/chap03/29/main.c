@@ -16,25 +16,24 @@ int main(int argc, const char *argv[])
 
     int N = atoi(argv[1]);
     int M = atoi(argv[2]);
-
     node_t *start;
     node_t *last;
     start = last = malloc(sizeof *start);
     start->entry = 1;
     start->next = start;
-
     int i;
+
     for (i = 2; i <= N; i++) {
         last = last->next = malloc(sizeof *last);
         last->entry = i;
         last->next = start;
     }
 
-    while (last->next != last) 
-    {
+    while (last->next != last) {
         for (i = 1; i < M; i++) {
             last = last->next;
         }
+
         /* delete the node after the last node */
         node_t *tmp = last->next;
         last->next = tmp->next;

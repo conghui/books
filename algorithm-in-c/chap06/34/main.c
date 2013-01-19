@@ -33,14 +33,11 @@ void sort(int *a, int l, int r)
 int main(void)
 {
     int n  = 20;
-
     int *a = malloc(n * sizeof *a);
     foreach(a, n, init);
     foreach(a, n, print);
     putchar('\n');
-
     sort(a, 0, n-1);
-
     foreach(a, n, print);
     putchar('\n');
     free(a);

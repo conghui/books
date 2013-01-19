@@ -18,11 +18,9 @@ void *alloc(size_t size)
 T newnode(Item n, T prev, T next)
 {
     T nn = alloc(sizeof * nn);
-
     nn->entry  = n;
     nn->prev   = prev;
     nn->next   = next;
-
     return nn;
 }
 
@@ -40,10 +38,8 @@ void stack_push(Item n)
 Item stack_pop()
 {
     assert(!stack_empty());
-
     T tmp     = top;
     Item r    = top->entry;
-
     top       = top->prev;
 
     if (top != NULL) {

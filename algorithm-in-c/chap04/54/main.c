@@ -6,7 +6,6 @@ static void test();
 int main(void)
 {
     int i;
-
     queue_init(100);
 
     for (i = 0; i < 2; i++) {

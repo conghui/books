@@ -11,7 +11,6 @@ int times = 0;
 int main(void)
 {
     char *str = "aabcdaa";
-
     printf("there are %d 'a' in %s\n", count(str, 'a'), str);
     printf("The recursion is called %d times\n", times);
     return 0;

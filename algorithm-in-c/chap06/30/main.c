@@ -48,7 +48,6 @@ int main(void)
     int size = 20;
     int *a;
     int i;
-
     a = malloc(size * sizeof *a);
 
     for (i = 0; i < size; i++) {

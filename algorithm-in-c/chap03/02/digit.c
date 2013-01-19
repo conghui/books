@@ -27,6 +27,5 @@ void avg_std(number_t r, int n, double *pavg, double *pstd)
         sqr += (double)x*x / n;
     }
 
-
-    *pstd = sqrt(sqr - *pavg * *pavg );
+    *pstd = sqrt(sqr - *pavg * *pavg);
 }

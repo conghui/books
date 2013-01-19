@@ -99,7 +99,6 @@ static link_t _create_tree(char **str)
     root->left  = _create_tree(str);
     (*str)++;
     root->right = _create_tree(str);
-
     return root;
 }
 
@@ -214,7 +213,6 @@ static int count_internal_node(link_t root)
     }
 
     nroot = internal_node(root);
-
     return nleft + nright + nroot;
 }
 
@@ -226,7 +224,6 @@ static int internal_length(link_t root, size_t nnode)
 
     int nleft = count_internal_node(root->left);
     int nright = count_internal_node(root->right);
-
     return internal_length(root->left, nleft) +
            internal_length(root->right, nright) +
            nnode - 1;
@@ -241,6 +238,7 @@ int btree_internal_length(T t)
 static void inner_path(const_link_t root, size_t level, size_t *sum)
 {
     count++;
+
     if (root == NULL) {
         return;
     }
@@ -283,12 +281,12 @@ int btree_internal_length3(T t)
     extlink_t curlink;
     queue<extlink_t> Q;
     int innerNodeCnt = 0;
-
     curlink = extlink_init(t->root, 0);
     Q.push(curlink);
 
     while (!Q.empty()) {
         curlink = Q.front();
+
         if (curlink->link->left != NULL) {
             Q.push(extlink_init(curlink->link->left, curlink->level + 1));
         }

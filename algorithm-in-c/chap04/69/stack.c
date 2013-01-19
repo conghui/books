@@ -37,7 +37,6 @@ static link newlink(complex_t n, link next)
     link l   = alloc(sizeof * l);
     l->entry = complex_copy(n);
     l->next  = next;
-
     return l;
 }
 
@@ -53,7 +52,6 @@ T stack_init()
     T t     = alloc(sizeof * t);
     t->head = NULL;
     return t;
-
 }
 int stack_empty(T t)
 {

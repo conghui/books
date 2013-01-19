@@ -78,7 +78,6 @@ void list_push_back(T t, Item n)
 void list_print(T t)
 {
     link tmp;
-
     tmp = t->head;
     assert(tmp);
 

@@ -69,11 +69,9 @@ T poly_add(T adder1, T adder2)
     link sumcur;
     link adder1cur = adder1->head;
     link adder2cur = adder2->head;;
-
     T sum;
     coeff_t c;
     exp_t e;
-
     sum       = alloc(sizeof * sum);
     sumcur = sum->head = NULL;
 

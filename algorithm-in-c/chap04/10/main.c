@@ -12,7 +12,6 @@ int main(void)
 {
     int c;
     char buf[BUFSIZ];
-
     stack_init(BUFSIZ);
 
     while ((c = getop(buf)) != EOF) {
@@ -46,7 +45,6 @@ int main(void)
     }
 
     stack_free();
-
     return 0;
 }
 
@@ -83,6 +81,5 @@ int getop(char *buf)
     }
 
     *buf = '\0';
-
     return NUMBER;
 }

@@ -12,22 +12,19 @@ int main(void)
     int num;
     int size;
     int r;
-
     memset(A, 0, MAX * sizeof *A);
 
     for (i = 0; i < MAX; i++) {
         if ((r = scanf("%d", &num)) == 1) {
             A[num]++;
-        }
-        else {
+        } else {
             break;
         }
     }
 
     if (r == EOF) {
         size = i;
-    }
-    else {
+    } else {
         fprintf(stderr, "read error\n");
         exit(EXIT_FAILURE);
     }
@@ -37,5 +34,6 @@ int main(void)
     for (i = 0; i < size; i++) {
         printf("%10d%10d\n", i, A[i]);
     }
+
     return 0;
 }

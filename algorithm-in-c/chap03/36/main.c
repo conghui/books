@@ -14,10 +14,8 @@ int main(void)
 
     printf("before rearrange: ");
     listPrint(head);
-
     listResort(head);
     printf("after rearrange:  ");
     listPrint(head);
-
     return 0;
 }

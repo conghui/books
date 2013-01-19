@@ -26,7 +26,6 @@ void stack_free()
 void stack_push(Item n)
 {
     assert(!stack_full());
-
     *top++ = n;
 }
 

@@ -8,11 +8,9 @@ void print(int *A, size_t n);
 int main(void)
 {
     int A[10];
-
     init(A, 10);
     print(A, 10);
     printf("the max value is: %d\n", findmax(A, 0, 9));
-
     return 0;
 }
 

@@ -14,10 +14,8 @@ int main()
     }
 
     list_print(l);
-
     printf("The max value is: %d\n", findmax(l->head));
     list_finalize(&l);
-
     return 0;
 }
 
@@ -31,6 +29,5 @@ int findmax(link head)
     int cmax ; /* current max */
     cmax = head->entry;
     rmax = findmax(head->next);
-
     return cmax > rmax ? cmax : rmax;
 }

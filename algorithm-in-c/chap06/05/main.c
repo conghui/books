@@ -39,7 +39,6 @@ int main(void)
     int a = 2;
     int b = 3;
     int c = 1;
-
     compexch(&a, &b, &c);
     printf("%d %d %d\n", a, b, c);
     return 0;

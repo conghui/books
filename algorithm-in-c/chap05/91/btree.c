@@ -98,7 +98,6 @@ static link_t _create_tree(char **str)
     root->left  = _create_tree(str);
     (*str)++;
     root->right = _create_tree(str);
-
     return root;
 }
 
@@ -234,7 +233,6 @@ static int internal_length(link_t root, size_t nnode)
 
     int nleft = count_internal_node(root->left);
     int nright = count_internal_node(root->right);
-
     int nnleft  = 0;
     int nnright = 0;
 

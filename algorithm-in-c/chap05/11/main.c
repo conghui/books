@@ -10,7 +10,6 @@ int main(void)
     char buf[BUFSIZ] = "(3 / ((1) * (1 + 2)))";
     char *p          = buf;
     eval(&p);
-
     return 0;
 }
 
@@ -55,6 +54,5 @@ static int getop(char **expr, int *n)
 
     *expr = p;
     *n    = result;
-
     return NUMBER;
 }

@@ -15,10 +15,8 @@ static void *alloc(size_t size);
 T newnode(Item n, T next)
 {
     T nn      = alloc(sizeof * nn);
-
     nn->entry = n;
     nn->next  = next;
-
     return nn;
 }
 
@@ -56,9 +54,7 @@ int queue_empty()
 static void queue_error(const char *fmt, ...)
 {
     va_list ap;
-
     va_start(ap, fmt);
-
     vfprintf(stderr, fmt, ap);
     fprintf(stderr, "\n");
     exit(EXIT_FAILURE);
@@ -68,6 +64,5 @@ static void *alloc(size_t size)
 {
     void *p = malloc(size);
     assert(p);
-
     return p;
 }

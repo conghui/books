@@ -7,7 +7,6 @@ string repeatString(const string &str, size_t n);
 int main(void)
 {
     cout << repeatString("Hello", 3) << endl;
-
     return 0;
 }
 

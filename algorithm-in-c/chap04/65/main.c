@@ -6,7 +6,6 @@ int main(void)
 {
     int i;
     queue_t q;
-
     q = queue_init();
 
     for (i = 0; i < 10; i++)  {

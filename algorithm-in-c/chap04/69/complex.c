@@ -57,7 +57,6 @@ T complex_mult(T a, T b)
 {
     double r = a->real * b->real - a->image * b->image;
     double i = a->real * b->image + a->image * b->real;
-
     return complex_init(r, i);
 }
 

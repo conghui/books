@@ -9,6 +9,5 @@ int main(void)
     printf("%8s%15hd - %15hd\n", "short: ", SHRT_MIN, SHRT_MAX);
     printf("%8s%15g - %15g\n", "float: ", FLT_MIN, FLT_MAX);
     printf("%8s%15g - %15g\n", "double: ", DBL_MIN, DBL_MAX);
-
     return 0;
 }

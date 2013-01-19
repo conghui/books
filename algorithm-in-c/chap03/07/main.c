@@ -18,8 +18,10 @@ int main(void)
     }
 
     mindist = FLT_MAX;
+
     while ((rt = scanf("%f%f", &inpoint.x, &inpoint.y)) == 2) {
         dist = distance(&fstpoint, &inpoint);
+
         if (dist < mindist) {
             mindist = dist;
             minpoint = inpoint;
@@ -27,10 +29,9 @@ int main(void)
     }
 
     if (rt == EOF) {
-        printf("the min distance is: %f, the point is (%f, %f)\n", mindist, 
-                minpoint.x, minpoint.y);
-    }
-    else {
+        printf("the min distance is: %f, the point is (%f, %f)\n", mindist,
+               minpoint.x, minpoint.y);
+    } else {
         fprintf(stderr, "you should give a float pair\n");
         exit(EXIT_FAILURE);
     }

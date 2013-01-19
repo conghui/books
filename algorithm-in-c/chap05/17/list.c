@@ -50,7 +50,6 @@ void list_finalize(T *t)
     tmp = (*t)->head;
     (*t)->head = tmp->next;
     free(tmp);
-
     list_finalize(t);
 }
 

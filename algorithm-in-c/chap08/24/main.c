@@ -22,27 +22,22 @@ int main(void)
     clock_t begin, end;
     item_t *a = malloc(n * sizeof *a);
     item_t *b = malloc(n * sizeof *b);
-
     for_each(a, a + n, init);
     memcpy(b, a, n * sizeof *a);
-
     begin = clock();
     mergesortBU(a, 0, n - 1);
     end = clock();
-
-    printf("Bottom up cost: %.2f sec\n", 
-            (double)(end - begin)/CLOCKS_PER_SEC);
-
+    printf("Bottom up cost: %.2f sec\n",
+           (double)(end - begin)/CLOCKS_PER_SEC);
     begin = clock();
     mergesortTD(b, 0, n - 1);
     end = clock();
-    printf("Top down cost:  %.2f sec\n", 
-            (double)(end - begin)/CLOCKS_PER_SEC);
+    printf("Top down cost:  %.2f sec\n",
+           (double)(end - begin)/CLOCKS_PER_SEC);
 
     if (memcmp(a, b, n * sizeof *a) == 0) {
         printf("Yes\n");
-    }
-    else {
+    } else {
         printf("No\n");
         /*for_each(a, a + n, print); putchar('\n');*/
         /*for_each(b, b + n, print); putchar('\n');*/
@@ -71,10 +66,18 @@ void merge(item_t *a, int l, int m, int r)
 {
     static item_t aux[MAXSIZE];
     int i, j, k;
-    for (i = m + 1; i > l; i--) aux[i-1] = a[i-1];
-    for (j = m; j < r; j++) aux[r+m-j] = a[j+1];
-    for (k = l; k <= r; k++)
+
+    for (i = m + 1; i > l; i--) {
+        aux[i-1] = a[i-1];
+    }
+
+    for (j = m; j < r; j++) {
+        aux[r+m-j] = a[j+1];
+    }
+
+    for (k = l; k <= r; k++) {
         a[k] = aux[i] <= aux[j] ? aux[i++] : aux[j--];
+    }
 }
 
 void mergesortTD(item_t *a, int l, int r)
@@ -87,14 +90,14 @@ void mergesortTD(item_t *a, int l, int r)
     int m = l + ((r-l) >> 1);
     mergesortTD(a, l, m);
     mergesortTD(a, m + 1, r);
-
     merge(a, l, m, r);
 }
 
 void for_each(item_t *first, item_t *last, void (*f)(item_t *))
 {
-    for (; first != last; ++first)
+    for (; first != last; ++first) {
         f(first);
+    }
 }
 
 void init(item_t *x)
@@ -110,17 +113,23 @@ void print(item_t *x)
 void insertion_sort(item_t *a, int l, int r)
 {
     int i, min;
+
     for (min = l, i = l + 1; i <= r; i++) {
-        if (a[min] > a[i]) min = i;
+        if (a[min] > a[i]) {
+            min = i;
+        }
     }
 
     swap(&a[l], &a[min]);
+
     for (i = l + 1; i <= r; i++) {
         int j    = i;
         item_t v = a[j];
+
         for (; v < a[j-1]; j--) {
             a[j] = a[j-1];
         }
+
         a[j] = v;
     }
 }

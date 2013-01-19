@@ -21,6 +21,5 @@ int findmax(int *A, int a, int b)
     alast = a + pow(2, ceil(log2(b - a + 1)) - 1) - 1;
     lmax  = findmax(A, a, alast);
     rmax  = findmax(A, alast + 1, b);
-
     return lmax > rmax ? lmax : rmax;
 }

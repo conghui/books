@@ -22,7 +22,6 @@ void pattern(int n, int i)
     printstar(n);
     putchar('\n');
     pattern(n / 2, i + n / 2);
-
 }
 
 void printspace(int i)

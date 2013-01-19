@@ -3,11 +3,9 @@
 link listNew(int n)
 {
     link newnode;
-
     newnode        = malloc(sizeof *newnode);
     newnode->entry = n;
     newnode->next  = NULL;
-
     return newnode;
 }
 
@@ -21,8 +19,7 @@ void listFree(link head)
 {
     link curnode;
 
-    while ((curnode = head->next) != NULL)
-    {
+    while ((curnode = head->next) != NULL) {
         head->next = curnode->next;
         free(curnode);
     }
@@ -35,25 +32,23 @@ void listResort(link head)
     link even;        /* points to the last even element                   */
     link odd;         /* points to the last odd element                    */
     link cur;
-
-
     odd = head->next;
+
     if (odd == NULL) {
         return ;
     }
 
     evenBegin = even = odd->next;
+
     if (even == NULL) {
         return ;
     }
 
-    for (cnt = 3, cur = even->next; cur != NULL; cnt++, cur = cur->next)
-    {
+    for (cnt = 3, cur = even->next; cur != NULL; cnt++, cur = cur->next) {
         if (cnt % 2) {
             odd->next = cur;
             odd       = cur;
-        }
-        else {
+        } else {
             even->next = cur;
             even       = cur;
         }
@@ -65,8 +60,7 @@ void listResort(link head)
 
 void listPrint(link head)
 {
-    for (head = head->next; head != NULL; head = head->next)
-    {
+    for (head = head->next; head != NULL; head = head->next) {
         printf("%d ", head->entry);
     }
 

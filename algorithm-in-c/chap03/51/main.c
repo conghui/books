@@ -18,6 +18,7 @@ int main(void)
 
     for (j = 0; j < SIZE(N); j++) {
         tail = head = list_init(N[j]);
+
         for (i = 1; i <= N[j]; i++) {
             list_t nn = list_newnode(i);
             list_insert_next(tail, nn);
@@ -25,15 +26,18 @@ int main(void)
         }
 
         list_t cur = head->next;
+
         while (cur != cur->next) {
             for (i = 1; i < M - 1; i++) {
                 cur = cur->next;
             }
+
             list_t tmp = list_delete_next(cur);
             cur        = tmp->next;
             /*printf("%d ", tmp->entry);*/
             list_free_node(tmp);
         }
+
         head->next = cur;
         /*list_print(head);*/
         list_delete(head);

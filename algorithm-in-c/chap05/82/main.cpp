@@ -12,14 +12,14 @@ int main(void)
     //preorder2(tree, visit); putchar('\n');
     //preorder3(tree, visit); putchar('\n');
     //preorder4(tree, visit); putchar('\n');
-
     //inorder_traverse(tree, visit); putchar('\n');
     //inorder1(tree, visit); putchar('\n');
     //inorder2(tree, visit); putchar('\n');
     //inorder3(tree, visit); putchar('\n');
-
-    postorder_traverse(tree, visit); putchar('\n');
-    postorder1(tree, visit); putchar('\n');
+    postorder_traverse(tree, visit);
+    putchar('\n');
+    postorder1(tree, visit);
+    putchar('\n');
     return 0;
 }
 

@@ -90,7 +90,6 @@ int queue_pop(T t)
 {
     L tmp;
     int item;
-
     assert(!queue_empty(t));
     item = t->head->entry;
 

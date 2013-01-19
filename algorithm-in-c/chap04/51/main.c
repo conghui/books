@@ -6,7 +6,6 @@ static void test();
 int main(void)
 {
     int i;
-
     stack_init(10);
 
     for (i = 0; i < 2; i++) {
@@ -34,5 +33,4 @@ static void test()
     }
 
     putchar('\n');
-
 }

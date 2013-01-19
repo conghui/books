@@ -55,13 +55,11 @@ void randlist_push(Item n)
 Item randlist_pop()
 {
     assert(!randlist_empty());
-
     int index;
     Item rtval; /* return value */
     T   cur;
     T   prev;
     T   tmp;
-
     index = rand_int(count);
 
     if (index == 0) {

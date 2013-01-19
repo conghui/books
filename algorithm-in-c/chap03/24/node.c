@@ -12,6 +12,7 @@ node_t *get_cir_list()
     }
 
     node_t *n = malloc(sizeof *n);
+
     if (n == NULL) {
         fprintf(stderr, "memory is not enough\n");
         exit(EXIT_FAILURE);
@@ -20,17 +21,17 @@ node_t *get_cir_list()
     n->entry = 0;
     n->next = n;
     cirlist = n;
-
     return cirlist;
 }
 
-int list_size() {
+int list_size()
+{
     int cnt;
     node_t *tail = cirlist;
 
-    if (cirlist == NULL)
+    if (cirlist == NULL) {
         return 0;
-
+    }
 
     for (cnt = 1; tail != cirlist->next; cnt++) {
         cirlist = cirlist->next;
@@ -43,12 +44,11 @@ void list_add(int x)
 {
     node_t *n = malloc(sizeof *n);
     assert(n);
-
     n->entry = x;
+
     if (cirlist == NULL) {
         n->next = n;
-    }
-    else {
+    } else {
         n->next = cirlist->next;
         cirlist->next = n;
     }

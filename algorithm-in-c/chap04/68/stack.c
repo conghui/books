@@ -68,7 +68,6 @@ int stack_pop(T t)
 {
     int reval;
     L tmp;
-
     assert(!stack_empty(t));
     reval = t->head->entry;
     tmp     = t->head;

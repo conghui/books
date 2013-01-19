@@ -43,7 +43,6 @@ T STACK_pop()
     }
 
     return *--top;
-
 }
 
 void error(const char *fmt, ...)

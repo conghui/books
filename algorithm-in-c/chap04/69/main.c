@@ -17,9 +17,7 @@ int main(void)
 {
     complex_t complex;
     stack_t stack;
-
     stack = stack_init();
-
     int c;
 
     while ((c = getop(&complex)) != EOF) {
@@ -45,7 +43,6 @@ int main(void)
                 printf("unknown character\n");
                 exit(EXIT_FAILURE);
                 break;
-
         }
     }
 
@@ -89,8 +86,6 @@ static int getop(complex_t *complex)
     }
 
     image *= sign;
-
     *complex = complex_init(real, image);
-
     return COMPLEX;
 }

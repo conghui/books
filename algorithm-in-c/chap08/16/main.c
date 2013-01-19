@@ -25,7 +25,11 @@ void print(item_t *x);
 
 void mergesortABr(item_t *a, item_t *b, int l, int r)
 {
-    if (r - l <= M) { insertion_sort(a, l, r); return; }
+    if (r - l <= M) {
+        insertion_sort(a, l, r);
+        return;
+    }
+
     int m = l + ((r-l) >> 1);
     mergesortABr(b, a, l, m);
     mergesortABr(b, a, m + 1, r);
@@ -42,9 +46,18 @@ void mergesortAB(item_t *a, int l, int r)
 void mergeAB(item_t *c, item_t *a, int n, item_t *b, int m)
 {
     int i, j, k;
+
     for (i = j = k = 0; k < n + m; k++) {
-        if (i == n) { c[k] = b[j++]; continue; }
-        if (j == m) { c[k] = a[i++]; continue; }
+        if (i == n) {
+            c[k] = b[j++];
+            continue;
+        }
+
+        if (j == m) {
+            c[k] = a[i++];
+            continue;
+        }
+
         c[k] = a[i] <= b[j] ? a[i++] : b[j++];
     }
 }
@@ -52,16 +65,22 @@ void mergeAB(item_t *c, item_t *a, int n, item_t *b, int m)
 void insertion_sort(item_t *a, int l, int r)
 {
     int i, min;
-    for (min = l, i = l + 1; i <= r; i++) 
-        if (a[min] > a[i]) min = i;
+
+    for (min = l, i = l + 1; i <= r; i++)
+        if (a[min] > a[i]) {
+            min = i;
+        }
+
     swap(&a[min], &a[l]);
 
     for (i = l + 1; i <= r; i++) {
         int j    = i;
         item_t v = a[j];
+
         for (; v < a[j-1]; j--) {
             a[j] = a[j-1];
         }
+
         a[j] = v;
     }
 }
@@ -79,11 +98,9 @@ int main(void)
     clock_t begin, end;
     int *a = alloc(n * sizeof *a);
     int *b = alloc(n * sizeof *b);
-
     begin = clock();
     for_each(a, a + n, init);
     arraycpy(b, a, n);
-
     mergesortAB(a, 0, n-1);
     /*insertion_sort(b, 0, n-1);*/
     qsort(b, n, sizeof *a, comp);
@@ -92,18 +109,23 @@ int main(void)
         end = clock();
         printf("Time elapse: %f\n", (double)(end - begin)/CLOCKS_PER_SEC);
         printf("Yes\n");
-    }
-    else {
+    } else {
         printf("No\n");
-        for_each(a, a + n, print); putchar('\n'); putchar('\n');
-        for_each(b, b + n, print); putchar('\n');
+        for_each(a, a + n, print);
+        putchar('\n');
+        putchar('\n');
+        for_each(b, b + n, print);
+        putchar('\n');
     }
+
     return 0;
 }
 
 void for_each(item_t *first, item_t *last, void (*f)(item_t *))
 {
-    for (; first != last; ++first) f(first);
+    for (; first != last; ++first) {
+        f(first);
+    }
 }
 
 void init(item_t *x)

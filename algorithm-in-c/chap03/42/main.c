@@ -21,15 +21,12 @@ int main(void)
         list_t nn = malloc(sizeof *nn);
         nn->entry = i;
         nn->next  = NULL;
-
         nn->next = head;
         head = nn;
     }
 
     print(head);
-
     head = list_sort(head);
-
     print(head);
     list_free(head);
     return 0;
@@ -48,7 +45,7 @@ void list_free(list_t head)
 {
     list_t tmp;
 
-    for (tmp = head; tmp != NULL; ) {
+    for (tmp = head; tmp != NULL;) {
         head = head->next;
         free(tmp);
         tmp = head;
@@ -58,26 +55,26 @@ void list_free(list_t head)
 list_t list_sort(list_t head)
 {
     assert(head);
-
     list_t sortlist;
     list_t cur;
     list_t next;
-
     cur      = head;
     sortlist = NULL;
+
     while (cur != NULL) {
         next = cur->next;
-
         list_t tmp;
         list_t prev;
-
         tmp = sortlist;
-        for (prev = NULL; tmp != NULL; tmp = tmp->next ) {
+
+        for (prev = NULL; tmp != NULL; tmp = tmp->next) {
             prev = tmp;
+
             if (prev->entry > cur->entry) {
                 if (prev == sortlist) {
                     prev = NULL;
                 }
+
                 break;
             }
         }
@@ -85,8 +82,7 @@ list_t list_sort(list_t head)
         if (prev == NULL) { /* insert at the first element */
             cur->next = sortlist;
             sortlist = cur;
-        }
-        else {
+        } else {
             cur->next  = prev->next;
             prev->next = cur;
         }

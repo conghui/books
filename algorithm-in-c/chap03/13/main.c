@@ -15,17 +15,25 @@ int main(void)
     for (i = 0; i < SIZE(N); i++) {
         a = malloc(N[i] * sizeof *a);
         assert(a);
-        for (j = 0ULL; j < N[i]; j++) { a[j] = 1; };
+
+        for (j = 0ULL; j < N[i]; j++) {
+            a[j] = 1;
+        };
+
         for (j = 2ULL; j < N[i]; j++) {
             if (a[j] == 1) {
-                for (k = 2ULL; j*k < N[i]; k++) { a[j*k] = 0; };
+                for (k = 2ULL; j*k < N[i]; k++) {
+                    a[j*k] = 0;
+                };
             }
         }
+
         for (j = 2ULL; j < N[i]; j++) {
             if (a[j]) {
                 printf("%llu\n", j);
             }
         }
+
         printf("\n\n\n");
         free(a);
     }

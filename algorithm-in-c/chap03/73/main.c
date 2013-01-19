@@ -16,8 +16,9 @@ int main(int argc, const char **argv)
 
     if (argc != 2) {
         fprintf(stderr, "usage: %s row\n", argv[0]);
-        exit(EXIT_FAILURE); 
+        exit(EXIT_FAILURE);
     }
+
     row  = atoi(argv[1]);
 
     if (row <= 0) {
@@ -30,7 +31,6 @@ int main(int argc, const char **argv)
     while (scanf("%d%d", &i, &j) == 2) {
         list_t nn = list_newnode(j);
         list_insert_next(list[i], nn);
-
         /* the link list is synmetric, so continue adding */
         nn = list_newnode(i);
         list_insert_next(list[j], nn);
@@ -38,20 +38,19 @@ int main(int argc, const char **argv)
 
     print(list, row);
     delete_list(list, row);
-
     return 0;
 }
 
 static list_t *init_list(int row)
 {
     int i;
-
     list_t *list = calloc(row, sizeof *list);
     assert(list);
 
     for (i = 0; i < row; i++) {
         list[i] = list_new();
     }
+
     return list;
 }
 
@@ -62,6 +61,7 @@ static void delete_list(list_t *list, int row)
     }
 
     int i;
+
     for (i = 0; i < row; i++) {
         list_free(list[i]);
     }

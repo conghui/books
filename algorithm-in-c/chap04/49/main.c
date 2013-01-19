@@ -10,7 +10,6 @@ int main(void)
         stack_push(i);
     }
 
-
     for (i = 0; i < 5; i++) {
         stack_push(i);
     }
@@ -20,6 +19,5 @@ int main(void)
     }
 
     putchar('\n');
-
     return 0;
 }

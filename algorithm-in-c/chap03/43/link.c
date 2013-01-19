@@ -15,9 +15,7 @@ T list_new()
 {
     T head = malloc(sizeof *head);
     assert(head);
-
     head->next = NULL;
-
     return head;
 }
 
@@ -27,7 +25,6 @@ T list_new_node(int n)
     assert(newnode);
     newnode->entry = n;
     newnode->next  = NULL;
-
     return newnode;
 }
 
@@ -36,8 +33,7 @@ void list_insert_next(T dest, T src)
     if (dest->next == NULL) { /* empty list */
         src->next  = src;
         dest->next = src;
-    }
-    else {
+    } else {
         src->next  = dest->next;
         dest->next = src;
     }
@@ -47,13 +43,13 @@ void list_delete(T head)
 {
     if (head == NULL) {
         return ;
-    }
-    else if (head->next == NULL) { /* only have a head */
+    } else if (head->next == NULL) { /* only have a head */
         free(head);
         return ;
     }
 
     T cur = head->next;
+
     while (cur->next != cur) { /* at least one element */
         T tmp     = cur->next;
         cur->next = tmp->next;
@@ -73,6 +69,7 @@ void list_print(CT head)
     }
 
     cur = head->next;
+
     do {
         printf("%d ", cur->entry);
         cur = cur->next;

@@ -17,7 +17,6 @@ T stackList_newnode(int n)
     T nn      = alloc(sizeof * nn);
     nn->entry = n;
     nn->next  = NULL;
-
     return nn;
 }
 
@@ -37,16 +36,12 @@ void stackList_push(int n)
 int stackList_pop()
 {
     assert(!stackList_empty());
-
     T cur;
     int entry;
-
     entry = top->entry;
     cur   = top;
-
     top   = top->next;
     free(cur);
-
     return entry;
 }
 
@@ -85,7 +80,6 @@ static void *alloc(size_t size)
 static void error(const char *fmt, ...)
 {
     va_list ap;
-
     va_start(ap, fmt);
     vfprintf(stderr, fmt, ap);
     fprintf(stderr, "\n");

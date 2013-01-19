@@ -31,7 +31,6 @@ static int postfix_cur2(char *expr)
 {
     char *begin = expr;
     char *end   = begin + strlen(begin) - 1;
-
     return eval2(begin, &end);
 }
 

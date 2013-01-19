@@ -22,14 +22,12 @@ int stackArray_isempty()
 void stackArray_push(T n)
 {
     assert(!stackArray_isfull());
-
     *top++ = n;
 }
 
 T stackArray_pop()
 {
     assert(!stackArray_isempty());
-
     return *--top;
 }
 

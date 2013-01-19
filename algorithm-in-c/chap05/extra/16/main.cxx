@@ -12,11 +12,11 @@ int main(void)
     string str = "aeiou12345iouea";
     string dis = disemvowel(str);
     cout << "The disemvowel of " << str << " is: " << dis << endl;
-
     return 0;
 }
 
-string disemvowel(const string &str) {
+string disemvowel(const string &str)
+{
     return _disemvowel(str.c_str(), 0, str.length() - 1);
 }
 
@@ -24,16 +24,20 @@ string _disemvowel(const char *str, int a, int b)
 {
     if (a == b) {
         string ret = "";
+
         if (!isVowel(str[a])) {
             ret += str[a];
         }
+
         return ret;
     }
 
     string ret = _disemvowel(str, a, b-1);
+
     if (!isVowel(str[b])) {
         ret += str[b];
     }
+
     return ret;
 }
 

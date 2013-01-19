@@ -6,12 +6,10 @@
 node_t *newNode(int entry)
 {
     node_t *newnode;
-
     newnode = malloc(sizeof *newnode);
     assert(newnode);
     newnode->entry = entry;
     newnode->next = NULL;
-
     return newnode;
 }
 
@@ -38,8 +36,7 @@ void mvB2last(node_t *head)
 
     /* search for the biggest node */
     for (prev = big, cur = big->next; cur != NULL;
-            prev = cur, cur = cur->next)
-    {
+         prev = cur, cur = cur->next) {
         if (cur->entry > big->entry) {
             prevbig = prev;
             big = cur;
@@ -48,21 +45,19 @@ void mvB2last(node_t *head)
 
     /* connect prevbig to the big->next */
     prevbig->next = big->next;
-
     /* now prev points to the last node, make it points to biggest node */
     prev->next = big;
     big->next = NULL;
-
 }
 
 void printNode(const node_t *head)
 {
     node_t *cur;
 
-    for (cur = head->next; cur != NULL; cur = cur->next)
-    {
+    for (cur = head->next; cur != NULL; cur = cur->next) {
         printf("%d ", cur->entry);
     }
+
     putchar('\n');
 }
 
@@ -70,8 +65,7 @@ void freeList(node_t *head)
 {
     node_t *cur;
 
-    for (cur = head->next; cur != NULL; cur = head->next)
-    {
+    for (cur = head->next; cur != NULL; cur = head->next) {
         head->next = cur->next;
         free(cur);
     }

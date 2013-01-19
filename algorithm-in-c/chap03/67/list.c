@@ -10,9 +10,7 @@ T list_new()
 {
     T  head = malloc(sizeof *head);
     assert(head);
-
     head->next = NULL;
-
     return head;
 }
 
@@ -20,17 +18,14 @@ T list_newnode(int n)
 {
     T nn = malloc(sizeof *nn);
     assert(nn);
-
     nn->next  = NULL;
     nn->entry = n;
-
     return nn;
 }
 
 void list_insert(T dest, T src)
 {
     assert(dest && src);
-
     src->next  = dest->next;
     dest->next = src;
 }
@@ -55,8 +50,7 @@ void list_print(T head)
 {
     T cur;
 
-    for (cur = head->next; cur->next != NULL; cur = cur->next)
-    {
+    for (cur = head->next; cur->next != NULL; cur = cur->next) {
         printf("%d -> ", cur->entry);
     }
 

@@ -22,6 +22,5 @@ int findmin(int A[], size_t n)
     int rmin;
     lmin = findmin(A, ln);
     rmin = findmin(mid, rn);
-
     return lmin < rmin ? lmin : rmin;
 }

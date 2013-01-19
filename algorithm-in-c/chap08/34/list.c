@@ -78,10 +78,10 @@ void list_pushback(T t, item_t item)
 {
     if (t->head == NULL) { /* the list is empty */
         t->tail = t->head = newlink(item, NULL);
-    }
-    else {
+    } else {
         t->tail = t->tail->next = newlink(item, NULL);
     }
+
     t->size++;
 }
 
@@ -95,8 +95,7 @@ static link_t merge(link_t a, link_t b)
         if (a->item <= b->item) {
             c = c->next = a;
             a = a->next;
-        }
-        else { /* a->item < b->item */
+        } else { /* a->item < b->item */
             c = c->next = b;
             b = b->next;
         }
@@ -104,13 +103,14 @@ static link_t merge(link_t a, link_t b)
 
     /* append the remaining list */
     c->next = a != NULL ? a : b;
-
     return t.next;
 }
 
 static link_t mergesort(link_t c, size_t len)
 {
-    if (len <= 1) return c;
+    if (len <= 1) {
+        return c;
+    }
 
     link_t a = c;
     link_t b = c;
@@ -126,27 +126,29 @@ static link_t mergesort(link_t c, size_t len)
     b       = c->next;
     c->next = NULL;
     bLen = len - aLen;
-
     return merge(mergesort(a, aLen), mergesort(b, bLen));
 }
 
 void list_sort(T t)
 {
     t->head = mergesort(t->head, t->size);
-
     /* find the tail and reset it */
     link_t tmp;
+
     if ((tmp = t->head) == NULL) {
         t->tail = NULL;
         return ;
     }
+
     for (tmp = t->head; tmp->next != NULL; tmp = tmp->next) ;
+
     t->tail = tmp;
 }
 
 void list_print(T t)
 {
     link_t tmp;
+
     for (tmp = t->head; tmp != NULL; tmp = tmp->next) {
         printf("%3d", tmp->item);
     }

@@ -37,7 +37,6 @@ void dellink(link_t *l)
 link_t mytree()
 {
     link_t a, b, c, d, e, f, g, h;
-
     a = newlink('A', NULL, NULL);
     c = newlink('C', NULL, NULL);
     b = newlink('B', a, c);
@@ -46,7 +45,6 @@ link_t mytree()
     f = newlink('F', NULL, g);
     h = newlink('H', f, NULL);
     e = newlink('E', d, h);
-
     return e;
 }
 
@@ -56,13 +54,16 @@ void preorder_traverse(link_t root, void (*visit)(link_t))
 
     while (root != NULL || !stk.empty()) {
         if (root == NULL) {
-            root = stk.top(); stk.pop();
+            root = stk.top();
+            stk.pop();
         }
 
         visit(root);
+
         if (root->r != NULL) {
             stk.push(root->r);
         }
+
         root = root->l;
     }
 }
@@ -73,7 +74,8 @@ void inorder_traverse(link_t root, void (*visit)(link_t))
 
     while (root != NULL || !stk.empty()) {
         if (root == NULL) {
-            root = stk.top(); stk.pop();
+            root = stk.top();
+            stk.pop();
             visit(root);
             root = root->r;
         }
@@ -83,7 +85,6 @@ void inorder_traverse(link_t root, void (*visit)(link_t))
             root = root->l;
         }
     }
-
 }
 
 void postorder_traverse(link_t root, void (*visit)(link_t))
@@ -93,7 +94,8 @@ void postorder_traverse(link_t root, void (*visit)(link_t))
     while (root != NULL || !stk.empty()) {
         if (root == NULL) {
             while (!stk.empty() && root == stk.top()->r) {
-                root = stk.top(); stk.pop();
+                root = stk.top();
+                stk.pop();
                 visit(root);
             }
 

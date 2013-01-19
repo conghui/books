@@ -31,14 +31,12 @@ static T newnode(Item n, T prev, T next)
     nn->entry = n;
     nn->prev  = prev;
     nn->next  = next;
-
     return nn;
 }
 
 void stack_init(size_t size)
 {
     size_t i;
-
     max_size = size;
     head      = NULL;
     exist    = alloc(size * sizeof * exist);
@@ -85,7 +83,6 @@ Item stack_pop()
 {
     T tmp;
     Item reval;
-
     assert(!stack_empty());
     tmp   = head;
     reval = head->entry;

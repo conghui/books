@@ -14,9 +14,9 @@ int main(void)
     unsigned j;
     double avg;
     double std;
-
     srand(time(0));
     printf("%s\t%s\t%s\t%s\n", "r", "n", "avg", "std");
+
     for (i = 0; i < SIZE(r); i++) {
         for (j = 0; j < SIZE(n); j++) {
             avg_std(r[i], n[j], &avg, &std);

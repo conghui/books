@@ -7,7 +7,6 @@ int main(void)
 {
     int i;
     stack_t s;
-
     s = stack_init();
 
     for (i = 0; i < 2; i++) {
@@ -15,7 +14,6 @@ int main(void)
     }
 
     stack_finalize(s);
-
     return 0;
 }
 

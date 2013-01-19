@@ -17,21 +17,18 @@ void stack1_push(Item n)
 void stack2_push(Item n)
 {
     assert(!stack_full());
-
     *top2-- = n;
 }
 
 Item stack1_pop()
 {
     assert(!stack1_empty());
-
     return *--top1;
 }
 
 Item stack2_pop()
 {
     assert(!stack2_empty());
-
     return *++top2;
 }
 

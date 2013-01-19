@@ -33,7 +33,6 @@ void stack_push(Item n)
 Item stack_pop()
 {
     assert(!stack_empty());
-
     return *--top;
 }
 

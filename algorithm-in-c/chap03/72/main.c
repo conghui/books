@@ -3,7 +3,7 @@
 #include <assert.h>
 static int **malloc2d(int row, int col);
 static void free2d(int **matrix, int row);
-static void print2d(int * const *matrix, int row, int col);
+static void print2d(int *const *matrix, int row, int col);
 
 int main(int argc, const char *argv[])
 {
@@ -33,7 +33,6 @@ int main(int argc, const char *argv[])
 
     print2d(matrix, row, col);
     free2d(matrix, row);
-
     return 0;
 }
 
@@ -41,7 +40,6 @@ static int **malloc2d(int row, int col)
 {
     int i;
     int **matrix;
-
     matrix = malloc(row * sizeof *matrix);
     assert(matrix);
 
@@ -57,8 +55,10 @@ static int **malloc2d(int row, int col)
 static void free2d(int **matrix, int row)
 {
     int i;
-    if (matrix == NULL)
+
+    if (matrix == NULL) {
         return;
+    }
 
     for (i = 0; i < row; i++) {
         free(matrix[i]);
@@ -67,7 +67,7 @@ static void free2d(int **matrix, int row)
     free(matrix);
 }
 
-static void print2d(int * const *matrix, int row, int col)
+static void print2d(int *const *matrix, int row, int col)
 {
     int i, j;
 
@@ -75,6 +75,7 @@ static void print2d(int * const *matrix, int row, int col)
         for (j = 0; j < col; j++) {
             printf("%3d", matrix[i][j]);
         }
+
         printf("\n");
     }
 }

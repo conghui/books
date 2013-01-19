@@ -96,7 +96,6 @@ static link_t _create_tree(char **str)
     root->left  = _create_tree(str);
     (*str)++;
     root->right = _create_tree(str);
-
     return root;
 }
 

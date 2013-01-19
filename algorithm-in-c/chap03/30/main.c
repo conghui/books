@@ -23,8 +23,10 @@ int main(void)
         for (j = 0; j < SIZE(M); j++) {
             elect(N[i], M[j]);
         }
+
         putchar('\n');
     }
+
     return 0;
 }
 
@@ -33,7 +35,6 @@ static void elect(int n, int m)
     int i;
     node_t *head;
     node_t *tail;
-
     head = tail = malloc(sizeof *head);
     assert(head && tail);
     head->entry = 1;
@@ -50,6 +51,7 @@ static void elect(int n, int m)
     /* elect the leader */
     while (tail != tail->next) {
         node_t *tmp;
+
         for (i = 1; i < m; i++) {
             tail = tail->next;
         }

@@ -57,7 +57,6 @@ static void pop_param(char *buf, int need_param)
 {
     char *last = buf;
     int has_op;
-
     stack_pop(buf);
     stack_push(buf);
     has_op = strpbrk(buf, "+-*/") == NULL ? 0 : 1;
@@ -102,7 +101,6 @@ static int getop(char *store)
     }
 
     *++store = nil;
-
     return NUMBER;
 }
 

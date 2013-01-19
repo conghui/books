@@ -79,9 +79,7 @@ static int find(Item n)
 Item queue_pop()
 {
     int reval;
-
     assert(!queue_empty());
-
     reval   = content[headidx];
     headidx = (headidx + 1) % maxsize;
     count--;

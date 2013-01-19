@@ -10,10 +10,8 @@ T list_init()
 {
     T head = malloc(sizeof *head);
     assert(head);
-
     head->next  = NULL;
     head->entry = -1;
-
     return head;
 }
 
@@ -23,7 +21,6 @@ T list_newnode(int n)
     assert(nn);
     nn->entry = n;
     nn->next  = NULL;
-
     return nn;
 }
 
@@ -41,6 +38,7 @@ void list_delete(T head)
     }
 
     T cur;
+
     while ((cur = head->next) != NULL) {
         head->next = cur->next;
         free(cur);

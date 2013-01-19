@@ -4,7 +4,6 @@
 int main(void)
 {
     int i;
-
     link head1 = new_list();
     link head2 = new_list();
 
@@ -16,9 +15,7 @@ int main(void)
     list_print(head1);
     list_copy(head2, head1);
     list_print(head2);
-
     list_free(head1);
     list_free(head2);
-
     return 0;
 }

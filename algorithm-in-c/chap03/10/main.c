@@ -20,8 +20,8 @@ int main(void)
         t = gettriangle();
         area += area_triangle(&t);
     }
-    printf("avg area is: %f\n", area / NTRI);
 
+    printf("avg area is: %f\n", area / NTRI);
     return 0;
 }
 
@@ -30,7 +30,6 @@ static point_t getpoint()
     point_t p;
     p.x = m_rand_d();
     p.y = m_rand_d();
-
     return p;
 }
 
@@ -40,6 +39,5 @@ static triangle_t gettriangle()
     t.a = getpoint();
     t.b = getpoint();
     t.c = getpoint();
-
     return t;
 }

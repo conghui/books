@@ -44,7 +44,6 @@ int main(void)
     int i;
     int N  = 50;
     int *a = calloc(N, sizeof *a);
-
     a[0] = INT_MIN;
 
     for (i = 1; i <= N; i++) {

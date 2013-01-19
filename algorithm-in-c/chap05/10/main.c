@@ -62,6 +62,5 @@ static int getop(char **expr, int *n)
 
     *expr = p;
     *n    = result;
-
     return NUMBER;
 }

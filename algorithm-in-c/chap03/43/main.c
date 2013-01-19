@@ -7,7 +7,6 @@ int main(void)
     int i;
     list_t head;
     list_t tail;
-
     head = list_new();
     tail = head;
 
@@ -19,7 +18,7 @@ int main(void)
 
     list_t cur = head->next;
 
-    while (cur->next != cur) { 
+    while (cur->next != cur) {
         for (i = 1; i < 4; i++) {
             cur = cur->next;
         }
@@ -27,7 +26,6 @@ int main(void)
         list_t tmp = cur->next;
         cur->next  = tmp->next;
         cur = cur->next;
-
         printf("%d ", tmp->entry);
         free(tmp);
     }
@@ -36,6 +34,5 @@ int main(void)
     head->next = cur;
     list_print(head);
     list_delete(head);
-
     return 0;
 }

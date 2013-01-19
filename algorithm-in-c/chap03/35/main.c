@@ -15,6 +15,5 @@ int main(void)
     list_mv1st(head);
     list_print(head);
     list_free(head);
-
     return 0;
 }

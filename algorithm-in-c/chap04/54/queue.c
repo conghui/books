@@ -71,7 +71,6 @@ int queue_empty()
 void queue_push(Item n)
 {
     assert(!queue_full());
-
     delete(n);
     insert_back(n);
 }
@@ -79,17 +78,14 @@ void queue_push(Item n)
 Item queue_pop()
 {
     Item reval = head->entry;
-
     assert(!queue_empty());
     delete(head->entry);
-
     return reval;
 }
 
 static void insert_back(Item n)
 {
     T nn;
-
     assert(!queue_full());
 
     if (queue_empty()) { /* empty list */

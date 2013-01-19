@@ -15,16 +15,12 @@ int main(void)
 {
     size_t size = 11;
     item_t *a = alloc(size * sizeof *a);
-
     for_each(a, size, init);
     for_each(a, size, print);
     putchar('\n');
-
     keyindex_sort(a, 0, size-1);
-
     for_each(a, size, print);
     putchar('\n');
-
     free(a);
     return 0;
 }
@@ -36,7 +32,6 @@ void keyindex_sort(item_t *a, int l, int r)
     item_t  max = findmax(a, l, r) + 1;
     int    *cnt = alloc(max *sizeof *cnt);
     item_t *b   = alloc((r-l+1) *sizeof *b);
-
     memset(cnt, 0, max * sizeof *cnt); /* clear the counter */
 
     for (i = l; i <= r; i++) {
@@ -56,7 +51,6 @@ void keyindex_sort(item_t *a, int l, int r)
     }
 
     memcpy(a, b, (r-l+1) * sizeof *a);
-
     free(b);
     free(cnt);
 }

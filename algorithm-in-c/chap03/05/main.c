@@ -19,6 +19,7 @@ int main(int argc, const char *argv[])
     }
 
     int N = atoi(*++argv);
+
     for (i = 0; i < N; i++) {
         Bit b = m_rand_b();
         m1 = (double)b / N;

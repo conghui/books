@@ -7,7 +7,6 @@ int main(void)
     int i;
     node_t h;
     node_t *head = &h;
-
     head->next = NULL;
 
     for (i = 0; i < 10; i++) {

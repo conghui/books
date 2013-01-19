@@ -17,8 +17,8 @@ int main(int argc, const char *argv[])
         fprintf(stderr, "usage: %s N\n", argv[0]);
         exit(EXIT_FAILURE);
     }
-    int n = atoi(argv[1]);
 
+    int n = atoi(argv[1]);
     point_t *parr = malloc(n * sizeof *parr);
     assert(parr);
 
@@ -29,6 +29,7 @@ int main(int argc, const char *argv[])
     pair_t mindistpair = {0, 0};
     float mindist = FLT_MAX;
     float dist;
+
     for (i = 0; i < n; i++) {
         for (j = i+1; j < n; j++) {
             if ((dist = distpoint(parr+i, parr+j)) < mindist) {
@@ -39,9 +40,8 @@ int main(int argc, const char *argv[])
         }
     }
 
-    printf("the closest two point is: (%f, %f) and (%f, %f)\n", 
-            parr[mindistpair.ia].x, parr[mindistpair.ia].y, 
-            parr[mindistpair.ib].x, parr[mindistpair.ib].y);
-
+    printf("the closest two point is: (%f, %f) and (%f, %f)\n",
+           parr[mindistpair.ia].x, parr[mindistpair.ia].y,
+           parr[mindistpair.ib].x, parr[mindistpair.ib].y);
     return 0;
 }

@@ -10,6 +10,7 @@ int main(void)
         trim(dest, buf);
         printf("%s", dest);
     }
+
     return 0;
 }
 
@@ -21,9 +22,9 @@ static void trim(char *dest, const char *src)
         if (*p == ' ') {
             while (*++p == ' ')
                 ;
+
             *dest++ = ' ';
-        }
-        else {
+        } else {
             *dest++ = *p++;
         }
     }
